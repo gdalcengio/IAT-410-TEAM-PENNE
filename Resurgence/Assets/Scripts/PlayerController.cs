@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //private Rigidbody2D rb;
     public float speed = 1f;
-    //private Vector2 horizontalForce;
     private float translation = 0f;
 
     void Start()
@@ -19,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
         translation = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         transform.Translate(translation, 0f, 0f, Space.World);
+
         // horizontalForce.x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         // // Debug.Log(horizontalForce);
 
