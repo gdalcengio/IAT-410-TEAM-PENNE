@@ -8,6 +8,7 @@ TagManager:
   - RightTrigger
   - LeftTrigger
   - Object
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Jumpable
+  - Object
   - 
   - 
   - 

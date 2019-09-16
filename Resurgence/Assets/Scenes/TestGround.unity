@@ -131,9 +131,9 @@ GameObject:
   - component: {fileID: 10482327}
   - component: {fileID: 10482326}
   - component: {fileID: 10482325}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -280,7 +280,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.2190895
+  orthographic size: 6.2414308
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -304,7 +304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233810340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.29, z: -10}
+  m_LocalPosition: {x: 0, y: 4.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -387,11 +387,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367153137}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.477255, y: 10.229768, z: 4.188129}
-  m_LocalScale: {x: 2.456, y: 2.456, z: 2.456}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1293879196}
   - {fileID: 1740221124}
+  - {fileID: 877817596}
   m_Father: {fileID: 1322754030}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -407,12 +408,12 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 5.6825695
-  m_LinearDrag: 0.1
-  m_AngularDrag: 5
-  m_GravityScale: 10
+  m_Mass: 1.4253981
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 8
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -425,12 +426,12 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 367153137}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b2adbaa9b104feb4586a107153cbd5e4, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000029802322, y: 0.16}
-  m_Size: {x: 0.86, y: 1.2799999}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
   m_Direction: 0
 --- !u!114 &367153142
 MonoBehaviour:
@@ -444,9 +445,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ecdab7113809c4ebff9f427fd69082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 100
-  moveForce: 100
-  jumpForce: 300
+  speed: 12
+  jumpForce: 26
+  groundCheck: {fileID: 877817596}
+  checkRadius: 0.1
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
+  whatIsObject:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &450168909
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,9 +466,9 @@ GameObject:
   - component: {fileID: 450168912}
   - component: {fileID: 450168911}
   - component: {fileID: 450168910}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -554,6 +562,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.521}
+--- !u!1 &877817595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 877817596}
+  m_Layer: 0
+  m_Name: GroundChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &877817596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877817595}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.49999997, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 367153139}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1293879195
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293879195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.25, y: 0.06, z: 0}
+  m_LocalPosition: {x: 1.76, y: 0.06, z: 0}
   m_LocalScale: {x: 0.18532975, y: 0.18532975, z: 0.18532975}
   m_Children: []
   m_Father: {fileID: 367153139}
@@ -610,8 +648,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
-  m_EdgeRadius: 0.98
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!114 &1293879198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,8 +662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adfac78cdaaa30a499e8cc0619c04bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canTranspose: 0
-  canFissure: 0
+  canTranspose: 1
+  canFissure: 1
   pushForce: {x: 10, y: 0}
 --- !u!1 &1322754028
 GameObject:
@@ -651,8 +689,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322754028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.545256, y: -9.297768, z: -4.188129}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.01, y: 1.97, z: -4.188129}
+  m_LocalScale: {x: 1, y: 1.64, z: 1}
   m_Children:
   - {fileID: 367153139}
   m_Father: {fileID: 0}
@@ -670,9 +708,9 @@ GameObject:
   - component: {fileID: 1551031988}
   - component: {fileID: 1551031987}
   - component: {fileID: 1551031990}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor3 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -799,7 +837,7 @@ GameObject:
   - component: {fileID: 1587659945}
   - component: {fileID: 1587659944}
   - component: {fileID: 1587659947}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RockObject
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -927,9 +965,9 @@ GameObject:
   - component: {fileID: 1612661518}
   - component: {fileID: 1612661517}
   - component: {fileID: 1612661519}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1034,7 +1072,7 @@ GameObject:
   - component: {fileID: 1740221124}
   - component: {fileID: 1740221126}
   m_Layer: 0
-  m_Name: nose
+  m_Name: nose/forward check (temporary)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1048,7 +1086,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740221123}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.43271416, y: 0.27289566, z: 0}
+  m_LocalPosition: {x: 1.13, y: 0.27289566, z: 0}
   m_LocalScale: {x: 0.10687703, y: 0.09161237, z: 0.4071661}
   m_Children: []
   m_Father: {fileID: 367153139}
