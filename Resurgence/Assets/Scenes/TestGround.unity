@@ -280,7 +280,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.2414308
+  orthographic size: 13.201987
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -391,8 +391,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1293879196}
-  - {fileID: 1740221124}
   - {fileID: 877817596}
+  - {fileID: 1740221124}
   m_Father: {fileID: 1322754030}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -447,6 +447,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 12
   jumpForce: 26
+  facingRight: 1
+  canMove: 1
   groundCheck: {fileID: 877817596}
   checkRadius: 0.1
   whatIsGround:
@@ -590,7 +592,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 367153139}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1293879195
 GameObject:
@@ -662,9 +664,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adfac78cdaaa30a499e8cc0619c04bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRB: {fileID: 367153140}
+  pc: {fileID: 367153142}
   canTranspose: 1
   canFissure: 1
-  pushForce: {x: 10, y: 0}
+  pushForce: {x: 10, y: 10}
+  charge: 0
+  minCharge: 100
+  maxCharge: 400
 --- !u!1 &1322754028
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,11 +951,11 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 17.59927
+  m_UseAutoMass: 0
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1090,7 +1097,7 @@ Transform:
   m_LocalScale: {x: 0.10687703, y: 0.09161237, z: 0.4071661}
   m_Children: []
   m_Father: {fileID: 367153139}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1740221126
 SpriteRenderer:

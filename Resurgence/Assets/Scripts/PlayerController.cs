@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private bool facingRight = true;
+    [HideInInspector]
+    public bool facingRight = true;
+    public bool canMove = true;
 
     private bool isGrounded;
     public Transform groundCheck;
@@ -30,16 +32,16 @@ public class PlayerController : MonoBehaviour
                   || (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsObject));
 
         moveInput = Input.GetAxis("Horizontal");
-        Debug.Log(moveInput);
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        //Debug.Log(moveInput);
+        if (canMove) rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
-        if ((!facingRight && moveInput > 0) || (facingRight && moveInput < 0)) flip();
+        if (((!facingRight && moveInput > 0) || (facingRight && moveInput < 0)) && canMove) flip();
     }
 
     void Update() {
         if (isGrounded) jumped = false;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !jumped) {
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !jumped && canMove) {
             rb.velocity = Vector2.up * jumpForce;
         }
             jumped = true;
@@ -48,6 +50,17 @@ public class PlayerController : MonoBehaviour
     private void flip() {
         facingRight = !facingRight;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+    }
+
+    public void freeze() {
+        //rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        rb.bodyType = RigidbodyType2D.Static;
+    }
+
+    public void unfreeze() {
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        // rb.constraints = ~RigidbodyConstraints2D.FreezePosition;
+        // transform.localRotation = Quaternion.identity;
     }
 
     // private Rigidbody2D rb;
