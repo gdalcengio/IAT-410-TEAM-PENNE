@@ -9,6 +9,7 @@ TagManager:
   - LeftTrigger
   - Object
   - Ground
+  - Spout
   layers:
   - Default
   - TransparentFX

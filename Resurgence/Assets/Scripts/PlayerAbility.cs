@@ -39,8 +39,7 @@ public class PlayerAbility : MonoBehaviour
                 pc.freeze();
                 canTranspose = false;
             }
-        }
-        
+        } 
     }
 
     // public void transpose(Collider2D col) {
