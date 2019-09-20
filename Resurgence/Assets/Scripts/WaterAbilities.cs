@@ -5,13 +5,12 @@ using UnityEngine;
 public class WaterAbilities : MonoBehaviour
 {
     GameObject buoyancyObject, buoyancyParent;
-    GameObject diveObject, diveParent;
+    GameObject diveObject, diveParent, diveContainer;
     int diveIndex;
     BuoyancyEffector2D buoy;
     BuoyancyEffector2D targetGeyser = null;
     Vector2 startPosition;
     Vector2 targetPosition;
-    Vector2 reset;
     float startTime;
 
     private IEnumerator geyserCoroutine;
@@ -47,9 +46,12 @@ public class WaterAbilities : MonoBehaviour
                 buoy = buoyancyObject.GetComponent<BuoyancyEffector2D>();
                 targetGeyser = buoy;
 
-                reset = startPosition = new Vector2(buoy.transform.position.x, buoy.transform.position.y); // reset geyser after time
+                startPosition = buoy.GetComponent<GeyserBehaviour>().getReset(); // reset geyser after time
                 targetPosition = new Vector2(0.0f, buoy.transform.position.y + buoy.GetComponent<GeyserBehaviour>().limit); // need limit
-                activateGeyser(buoy);
+                if (!buoy.GetComponent<GeyserBehaviour>().getActiveGeyser()) {
+                    activateGeyser(buoy);
+                    buoy.GetComponent<GeyserBehaviour>().setActiveGeyser(true);
+                }
             }
         }
 
@@ -57,19 +59,17 @@ public class WaterAbilities : MonoBehaviour
             if (col.gameObject == diveObject) {
                 // get index of parent
                 diveParent = diveObject.transform.parent.gameObject;
-                string entrance = diveParent.name;
-                entrance = entrance.Substring(entrance.Length - 1, 1);
-                int.TryParse (entrance,out diveIndex);
+                diveContainer = diveParent.transform.parent.gameObject;
 
-                GameObject diveContainer = diveParent.transform.parent.gameObject;
-                int divePoints = diveContainer.transform.childCount;
-                // Debug.LogError(col.name);
-                diveMove(col, divePoints, diveIndex);
+                diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
+                diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
 
-                // deactivate collidrs
+                diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
+                diveContainer.GetComponent<DiveBehaviour>().setEntrance(diveIndex);
+                diveMove(col, diveContainer.GetComponent<DiveBehaviour>().nodes.Count, diveContainer.GetComponent<DiveBehaviour>().getEntrance());
+                // deactivate colliders
                 diveContainer = diveParent = diveObject = null;
                 col = null;
-                entrance = null;
             }
         }
     }
@@ -81,19 +81,17 @@ public class WaterAbilities : MonoBehaviour
             Transform playerTransform = GameObject.Find("Base").transform;
             GameObject exitPoint;
             exitPoint = getNode(diveIndex, divePoints).transform.GetChild(0).gameObject; 
-            Debug.LogError(exitPoint.name + ", " + exitPoint.transform.position);
-            // playerTransform.position = teleportGoal.position;
             playerTransform.position = exitPoint.transform.position;
         }
     }
 
     private GameObject getNode(int diveIndex, int divePoints) {
-        GameObject exitPoint;
+        GameObject exitPoint = null;
         if (divePoints == 2) {
-            string node;
-            if (diveIndex == 0) node = "node1";
-            else node = "node0";
-            exitPoint = GameObject.Find(node);
+            if (diveIndex == 0) diveContainer.GetComponent<DiveBehaviour>().setDestination(1);
+            else  diveContainer.GetComponent<DiveBehaviour>().setDestination(0);
+            string node = diveContainer.GetComponent<DiveBehaviour>().getNode(diveContainer.GetComponent<DiveBehaviour>().getDestination());
+            exitPoint = diveContainer.transform.GetChild(diveContainer.GetComponent<DiveBehaviour>().getDestination()).gameObject;
         } else {
             return null;
         }
@@ -108,27 +106,7 @@ public class WaterAbilities : MonoBehaviour
         // increase density/buoyancy
         buoy.density = 3f;
 
-        geyserCoroutine = BuildGeyser(buoy, targetPosition, 0.005f);
-        StartCoroutine (geyserCoroutine);
-    }
-
-    IEnumerator BuildGeyser(BuoyancyEffector2D buoyancy, Vector3 direction,float speed)
-    {
-        float startime = Time.time;
-        Vector2 startPos = buoy.transform.position; //Starting position.
-        Vector2 endPos = buoy.transform.position + direction; //Ending position.
- 
-        while (startPos != endPos && ((Time.time - startime)*speed) < 1f && buoy.transform.position.y < buoy.GetComponent<GeyserBehaviour>().limit) { 
-            float move = Mathf.Lerp(0,1, (Time.time - startime)*speed);
- 
-            buoy.transform.position += direction*move;
- 
-            yield return null;
-        }
-        yield return new WaitForSeconds(5);
-
-        // reset geyser
-        buoy.transform.position = reset;
-        buoy.density = 0f;
+        geyserCoroutine = buoy.GetComponent<GeyserBehaviour>().BuildGeyser(targetPosition, 0.005f);
+        StartCoroutine(geyserCoroutine);
     }
 }
