@@ -10,6 +10,7 @@ TagManager:
   - Object
   - Ground
   - Spout
+  - EntryPoint
   layers:
   - Default
   - TransparentFX
