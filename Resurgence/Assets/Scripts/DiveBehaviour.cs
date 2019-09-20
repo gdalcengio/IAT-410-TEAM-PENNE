@@ -11,7 +11,7 @@ public class DiveBehaviour : MonoBehaviour
     public void defineNodes()
     {
         foreach (Transform child in transform) {
-            nodes.Add(child.gameObject);
+            if (child.name != "index") nodes.Add(child.gameObject);
         }
     }
 
