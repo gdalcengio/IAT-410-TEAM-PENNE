@@ -6,6 +6,7 @@ public class WaterAbilities : MonoBehaviour
 {
     GameObject buoyancyObject, buoyancyParent;
     GameObject diveObject, diveParent, diveContainer;
+    GameObject diveSwitch;
     int diveIndex;
     BuoyancyEffector2D buoy;
     BuoyancyEffector2D targetGeyser = null;
@@ -21,7 +22,30 @@ public class WaterAbilities : MonoBehaviour
         }
 
         if (col.gameObject.tag == "EntryPoint") {
+            // access needed GameObjects
             diveObject = col.gameObject;
+            diveParent = diveObject.transform.parent.gameObject;
+            diveContainer = diveParent.transform.parent.gameObject;
+
+            foreach (Transform child in diveContainer.transform) {
+                if (child.name.Substring(0, child.name.Length - 1) == "index") {
+                    diveSwitch = child.gameObject;
+                    return;
+                }
+            }
+        }
+
+        if (col.gameObject.tag == "switch") {
+            diveSwitch = col.gameObject;
+
+            diveContainer = diveSwitch.transform.parent.gameObject;
+            foreach (Transform child in diveContainer.transform) {
+                if (child.name.Substring(child.name.Length - 1, 4) == "node") {
+                    diveParent = child.gameObject;
+                    return;
+                }
+            }
+            diveObject = diveParent.transform.GetChild(0).gameObject;
         }
     }
 
@@ -32,8 +56,11 @@ public class WaterAbilities : MonoBehaviour
         if (col.gameObject == buoyancyParent) {
             //deactivate colliders
             buoyancyParent = buoyancyObject = null;
-            col = null;
             targetGeyser = null;
+        }
+
+        if (col.gameObject == diveSwitch) {
+            diveSwitch = null;
         }
     }
 
@@ -57,10 +84,6 @@ public class WaterAbilities : MonoBehaviour
 
         if (Input.GetKey(KeyCode.R)) {
             if (col.gameObject == diveObject) {
-                // get index of parent
-                diveParent = diveObject.transform.parent.gameObject;
-                diveContainer = diveParent.transform.parent.gameObject;
-
                 diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
                 diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
 
@@ -72,28 +95,48 @@ public class WaterAbilities : MonoBehaviour
                 col = null;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.E)) {
+            if (col.gameObject == diveSwitch) {
+                diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
+                diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
+                if (diveContainer.GetComponent<DiveBehaviour>().getCanChange()) {
+                    diveContainer.GetComponent<DiveBehaviour>().setCanChange(false);
+                    diveContainer.GetComponent<DiveBehaviour>().changePath();
+                } 
+                Debug.LogError("Target = " + diveContainer.GetComponent<DiveBehaviour>().getDestination());
+            }
+        } else if (Input.GetKeyUp(KeyCode.E)) {
+            if (!diveContainer.GetComponent<DiveBehaviour>().getCanChange()) diveContainer.GetComponent<DiveBehaviour>().setCanChange(true);
+        }
     }
 
     private void diveMove(Collider2D col, int divePoints, int diveIndex)
     {
         if (divePoints > 1) {
+            // get current and target locations
             Vector2 currentLocation = new Vector2(col.transform.position.x, col.transform.position.y);
             Transform playerTransform = GameObject.Find("Base").transform;
             GameObject exitPoint;
-            exitPoint = getNode(diveIndex, divePoints).transform.GetChild(0).gameObject; 
-            playerTransform.position = exitPoint.transform.position;
+            exitPoint = getNode(diveIndex, divePoints).transform.GetChild(0).gameObject; // define new location
+            playerTransform.position = exitPoint.transform.position; // teleport
         }
     }
 
+    // define target location
     private GameObject getNode(int diveIndex, int divePoints) {
         GameObject exitPoint = null;
         if (divePoints == 2) {
             if (diveIndex == 0) diveContainer.GetComponent<DiveBehaviour>().setDestination(1);
             else  diveContainer.GetComponent<DiveBehaviour>().setDestination(0);
             string node = diveContainer.GetComponent<DiveBehaviour>().getNode(diveContainer.GetComponent<DiveBehaviour>().getDestination());
-            exitPoint = diveContainer.transform.GetChild(diveContainer.GetComponent<DiveBehaviour>().getDestination()).gameObject;
+            // don't teleport to the point that you entered
+            if (diveIndex != diveContainer.GetComponent<DiveBehaviour>().getDestination()) exitPoint = diveContainer.transform.GetChild(diveContainer.GetComponent<DiveBehaviour>().getDestination()).gameObject;
         } else {
-            return null;
+            diveContainer.GetComponent<DiveBehaviour>().setDestination(diveContainer.GetComponent<DiveBehaviour>().getDestination());
+            string node = diveContainer.GetComponent<DiveBehaviour>().getNode(diveContainer.GetComponent<DiveBehaviour>().getDestination());
+            // don't teleport to the point that you entered
+            if (diveIndex != diveContainer.GetComponent<DiveBehaviour>().getDestination()) exitPoint = diveContainer.transform.GetChild(diveContainer.GetComponent<DiveBehaviour>().getDestination()).gameObject;
         }
         return exitPoint;
     }

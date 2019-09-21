@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Spout
   - EntryPoint
+  - switch
   layers:
   - Default
   - TransparentFX

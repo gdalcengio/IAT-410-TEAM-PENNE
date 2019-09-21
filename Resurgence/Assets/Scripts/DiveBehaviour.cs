@@ -5,7 +5,9 @@ using UnityEngine;
 public class DiveBehaviour : MonoBehaviour
 {
     public List<GameObject> nodes;
-    private int diveEntrance, diveTarget;
+    private int diveEntrance; 
+    private int diveTarget = 0;
+    private bool canChange = true;
 
     // get all possible locations
     public void defineNodes()
@@ -24,17 +26,15 @@ public class DiveBehaviour : MonoBehaviour
     }
 
     // cycle through dive locations
-    public int changePath(int diveTarget)
+    public void changePath()
     {
-        if (nodes.Count > 2) {
+        if (!canChange) {
             if (diveTarget < nodes.Count-1) {
                 diveTarget++;
             } else {
                 diveTarget = 0;
             }
         }
-
-        return diveTarget;
     }
 
     // declare destination
@@ -64,5 +64,14 @@ public class DiveBehaviour : MonoBehaviour
     public void setDestination(int input)
     {
         diveTarget = input;
+    }
+
+    public bool getCanChange() 
+    {
+        return canChange;
+    }
+
+    public void setCanChange(bool input) {
+        canChange = input;
     }
 }

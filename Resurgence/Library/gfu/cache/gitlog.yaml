@@ -13,9 +13,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 3
-  lastUpdatedAtString: 2019-09-20T14:29:46.239-07:00
+  lastUpdatedAtString: 2019-09-20T14:39:47.954-07:00
   initializedAtString: 2019-09-20T14:27:45.679-07:00
   log:
+  - commitID: e7b6e3b09e95733627843b7baffcb537ec355c4c
+    mergeA: 
+    mergeB: 
+    authorName: Ryan Donnelly
+    authorEmail: rdonnelly98@gmail.com
+    commitEmail: rdonnelly98@gmail.com
+    commitName: Ryan Donnelly
+    summary: little changes
+    description: 
+    timeString: 2019-09-20T14:39:29.000-07:00
+    commitTimeString: 2019-09-20T14:39:29.000-07:00
+    changes:
+    - path: Resurgence/Library/gfu/cache/branches.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/branches.yaml
+      projectPath: Library/gfu/cache/branches.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gitlocks.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gitlocks.yaml
+      projectPath: Library/gfu/cache/gitlocks.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gitlog.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gitlog.yaml
+      projectPath: Library/gfu/cache/gitlog.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gitstatusentries.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gitstatusentries.yaml
+      projectPath: Library/gfu/cache/gitstatusentries.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gittrackingstatus.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gittrackingstatus.yaml
+      projectPath: Library/gfu/cache/gittrackingstatus.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/repoinfo.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/repoinfo.yaml
+      projectPath: Library/gfu/cache/repoinfo.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
   - commitID: 6e4bef55522a2bc402c9854df7b7f94570126f30
     mergeA: 
     mergeB: 
