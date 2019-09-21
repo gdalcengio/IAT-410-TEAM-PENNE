@@ -9,6 +9,7 @@ TagManager:
   - LeftTrigger
   - Object
   - Ground
+  - Catalyst
   layers:
   - Default
   - TransparentFX

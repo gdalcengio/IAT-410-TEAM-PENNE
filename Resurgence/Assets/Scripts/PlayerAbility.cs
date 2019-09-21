@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAbility : MonoBehaviour
 {
+    private GameObject inHand = null;   //to hold the catalyst
     public Rigidbody2D playerRB;
     public PlayerController pc;
     public bool canTranspose = false, canFissure = false;
@@ -38,6 +39,13 @@ public class PlayerAbility : MonoBehaviour
                 // playerRB.constraints = RigidbodyConstraints2D.FreezePosition;
                 pc.freeze();
                 canTranspose = false;
+            }
+        } else if (Input.GetKeyDown("down")) { //pick up catalyst
+            if (col != null && col.gameObject.tag == "Catalyst") {
+                //if pickedUp is false this wont work
+                //inHand = col.GameObject;
+                col.transform.SetParent(transform.parent, true);
+                if (col.transform.parent != null) col.attachedRigidbody.simulated = false;
             }
         }
         
