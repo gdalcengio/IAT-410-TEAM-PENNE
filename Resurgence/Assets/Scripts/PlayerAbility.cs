@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PlayerAbility : MonoBehaviour
 {
-    public Rigidbody2D playerRB;
-    public PlayerController pc;
-    public bool canTranspose = false, canFissure = false;
-    public Vector2 pushForce = new Vector2(0, 0);
-    public float charge = 0;
-    public float minCharge;
-    public float maxCharge;
+    //public Rigidbody2D playerRB; 
+    
+    /*Auxillary stuff */
+    public PlayerController pc;                           //reference to the player
+    public bool canTranspose = false, canFissure = false; //ability flags
 
-    private IEnumerator transposeCoroutine;
+    /*transpose skill variables */
+    public Vector2 pushForce = new Vector2(0, 0);         //the reference vector2 for the transpose force
+    public float charge = 0;                              //the temporary variable to charge transpose
+    public float minCharge;                               //minimum force the player starts charging
+    public float maxCharge;                               //maximum force the player can charge
+
+    private IEnumerator transposeCoroutine;               //coroutine reference to get the colider
+
+    /*fissure variables */
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Object") {
@@ -20,15 +26,8 @@ public class PlayerAbility : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D() {
-        //StopCoroutine(transposeCoroutine);
-    }
     void OnTriggerStay2D(Collider2D col) {
-    //         transposeCoroutine = transpose(col);
-    //         StartCoroutine(transposeCoroutine);
-        //Debug.Log("staying");
-        //if (canTranspose) {
-            //charge = minCharge;        //reset the charge meter
+        /*transpose ability */
         if (Input.GetKey("space")) {
             transposeCoroutine = chargeTranspose(col);
             if (canTranspose) {
@@ -40,27 +39,23 @@ public class PlayerAbility : MonoBehaviour
                 canTranspose = false;
             }
         } 
+        /*script to pick up catalyst */
+        else if (Input.GetKeyDown("down"))
+        {
+            if (col != null && col.gameObject.tag == "Catalyst")
+            {
+                //if pickedUp is false this wont work
+                //inHand = col.GameObject;          --will deal with this later
+                col.transform.SetParent(transform.parent, true);
+                if (col.transform.parent != null) col.attachedRigidbody.simulated = false;
+            }
+        }
     }
 
-    // public void transpose(Collider2D col) {
-    //     if (Input.GetKey("space")) {
-    //         if (col.gameObject.tag == "Object") {
-    //             if ((pc.facingRight && pushForce.x < 0) || (!pc.facingRight && pushForce.x > 0)) {
-    //                 pushForce.x *= -1;
-    //             }
-    //             col.attachedRigidbody.AddForce(pushForce, ForceMode2D.Impulse);
-    //         }
-    //     }
-    // }
     private IEnumerator chargeTranspose(Collider2D col) {
-        // if (!canTranspose) yield return null;  //aborts if cooldown
-
-        // while (col.gameObject.tag != "Object") {
-        //     yield return null; //just loops until player is in front of a transposable object
-        // }
 
         while (Input.GetKey("space")) {
-            // pc.canMove = false;    //stops player movement
+            // pc.canMove = false;    //stops player movement   --might deal with it better later
             if (charge < maxCharge) charge += 20;           //increases charge meter
             // Debug.LogError(charge);
             yield return new WaitForSeconds(0.2f);
@@ -76,16 +71,13 @@ public class PlayerAbility : MonoBehaviour
         Debug.LogError(pushForce);
         if (col != null) col.attachedRigidbody.AddForce(pushForce, ForceMode2D.Impulse);
         pc.canMove = true;
-        // if (canTranspose) {
-        // } else {
-        //     Debug.LogError("cooldown on transpose!");
-        Debug.LogError(pushForce);
-        // }
+        //Debug.LogError(pushForce);
 
         IEnumerator transposeCooldown = timer(0, 3);
         StartCoroutine(transposeCooldown);        
     }
 
+    /*expects a start time and end time to target to (for adaptability) */
     private IEnumerator timer(int time, int endTime) {
         while (time < endTime) {
             time++;

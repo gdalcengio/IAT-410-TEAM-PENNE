@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    /*movement controls */
     public float speed;
     public float jumpForce;
     private float moveInput;
 
+
+    /*auxillary stuff */
     private Rigidbody2D rb;
 
     [HideInInspector]
     public bool facingRight = true;
     public bool canMove = true;
 
-    private bool isGrounded;
-    public Transform groundCheck;
-    public float checkRadius;
-    public LayerMask whatIsGround;
-    public LayerMask whatIsObject;
+    /*jump object references and variables */
+    private bool isGrounded;        //is the player on the ground?
+    public Transform groundCheck;   //to check if plyer is on the ground
+    public float checkRadius;       //leeway for floor
+    public LayerMask whatIsGround;  //to choose what layer is considered ground
+    public LayerMask whatIsObject;  //ditta but for the objects
 
+    /*single jump flag */
     private bool jumped = false;
 
+    //on start, gets the rigidbody of the player
     void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -38,6 +44,7 @@ public class PlayerController : MonoBehaviour
         if (((!facingRight && moveInput > 0) || (facingRight && moveInput < 0)) && canMove) flip();
     }
 
+    //just for jumping for now
     void Update() {
         if (isGrounded) jumped = false;
 
@@ -47,100 +54,20 @@ public class PlayerController : MonoBehaviour
             jumped = true;
     }
 
+    //flipping the character direction
     private void flip() {
         facingRight = !facingRight;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
 
+    //freezes player position
     public void freeze() {
-        //rb.constraints = RigidbodyConstraints2D.FreezeAll;
         rb.bodyType = RigidbodyType2D.Static;
     }
 
+    //unfreezes player position
     public void unfreeze() {
         rb.bodyType = RigidbodyType2D.Dynamic;
-        // rb.constraints = ~RigidbodyConstraints2D.FreezePosition;
-        // transform.localRotation = Quaternion.identity;
     }
 
-    // private Rigidbody2D rb;
-    // public float maxSpeed;
-    // public float moveForce = 0f;
-    // public float jumpForce;
-    // private int direction = 1;
-    // //private float jump;
-    // private float translation = 0f;
-
-    // void Start()
-    // {
-    //     rb = GetComponent<Rigidbody2D>();
-    // }
-
-    // void Update()
-    // {
-        
-    //     Debug.Log(translation);
-    //     if (Input.GetKey("d")) {
-    //         direction = 1;
-    //         transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
-            
-    //     } else if (Input.GetKey("a")) {
-    //         direction = -1;
-    //         transform.localScale = new Vector3(-1f, transform.localScale.y, transform.localScale.z);
-    //     }
-
-    //     // Debug.LogError("direction: " + direction);
-    //     // Debug.LogError("velocity: " + rb.velocity.sqrMagnitude);
-    //     // Debug.LogError("translation: " + translation);
-        
-    //     if (transform.localScale.x < 0 && rb.velocity.x > 0 || transform.localScale.x > 0 && rb.velocity.x < 0) {          //if player is going right/l but wants left/r
-    //         rb.velocity = new Vector2(-rb.velocity.x/2, rb.velocity.y);
-    //     }
-
-        
-
-    //     // if (Input.GetKeyDown("w")) {
-    //     //     StartCoroutine(example());
-    //     // }
-    //     //Vector2 grav = new Vector2(jumpForce*0.1f, -9.8f * rb.mass);
-    //     //rb.AddForce(Vector2.down * 22.8f);
-    //     movePlayer(); //actually moves the player
-    // }
-
-    // // private IEnumerator reference() {
-        
-    // //     while (true) {
-    // //         Debug.Log("test");
-    // //         yield return new WaitForSeconds(1);
-    // //     }
-    // //     //yield return 0;
-    // // }
-
-    // void OnCollisionEnter2D(Collision2D col) {
-    //     if (col.gameObject.tag == "Ground") {
-
-    //     }
-    // }
-
-    // private void movePlayer() {
-    //     //Limiting velocity
-    //     //bool canImpulse = true;
-    //     // if (!(Input.GetKeyUp("a") && (Input.GetKeyUp("d")) && direction < 0) {
-    //     //     canImpulse = false;
-    //     // }   
-        
-    //          //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //jumping
-    //          translation = 0;
-    //         if (rb.velocity.sqrMagnitude > -maxSpeed && rb.velocity.sqrMagnitude < maxSpeed) {
-    //             //if (canImpulse) {
-    //                 //rb.AddForce(Vector2.right * translation, ForceMode2D.Impulse);
-    //             //} else {
-    //                 translation = Input.GetAxis("Horizontal") * moveForce; //setting up movement
-    //             //}
-    //         }
-    //         Vector2 jumpSpeed = new Vector2(translation, 0);
-    //         if (Input.GetKeyDown("w")) jumpSpeed = new Vector2(translation, jumpForce); //jumping
-    //         rb.velocity = jumpSpeed;
-        
-    // }
 }
