@@ -50,6 +50,12 @@ public class PlayerAbility : MonoBehaviour
                 if (col.transform.parent != null) col.attachedRigidbody.simulated = false;
             }
         }
+
+        else if (Input.GetKeyDown(KeyCode.T)) {
+            if (col != null && col.gameObject.tag == "BinarySwitch") {
+                col.GetComponent<SwitchBehaviour>().toggleState();
+            }
+        }
     }
 
     private IEnumerator chargeTranspose(Collider2D col) {

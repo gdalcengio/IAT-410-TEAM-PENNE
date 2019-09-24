@@ -12,6 +12,7 @@ TagManager:
   - Spout
   - EntryPoint
   - switch
+  - BinarySwitch
   layers:
   - Default
   - TransparentFX
