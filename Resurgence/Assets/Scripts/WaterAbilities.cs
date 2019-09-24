@@ -17,41 +17,43 @@ public class WaterAbilities : MonoBehaviour
     private IEnumerator geyserCoroutine;
 
     void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.tag == "Spout") {
-            buoyancyParent = col.gameObject;
-        }
+        if (col != null) {
+            if (col.gameObject.tag == "Spout") {
+                buoyancyParent = col.gameObject;
+            }
 
-        if (col.gameObject.tag == "EntryPoint") {
-            // access needed GameObjects
-            diveObject = col.gameObject;
-            diveParent = diveObject.transform.parent.gameObject;
-            diveContainer = diveParent.transform.parent.gameObject;
+            if (col.gameObject.tag == "EntryPoint") {
+                // access needed GameObjects
+                diveObject = col.gameObject;
+                diveParent = diveObject.transform.parent.gameObject;
+                diveContainer = diveParent.transform.parent.gameObject;
 
-            foreach (Transform child in diveContainer.transform) {
-                if (child.name.Substring(0, child.name.Length - 1) == "index") {
-                    diveSwitch = child.gameObject;
-                    return;
+                foreach (Transform child in diveContainer.transform) {
+                    if (child.name.Substring(0, child.name.Length - 1) == "index") {
+                        diveSwitch = child.gameObject;
+                        return;
+                    }
                 }
             }
-        }
 
-        if (col.gameObject.tag == "switch") {
-            diveSwitch = col.gameObject;
+            if (col.gameObject.tag == "switch") {
+                diveSwitch = col.gameObject;
 
-            diveContainer = diveSwitch.transform.parent.gameObject;
-            foreach (Transform child in diveContainer.transform) {
-                if (child.name.Substring(child.name.Length - 1, 4) == "node") {
-                    diveParent = child.gameObject;
-                    return;
+                diveContainer = diveSwitch.transform.parent.gameObject;
+                foreach (Transform child in diveContainer.transform) {
+                    if (child.name.Substring(child.name.Length - 1, 4) == "node") {
+                        diveParent = child.gameObject;
+                        return;
+                    }
                 }
+                diveObject = diveParent.transform.GetChild(0).gameObject;
             }
-            diveObject = diveParent.transform.GetChild(0).gameObject;
         }
     }
 
     void OnTriggerExit2D (Collider2D col) {
         // reset colliders
-        col = null;
+        // col = null;
 
         if (col.gameObject == buoyancyParent) {
             //deactivate colliders
