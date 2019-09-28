@@ -13,6 +13,7 @@ TagManager:
   - EntryPoint
   - switch
   - BinarySwitch
+  - Current
   layers:
   - Default
   - TransparentFX

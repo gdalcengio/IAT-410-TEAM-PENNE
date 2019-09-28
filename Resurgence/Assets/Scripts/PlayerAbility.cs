@@ -20,9 +20,20 @@ public class PlayerAbility : MonoBehaviour
 
     /*fissure variables */
 
+    void OnTriggerExit2D(Collider2D col) 
+    {
+        if (col.gameObject.tag == "Current") {
+            col.GetComponent<LineBehaviour>().resetCurrent();
+            col.GetComponent<LineBehaviour>().toggleConnected();
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Object") {
             charge = minCharge;        //reset the charge meter
+        }
+        if (col.gameObject.tag == "Current") {
+            col.GetComponent<LineBehaviour>().toggleConnected();
         }
     }
 
@@ -55,6 +66,10 @@ public class PlayerAbility : MonoBehaviour
             if (col != null && col.gameObject.tag == "BinarySwitch") {
                 col.GetComponent<SwitchBehaviour>().toggleState();
             }
+        }
+
+        if (col != null && col.gameObject.tag == "Current") {
+            col.GetComponent<LineBehaviour>().setPosition(1, new Vector2(pc.transform.position.x, 0f));
         }
     }
 
