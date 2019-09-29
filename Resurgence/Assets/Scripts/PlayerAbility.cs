@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerAbility : MonoBehaviour
 {
-    //public Rigidbody2D playerRB; 
-    
     /*Auxillary stuff */
     public PlayerController pc;                           //reference to the player
     public bool canTranspose = false, canFissure = false; //ability flags
+    private GameObject catalyst = null;
+    private bool hasCatalyst = false;
 
     /*transpose skill variables */
     public Vector2 pushForce = new Vector2(0, 0);         //the reference vector2 for the transpose force
@@ -20,15 +20,36 @@ public class PlayerAbility : MonoBehaviour
 
     /*fissure variables */
 
-    void OnTriggerExit2D(Collider2D col) 
-    {
-        if (col.gameObject.tag == "Current") {
-            col.GetComponent<LineBehaviour>().resetCurrent();
-            col.GetComponent<LineBehaviour>().toggleConnected();
+
+
+
+    private void Update() {
+        //catalyst pick up and throw
+        if (catalyst != null){
+            Rigidbody2D crb = catalyst.GetComponent<Collider2D>().attachedRigidbody;
+            if (!hasCatalyst && Input.GetKeyDown("c")) {
+                Debug.Log("cat c boi");
+                catalyst.transform.SetParent(this.transform);
+                hasCatalyst = true;
+                crb.isKinematic = true;
+            } else if (Input.GetKeyDown("c")) {
+                Debug.LogError("chuck");
+                crb.AddForce(new Vector2(5, 5));
+                catalyst.transform.SetParent(null);
+                catalyst = null;
+                hasCatalyst = false;
+                crb.isKinematic = false;
+            }
         }
     }
 
     void OnTriggerEnter2D(Collider2D col) {
+        //catalyst pick up
+        if (col.gameObject.tag == "Catalyst") {
+            catalyst = col.gameObject;
+            Debug.Log("Catalyst");
+        }
+
         if (col.gameObject.tag == "Object") {
             charge = minCharge;        //reset the charge meter
         }
@@ -36,6 +57,21 @@ public class PlayerAbility : MonoBehaviour
             col.GetComponent<LineBehaviour>().toggleConnected();
         }
     }
+
+    void OnTriggerExit2D(Collider2D col) 
+    {
+        //catalyst pick up
+        if (catalyst != null && col.gameObject.tag =="Catalyst") {
+            catalyst = null;
+            Debug.Log("fuck");
+        }
+
+        if (col.gameObject.tag == "Current") {
+            col.GetComponent<LineBehaviour>().resetCurrent();
+            col.GetComponent<LineBehaviour>().toggleConnected();
+        }
+    }
+
 
     void OnTriggerStay2D(Collider2D col) {
         /*transpose ability */
@@ -51,18 +87,19 @@ public class PlayerAbility : MonoBehaviour
             }
         } 
         /*script to pick up catalyst */
-        else if (Input.GetKeyDown("down"))
-        {
-            if (col != null && col.gameObject.tag == "Catalyst")
-            {
-                //if pickedUp is false this wont work
-                //inHand = col.GameObject;          --will deal with this later
-                col.transform.SetParent(transform.parent, true);
-                if (col.transform.parent != null) col.attachedRigidbody.simulated = false;
-            }
-        }
+        // if (col.gameObject.tag == "Catalyst")
+        //     catalyst = col.GameObject; //          --will deal with this later
+        // else if (Input.GetKeyDown("down"))
+        // {
+        //     {
+        //         //if pickedUp is false this wont work
+        //         col.transform.SetParent(transform.parent, true);
+        //         if (col.transform.parent != null) col.attachedRigidbody.simulated = false;
+        //     }
+        // }
 
-        else if (Input.GetKeyDown(KeyCode.T)) {
+        //else 
+        if (Input.GetKeyDown(KeyCode.T)) {
             if (col != null && col.gameObject.tag == "BinarySwitch") {
                 col.GetComponent<SwitchBehaviour>().toggleState();
             }
@@ -72,6 +109,7 @@ public class PlayerAbility : MonoBehaviour
             col.GetComponent<LineBehaviour>().setPosition(1, new Vector2(pc.transform.position.x, 0f));
         }
     }
+
 
     private IEnumerator chargeTranspose(Collider2D col) {
 
