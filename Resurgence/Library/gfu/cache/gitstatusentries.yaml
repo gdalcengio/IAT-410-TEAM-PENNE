@@ -13,45 +13,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 6
-  lastUpdatedAtString: 2019-09-28T11:48:42.056-07:00
+  lastUpdatedAtString: 2019-09-30T11:05:00.503-07:00
   initializedAtString: 2019-09-20T14:27:35.402-07:00
   entries:
-  - path: Resurgence/Assets/Scenes/TestGround.unity
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scenes/TestGround.unity
-    projectPath: Assets/Scenes/TestGround.unity
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 3
-  - path: Resurgence/Assets/Scripts/LineBehaviour.cs
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scripts/LineBehaviour.cs
-    projectPath: Assets/Scripts/LineBehaviour.cs
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Assets/Scripts/LineBehaviour.cs.meta
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scripts/LineBehaviour.cs.meta
-    projectPath: Assets/Scripts/LineBehaviour.cs.meta
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Assets/Scripts/PlayerAbility.cs
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scripts/PlayerAbility.cs
-    projectPath: Assets/Scripts/PlayerAbility.cs
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 3
   - path: Resurgence/Library/assetDatabase3
     fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/assetDatabase3
     projectPath: Library/assetDatabase3
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
-  - path: Resurgence/Library/CrashedAssetImports.txt
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/CrashedAssetImports.txt
-    projectPath: Library/CrashedAssetImports.txt
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
   - path: Resurgence/Library/gfu/cache/branches.yaml
     fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/branches.yaml
     projectPath: Library/gfu/cache/branches.yaml
@@ -88,171 +58,9 @@ MonoBehaviour:
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
-  - path: Resurgence/Library/InspectorExpandedItems.asset
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/InspectorExpandedItems.asset
-    projectPath: Library/InspectorExpandedItems.asset
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 3
-  - path: Resurgence/Library/metadata/ad/adfac78cdaaa30a499e8cc0619c04bcc
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/metadata/ad/adfac78cdaaa30a499e8cc0619c04bcc
-    projectPath: Library/metadata/ad/adfac78cdaaa30a499e8cc0619c04bcc
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 3
-  - path: Resurgence/Library/metadata/ea/ea94979a2909649879c4bf6c301c1ca3
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/metadata/ea/ea94979a2909649879c4bf6c301c1ca3
-    projectPath: Library/metadata/ea/ea94979a2909649879c4bf6c301c1ca3
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Library/metadata/ea/ea94979a2909649879c4bf6c301c1ca3.info
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/metadata/ea/ea94979a2909649879c4bf6c301c1ca3.info
-    projectPath: Library/metadata/ea/ea94979a2909649879c4bf6c301c1ca3.info
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Library/ScriptAssemblies/Assembly-CSharp.dll
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/ScriptAssemblies/Assembly-CSharp.dll
-    projectPath: Library/ScriptAssemblies/Assembly-CSharp.dll
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 3
-  - path: Resurgence/Library/ShaderCache/3/3895381dfa58d2b5dd161567d6e1fe8d.bin
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/ShaderCache/3/3895381dfa58d2b5dd161567d6e1fe8d.bin
-    projectPath: Library/ShaderCache/3/3895381dfa58d2b5dd161567d6e1fe8d.bin
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Library/ShaderCache/e/e8c7a5b9f5d008a30630febdf4131239.bin
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/ShaderCache/e/e8c7a5b9f5d008a30630febdf4131239.bin
-    projectPath: Library/ShaderCache/e/e8c7a5b9f5d008a30630febdf4131239.bin
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Library/ShaderCache/EditorEncounteredVariants
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/ShaderCache/EditorEncounteredVariants
-    projectPath: Library/ShaderCache/EditorEncounteredVariants
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 3
-  - path: Resurgence/Library/shadercompiler-UnityShaderCompiler0.log
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/shadercompiler-UnityShaderCompiler0.log
-    projectPath: Library/shadercompiler-UnityShaderCompiler0.log
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 3
   - path: Resurgence/Library/StateCache/Hierarchy/cf29fe-mainStage.json
     fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/StateCache/Hierarchy/cf29fe-mainStage.json
     projectPath: Library/StateCache/Hierarchy/cf29fe-mainStage.json
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
-  - path: Resurgence/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
-    projectPath: obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 3
-  - path: Resurgence/ProjectSettings/TagManager.asset
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/ProjectSettings/TagManager.asset
-    projectPath: ProjectSettings/TagManager.asset
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 3
-  - path: Resurgence/Temp/__Backupscenes/0.backup
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/__Backupscenes/0.backup
-    projectPath: Temp/__Backupscenes/0.backup
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 3
-  - path: Resurgence/Temp/UnityTempFile-0166115f4b3cf4d00bc8a1964f7bd8b2
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-0166115f4b3cf4d00bc8a1964f7bd8b2
-    projectPath: Temp/UnityTempFile-0166115f4b3cf4d00bc8a1964f7bd8b2
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-1608dd54a6a724312b0a8e29bb049ce9
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-1608dd54a6a724312b0a8e29bb049ce9
-    projectPath: Temp/UnityTempFile-1608dd54a6a724312b0a8e29bb049ce9
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-1a5c8e56f76e645d5885fc2bc4d68951
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-1a5c8e56f76e645d5885fc2bc4d68951
-    projectPath: Temp/UnityTempFile-1a5c8e56f76e645d5885fc2bc4d68951
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-26a6388db86794c0383e7bff42cd1c37
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-26a6388db86794c0383e7bff42cd1c37
-    projectPath: Temp/UnityTempFile-26a6388db86794c0383e7bff42cd1c37
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-27e03a6aa34094f1294635a641b859b0
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-27e03a6aa34094f1294635a641b859b0
-    projectPath: Temp/UnityTempFile-27e03a6aa34094f1294635a641b859b0
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-3c6fc957bf11d4953908bb2d48b4547d
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-3c6fc957bf11d4953908bb2d48b4547d
-    projectPath: Temp/UnityTempFile-3c6fc957bf11d4953908bb2d48b4547d
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-76bfa8aedf7674dceb47e91ba3b2aa93
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-76bfa8aedf7674dceb47e91ba3b2aa93
-    projectPath: Temp/UnityTempFile-76bfa8aedf7674dceb47e91ba3b2aa93
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-820d68f3d31ca4f78ab4717978641cb5
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-820d68f3d31ca4f78ab4717978641cb5
-    projectPath: Temp/UnityTempFile-820d68f3d31ca4f78ab4717978641cb5
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-87c6ca922fb4c4e62b56f8db5899636e
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-87c6ca922fb4c4e62b56f8db5899636e
-    projectPath: Temp/UnityTempFile-87c6ca922fb4c4e62b56f8db5899636e
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-99d19d014bef44741b538ffee94f09db
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-99d19d014bef44741b538ffee94f09db
-    projectPath: Temp/UnityTempFile-99d19d014bef44741b538ffee94f09db
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-9c844ec8b2c6549d39316ac5e8930332
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-9c844ec8b2c6549d39316ac5e8930332
-    projectPath: Temp/UnityTempFile-9c844ec8b2c6549d39316ac5e8930332
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-c81283fa253d94aa59aafa284a1c258a
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-c81283fa253d94aa59aafa284a1c258a
-    projectPath: Temp/UnityTempFile-c81283fa253d94aa59aafa284a1c258a
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-eb7f7c299aaca4f40a30eba89a257bdc
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-eb7f7c299aaca4f40a30eba89a257bdc
-    projectPath: Temp/UnityTempFile-eb7f7c299aaca4f40a30eba89a257bdc
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-f7fbabae862db46eca2e995d6129a598
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-f7fbabae862db46eca2e995d6129a598
-    projectPath: Temp/UnityTempFile-f7fbabae862db46eca2e995d6129a598
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
-  - path: Resurgence/Temp/UnityTempFile-fd34b53b6013b4ce7972c2bce2001d7f
-    fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Temp/UnityTempFile-fd34b53b6013b4ce7972c2bce2001d7f
-    projectPath: Temp/UnityTempFile-fd34b53b6013b4ce7972c2bce2001d7f
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
