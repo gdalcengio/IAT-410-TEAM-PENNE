@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2019-09-30T12:08:13.049-07:00
+  lastUpdatedAtString: 2019-09-30T12:45:23.195-07:00
   initializedAtString: 2019-09-20T14:28:08.941-07:00
   localBranches:
   - name: dev
@@ -26,6 +26,8 @@ MonoBehaviour:
   - name: origin/dev
     tracking: '[None]'
   - name: origin/fissure
+    tracking: '[None]'
+  - name: origin/mainManagers
     tracking: '[None]'
   - name: origin/rockman
     tracking: '[None]'
@@ -60,6 +62,7 @@ MonoBehaviour:
       - HEAD
       - dev
       - fissure
+      - mainManagers
       - rockman
     subKeyValues:
     - Values:
@@ -74,6 +77,11 @@ MonoBehaviour:
           url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
         trackingBranch: 
       - name: fissure
+        remote:
+          name: origin
+          url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
+        trackingBranch: 
+      - name: mainManagers
         remote:
           name: origin
           url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
