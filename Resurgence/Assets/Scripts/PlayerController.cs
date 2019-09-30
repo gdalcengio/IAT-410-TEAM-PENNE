@@ -32,10 +32,13 @@ public class PlayerController : MonoBehaviour
     /*single jump flag */
     private bool jumped = false;
 
+    Camera cam;
+
     //on start, gets the rigidbody of the player
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         abilityState = State.Ready;                   //making sure the player starts ready
+        cam = Camera.main;
     }
 
     void FixedUpdate() {
@@ -50,6 +53,12 @@ public class PlayerController : MonoBehaviour
         if (canMove) rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
         if (((!facingRight && moveInput > 0) || (facingRight && moveInput < 0)) && canMove) flip();
+
+        if (transform.position.x <= 0.0f - (cam.pixelWidth/2)) {
+            transform.position = new Vector2(0.0f, transform.position.y);
+        } else if (transform.position.x >= cam.pixelWidth) {
+            transform.position = new Vector2(cam.pixelWidth, transform.position.y);
+        }
     }
 
     //just for jumping for now
