@@ -7,8 +7,6 @@ public class PlayerAbility : MonoBehaviour
     /*Auxillary stuff */
     public PlayerController pc;                           //reference to the player
     public bool canTranspose = false, canFissure = false; //ability flags
-    private GameObject catalyst = null;
-    private bool hasCatalyst = false;
 
     /*transpose skill variables */
     public Vector2 pushForce = new Vector2(0, 0);         //the reference vector2 for the transpose force
@@ -19,56 +17,48 @@ public class PlayerAbility : MonoBehaviour
     private IEnumerator transposeCoroutine;               //coroutine reference to get the colider
 
     /*fissure variables */
+    private IEnumerator fissureCoroutine;               //coroutine reference to get the two objects
 
 
 
 
     private void Update() {
-        //catalyst pick up and throw
-        if (catalyst != null){
-            Rigidbody2D crb = catalyst.GetComponent<Collider2D>().attachedRigidbody;
-            if (!hasCatalyst && Input.GetKeyDown("c")) {
-                Debug.Log("cat c boi");
-                catalyst.transform.SetParent(this.transform);
-                hasCatalyst = true;
-                crb.isKinematic = true;
-            } else if (Input.GetKeyDown("c")) {
-                Debug.LogError("chuck");
-                crb.AddForce(new Vector2(5, 5));
-                catalyst.transform.SetParent(null);
-                catalyst = null;
-                hasCatalyst = false;
-                crb.isKinematic = false;
-            }
+
+        //better transpose
+
+        //fissure
+        if (canFissure && fissureCoroutine != null && Input.GetKeyDown("g")) {
+            StartCoroutine(fissureCoroutine);
+            Debug.Log("coroutine started");
         }
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        //catalyst pick up
-        if (col.gameObject.tag == "Catalyst") {
-            catalyst = col.gameObject;
-            Debug.Log("Catalyst");
-        }
-
+        //aux stuff
         if (col.gameObject.tag == "Object") {
             charge = minCharge;        //reset the charge meter
         }
         if (col.gameObject.tag == "Current") {
             col.GetComponent<LineBehaviour>().toggleConnected();
         }
+
+        //fissure
+        if (col.gameObject.tag == "Ground") {
+            canFissure = true;
+            fissureCoroutine = fissure(col.transform.parent.GetChild(0).GetComponent<Collider2D>(), col.transform.parent.GetChild(1).GetComponent<Collider2D>());
+        }
     }
 
     void OnTriggerExit2D(Collider2D col) 
     {
-        //catalyst pick up
-        if (catalyst != null && col.gameObject.tag =="Catalyst") {
-            catalyst = null;
-            Debug.Log("fuck");
-        }
-
         if (col.gameObject.tag == "Current") {
             col.GetComponent<LineBehaviour>().resetCurrent();
             col.GetComponent<LineBehaviour>().toggleConnected();
+        }
+
+        //fissure
+        if (col.gameObject.tag == "Ground") {
+            canFissure = false;
         }
     }
 
@@ -85,18 +75,7 @@ public class PlayerAbility : MonoBehaviour
                 pc.freeze();
                 canTranspose = false;
             }
-        } 
-        /*script to pick up catalyst */
-        // if (col.gameObject.tag == "Catalyst")
-        //     catalyst = col.GameObject; //          --will deal with this later
-        // else if (Input.GetKeyDown("down"))
-        // {
-        //     {
-        //         //if pickedUp is false this wont work
-        //         col.transform.SetParent(transform.parent, true);
-        //         if (col.transform.parent != null) col.attachedRigidbody.simulated = false;
-        //     }
-        // }
+        }
 
         //else 
         if (Input.GetKeyDown(KeyCode.T)) {
@@ -128,12 +107,29 @@ public class PlayerAbility : MonoBehaviour
         }
 
         Debug.LogError(pushForce);
-        if (col != null) col.attachedRigidbody.AddForce(pushForce, ForceMode2D.Impulse);
+        if (col != null) col.attachedRigidbody.AddForce(pushForce, ForceMode2D.Impulse);                  //          --theres a null pointer here i'll deal with it when I convert to the other method
         pc.canMove = true;
         //Debug.LogError(pushForce);
 
         IEnumerator transposeCooldown = timer(0, 3);
         StartCoroutine(transposeCooldown);        
+    }
+
+    /*fissure ability */
+    private IEnumerator fissure(Collider2D col1, Collider2D col2) {
+
+        //col1.transform = col1.transform + new Vector2(1, 0);
+        while (col1.transform.position.x > -2) { 
+            float moveX = Mathf.Lerp(0, 0.5f, Time.deltaTime);
+
+            col1.transform.position += Vector3.left*moveX;
+            col2.transform.position += Vector3.right*moveX;
+            // col1.transform.localScale += Vector3.left*moveX;
+            Debug.Log("hit");
+
+            yield return null;
+        }
+        yield return new WaitForEndOfFrame();
     }
 
     /*expects a start time and end time to target to (for adaptability) */
