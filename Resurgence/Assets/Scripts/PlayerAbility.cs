@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerAbility : MonoBehaviour
 {
-    //public Rigidbody2D playerRB; 
-    
     /*Auxillary stuff */
     public PlayerController pc;                           //reference to the player
     public bool canTranspose = false, canFissure = false; //ability flags
+
 
     /*transpose skill variables */
     public Vector2 pushForce = new Vector2(0, 0);         //the reference vector2 for the transpose force
@@ -19,6 +18,56 @@ public class PlayerAbility : MonoBehaviour
     private IEnumerator transposeCoroutine;               //coroutine reference to get the colider
 
     /*fissure variables */
+    private IEnumerator fissureCoroutine;               //coroutine reference to get the two objects
+
+    private void Update() {
+        //for consistency and error handling
+        if (Input.GetKeyUp("v")) pc.abilityState = PlayerController.State.Ready;
+        if (pc.abilityState == PlayerController.State.Busy) return;
+
+        //better transpose
+        if (Input.GetKeyDown("v")) {
+            if (canTranspose && transposeCoroutine != null) {
+                canTranspose = false;
+                //stops player movement
+                pc.canMove = false; 
+                pc.freeze();
+                pc.abilityState = PlayerController.State.Busy;
+                
+                StartCoroutine(transposeCoroutine); //begins to charge if not on cooldown
+            }
+        }
+
+        //fissure
+        if (Input.GetKeyDown("g")) {
+            if (canFissure && fissureCoroutine != null) {
+                StartCoroutine(fissureCoroutine);
+                Debug.Log("fissure coroutine started");
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col) {
+        //aux stuff
+        if (col.gameObject.tag == "Current") {
+            col.GetComponent<LineBehaviour>().toggleConnected();
+        }
+
+        //transpose
+        if (col.gameObject.tag == "Object") {
+            canTranspose = true;
+            charge = minCharge;        //reset the charge meter
+            transposeCoroutine = chargeTranspose(col);
+        }
+        
+        //fissure
+        if (col.gameObject.tag == "Ground") {
+            canFissure = true;
+            fissureCoroutine = fissure(col.transform.parent.GetChild(0).GetComponent<Collider2D>(), 
+                                       col.transform.parent.GetChild(1).GetComponent<Collider2D>()
+                                       );
+        }
+    }
 
     void OnTriggerExit2D(Collider2D col) 
     {
@@ -26,43 +75,20 @@ public class PlayerAbility : MonoBehaviour
             col.GetComponent<LineBehaviour>().resetCurrent();
             col.GetComponent<LineBehaviour>().toggleConnected();
         }
-    }
 
-    void OnTriggerEnter2D(Collider2D col) {
+        //transpose
         if (col.gameObject.tag == "Object") {
-            charge = minCharge;        //reset the charge meter
+            canTranspose = false;
         }
-        if (col.gameObject.tag == "Current") {
-            col.GetComponent<LineBehaviour>().toggleConnected();
+
+        //fissure
+        if (col.gameObject.tag == "Ground") {
+            canFissure = false;
         }
     }
 
     void OnTriggerStay2D(Collider2D col) {
-        /*transpose ability */
-        if (Input.GetKey("space")) {
-            transposeCoroutine = chargeTranspose(col);
-            if (canTranspose) {
-                charge = minCharge;
-                StartCoroutine(transposeCoroutine); //begins to charge if cooldown
-                pc.canMove = false; //stops player movement
-                // playerRB.constraints = RigidbodyConstraints2D.FreezePosition;
-                pc.freeze();
-                canTranspose = false;
-            }
-        } 
-        /*script to pick up catalyst */
-        else if (Input.GetKeyDown("down"))
-        {
-            if (col != null && col.gameObject.tag == "Catalyst")
-            {
-                //if pickedUp is false this wont work
-                //inHand = col.GameObject;          --will deal with this later
-                col.transform.SetParent(transform.parent, true);
-                if (col.transform.parent != null) col.attachedRigidbody.simulated = false;
-            }
-        }
-
-        else if (Input.GetKeyDown(KeyCode.T)) {
+        if (Input.GetKeyDown(KeyCode.T)) {
             if (col != null && col.gameObject.tag == "BinarySwitch") {
                 col.GetComponent<SwitchBehaviour>().toggleState();
             }
@@ -74,29 +100,44 @@ public class PlayerAbility : MonoBehaviour
     }
 
     private IEnumerator chargeTranspose(Collider2D col) {
-
-        while (Input.GetKey("space")) {
-            // pc.canMove = false;    //stops player movement   --might deal with it better later
+        while (pc.abilityState == PlayerController.State.Busy) {
             if (charge < maxCharge) charge += 20;           //increases charge meter
-            // Debug.LogError(charge);
             yield return new WaitForSeconds(0.2f);
         }
-        pc.unfreeze();
 
-        pushForce = new Vector2(charge, charge);
+        pushForce = (Input.GetKey("up")) ? new Vector2(charge, charge) : new Vector2(charge * 1.2f, 0);
 
         if ((pc.facingRight && pushForce.x < 0) || (!pc.facingRight && pushForce.x > 0)) {
             pushForce.x *= -1;
         }
 
-        Debug.LogError(pushForce);
+        //Debug.LogError(pushForce);
         if (col != null) col.attachedRigidbody.AddForce(pushForce, ForceMode2D.Impulse);
+        pc.unfreeze();
         pc.canMove = true;
         //Debug.LogError(pushForce);
 
         IEnumerator transposeCooldown = timer(0, 3);
-        StartCoroutine(transposeCooldown);        
+        StartCoroutine(transposeCooldown);        //done transpose ability, now it's on cooldown if need be
     }
+
+    /*fissure ability */
+    private IEnumerator fissure(Collider2D col1, Collider2D col2) {
+        while (col1.transform.position.x > -10) { 
+            float moveX = Mathf.Lerp(0, 0.5f, Time.deltaTime);
+
+            col1.transform.position += Vector3.left*moveX;
+            col2.transform.position += Vector3.right*moveX;
+
+            yield return null;
+        }
+        yield return new WaitForEndOfFrame();
+    }
+
+
+
+    /* HELPER FUNCTIONS */
+
 
     /*expects a start time and end time to target to (for adaptability) */
     private IEnumerator timer(int time, int endTime) {

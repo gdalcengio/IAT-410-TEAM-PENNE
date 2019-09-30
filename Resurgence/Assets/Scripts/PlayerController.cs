@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum State {                                   //easy way to deal with cutscenes, ability charging, etc...
+        Ready,
+        Busy,
+    }
+    public State abilityState;
+
     /*movement controls */
     public float speed;
     public float jumpForce;
     private float moveInput;
-
 
     /*auxillary stuff */
     private Rigidbody2D rb;
@@ -30,9 +35,12 @@ public class PlayerController : MonoBehaviour
     //on start, gets the rigidbody of the player
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        abilityState = State.Ready;                   //making sure the player starts ready
     }
 
     void FixedUpdate() {
+        if (abilityState == State.Busy) return;       //disabling everything else
+
         //considered objects ground to jump off of
         isGrounded = (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround))
                   || (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsObject));
@@ -46,6 +54,8 @@ public class PlayerController : MonoBehaviour
 
     //just for jumping for now
     void Update() {
+        if (abilityState == State.Busy) return;       //disabling everything else
+
         if (isGrounded) jumped = false;
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && !jumped && canMove) {
