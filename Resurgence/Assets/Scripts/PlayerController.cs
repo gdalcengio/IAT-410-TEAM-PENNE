@@ -32,10 +32,18 @@ public class PlayerController : MonoBehaviour
     /*single jump flag */
     private bool jumped = false;
 
+    Camera cam;
+    private Vector2 screenBounds;
+    private float playerWidth, playerHeight;
+    Vector3 viewPos;
+
     //on start, gets the rigidbody of the player
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         abilityState = State.Ready;                   //making sure the player starts ready
+        cam = Camera.main;
+        screenBounds = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z));
+        playerWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
     void FixedUpdate() {
@@ -50,6 +58,12 @@ public class PlayerController : MonoBehaviour
         if (canMove) rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
         if (((!facingRight && moveInput > 0) || (facingRight && moveInput < 0)) && canMove) flip();
+
+        if (transform.position.x <= 0-screenBounds.x+playerWidth) {
+            transform.position = new Vector2(0-screenBounds.x+playerWidth, transform.position.y);
+        } else if (transform.position.x >= screenBounds.x-playerWidth) {
+            transform.position = new Vector2(screenBounds.x-playerWidth, transform.position.y);
+        }
     }
 
     //just for jumping for now
