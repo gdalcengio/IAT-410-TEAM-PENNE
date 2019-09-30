@@ -13,9 +13,310 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 3
-  lastUpdatedAtString: 2019-09-28T11:49:34.109-07:00
+  lastUpdatedAtString: 2019-09-30T11:21:18.709-07:00
   initializedAtString: 2019-09-20T14:27:45.679-07:00
   log:
+  - commitID: f77c8d1ea7096dec8c96d3938ca7b55153540878
+    mergeA: 88b06e8d7ebb410442dc1a75fceb3e7f263d75b9
+    mergeB: ef5463fe9985186ee8b34a3cab4f1c2352edb743
+    authorName: Ryan
+    authorEmail: rdonnelly98@gmail.com
+    commitEmail: rdonnelly98@gmail.com
+    commitName: Ryan
+    summary: Merge branch 'dev' of https://github.com/lazygeb/IAT-410-TEAM-PENNE into
+      dev
+    description: 
+    timeString: 2019-09-30T11:20:28.000-07:00
+    commitTimeString: 2019-09-30T11:20:28.000-07:00
+    changes: []
+  - commitID: 88b06e8d7ebb410442dc1a75fceb3e7f263d75b9
+    mergeA: 
+    mergeB: 
+    authorName: Ryan
+    authorEmail: rdonnelly98@gmail.com
+    commitEmail: rdonnelly98@gmail.com
+    commitName: Ryan
+    summary: merge
+    description: 
+    timeString: 2019-09-30T11:20:03.000-07:00
+    commitTimeString: 2019-09-30T11:20:03.000-07:00
+    changes:
+    - path: Resurgence/Library/StateCache/Hierarchy/cf29fe-mainStage.json
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/StateCache/Hierarchy/cf29fe-mainStage.json
+      projectPath: Library/StateCache/Hierarchy/cf29fe-mainStage.json
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/assetDatabase3
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/assetDatabase3
+      projectPath: Library/assetDatabase3
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/branches.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/branches.yaml
+      projectPath: Library/gfu/cache/branches.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gitlocks.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gitlocks.yaml
+      projectPath: Library/gfu/cache/gitlocks.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gitlog.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gitlog.yaml
+      projectPath: Library/gfu/cache/gitlog.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gitstatusentries.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gitstatusentries.yaml
+      projectPath: Library/gfu/cache/gitstatusentries.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gittrackingstatus.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gittrackingstatus.yaml
+      projectPath: Library/gfu/cache/gittrackingstatus.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/repoinfo.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/repoinfo.yaml
+      projectPath: Library/gfu/cache/repoinfo.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+  - commitID: ef5463fe9985186ee8b34a3cab4f1c2352edb743
+    mergeA: 
+    mergeB: 
+    authorName: Gabriele
+    authorEmail: gdalceng@sfu.ca
+    commitEmail: gdalceng@sfu.ca
+    commitName: Gabriele
+    summary: '[Gabe] Refined player abilities and state for better gamefeel and error
+      handling'
+    description: 
+    timeString: 2019-09-29T19:32:21.000-07:00
+    commitTimeString: 2019-09-29T19:32:21.000-07:00
+    changes:
+    - path: Resurgence/Assets/Prefabs/Catalyst.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Catalyst.prefab
+      projectPath: Assets/Prefabs/Catalyst.prefab
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/FissureHolder (depending on animation).prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/FissureHolder
+        (depending on animation).prefab
+      projectPath: Assets/Prefabs/FissureHolder (depending on animation).prefab
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Itztli.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Itztli.prefab
+      projectPath: Assets/Prefabs/Itztli.prefab
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Scenes/Gabe's rock ground.unity
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scenes/Gabe's
+        rock ground.unity
+      projectPath: Assets/Scenes/Gabe's rock ground.unity
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Scripts/PlayerAbility.cs
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scripts/PlayerAbility.cs
+      projectPath: Assets/Scripts/PlayerAbility.cs
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Scripts/PlayerController.cs
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scripts/PlayerController.cs
+      projectPath: Assets/Scripts/PlayerController.cs
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+  - commitID: 05d8c239489d3c28b09ea16da8f4c933f2a539ba
+    mergeA: 
+    mergeB: 
+    authorName: Gabriele
+    authorEmail: gdalceng@sfu.ca
+    commitEmail: gdalceng@sfu.ca
+    commitName: Gabriele
+    summary: '[Gabe] Implemented fissure ability, made new and seperate catalyst script,
+      and updated prefabs for Itztli'
+    description: 
+    timeString: 2019-09-29T17:55:24.000-07:00
+    commitTimeString: 2019-09-29T17:55:24.000-07:00
+    changes:
+    - path: Resurgence/Assets/Prefabs/Catalyst.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Catalyst.prefab
+      projectPath: Assets/Prefabs/Catalyst.prefab
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/FissureHolder (depending on animation).prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/FissureHolder
+        (depending on animation).prefab
+      projectPath: Assets/Prefabs/FissureHolder (depending on animation).prefab
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/FissureHolder (depending on animation).prefab.meta
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/FissureHolder
+        (depending on animation).prefab.meta
+      projectPath: Assets/Prefabs/FissureHolder (depending on animation).prefab.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Itztli.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Itztli.prefab
+      projectPath: Assets/Prefabs/Itztli.prefab
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Object_Rock.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Object_Rock.prefab
+      projectPath: Assets/Prefabs/Object_Rock.prefab
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Scenes/Gabe's rock ground.unity
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scenes/Gabe's
+        rock ground.unity
+      projectPath: Assets/Scenes/Gabe's rock ground.unity
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Scripts/PickUpCatalyst.cs
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scripts/PickUpCatalyst.cs
+      projectPath: Assets/Scripts/PickUpCatalyst.cs
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Scripts/PickUpCatalyst.cs.meta
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scripts/PickUpCatalyst.cs.meta
+      projectPath: Assets/Scripts/PickUpCatalyst.cs.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Scripts/PlayerAbility.cs
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scripts/PlayerAbility.cs
+      projectPath: Assets/Scripts/PlayerAbility.cs
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+  - commitID: 0127185207ba48d8719b0f87a559855f30c28605
+    mergeA: 
+    mergeB: 
+    authorName: Gabriele
+    authorEmail: gdalceng@sfu.ca
+    commitEmail: gdalceng@sfu.ca
+    commitName: Gabriele
+    summary: '[Gabe] created prefabs of the rock objects I worked on, also optimized
+      picking up catalyst'
+    description: 
+    timeString: 2019-09-28T20:59:08.000-07:00
+    commitTimeString: 2019-09-28T20:59:08.000-07:00
+    changes:
+    - path: Resurgence/Assets/Prefabs.meta
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs.meta
+      projectPath: Assets/Prefabs.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Catalyst.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Catalyst.prefab
+      projectPath: Assets/Prefabs/Catalyst.prefab
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Catalyst.prefab.meta
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Catalyst.prefab.meta
+      projectPath: Assets/Prefabs/Catalyst.prefab.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Itztli.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Itztli.prefab
+      projectPath: Assets/Prefabs/Itztli.prefab
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Itztli.prefab.meta
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Itztli.prefab.meta
+      projectPath: Assets/Prefabs/Itztli.prefab.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Main Camera.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Main
+        Camera.prefab
+      projectPath: Assets/Prefabs/Main Camera.prefab
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Main Camera.prefab.meta
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Main
+        Camera.prefab.meta
+      projectPath: Assets/Prefabs/Main Camera.prefab.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Object_Rock.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Object_Rock.prefab
+      projectPath: Assets/Prefabs/Object_Rock.prefab
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Object_Rock.prefab.meta
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Object_Rock.prefab.meta
+      projectPath: Assets/Prefabs/Object_Rock.prefab.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Platform.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Platform.prefab
+      projectPath: Assets/Prefabs/Platform.prefab
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/Platform.prefab.meta
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/Platform.prefab.meta
+      projectPath: Assets/Prefabs/Platform.prefab.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Scenes/Gabe's rock ground.unity
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scenes/Gabe's
+        rock ground.unity
+      projectPath: Assets/Scenes/Gabe's rock ground.unity
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Scenes/Gabe's rock ground.unity.meta
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scenes/Gabe's
+        rock ground.unity.meta
+      projectPath: Assets/Scenes/Gabe's rock ground.unity.meta
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Scripts/PlayerAbility.cs
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Scripts/PlayerAbility.cs
+      projectPath: Assets/Scripts/PlayerAbility.cs
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/ProjectSettings/TagManager.asset
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/ProjectSettings/TagManager.asset
+      projectPath: ProjectSettings/TagManager.asset
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
   - commitID: f7df8b33ef831b9fbc0867116a1add3210521c5a
     mergeA: 
     mergeB: 
