@@ -13,9 +13,108 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 3
-  lastUpdatedAtString: 2019-09-30T11:25:47.921-07:00
+  lastUpdatedAtString: 2019-09-30T11:30:19.396-07:00
   initializedAtString: 2019-09-20T14:27:45.679-07:00
   log:
+  - commitID: 7bac128e2bd20b760a05a2a32af98b4acd3c88ee
+    mergeA: 
+    mergeB: 
+    authorName: Ryan
+    authorEmail: rdonnelly98@gmail.com
+    commitEmail: rdonnelly98@gmail.com
+    commitName: Ryan
+    summary: dive object with 3 nodes
+    description: 
+    timeString: 2019-09-30T11:30:07.000-07:00
+    commitTimeString: 2019-09-30T11:30:07.000-07:00
+    changes:
+    - path: Resurgence/Assets/Prefabs/SwitchParent 1.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/SwitchParent
+        1.prefab
+      projectPath: Assets/Prefabs/SwitchParent 1.prefab
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/dive object - 3 nodes.prefab
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/dive
+        object - 3 nodes.prefab
+      projectPath: Assets/Prefabs/dive object - 3 nodes.prefab
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Assets/Prefabs/dive object - 3 nodes.prefab.meta
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Assets/Prefabs/dive
+        object - 3 nodes.prefab.meta
+      projectPath: Assets/Prefabs/dive object - 3 nodes.prefab.meta
+      originalPath: Resurgence/Assets/Prefabs/SwitchParent 1.prefab.meta
+      indexStatus: 6
+      workTreeStatus: 0
+    - path: Resurgence/Library/assetDatabase3
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/assetDatabase3
+      projectPath: Library/assetDatabase3
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/branches.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/branches.yaml
+      projectPath: Library/gfu/cache/branches.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gitlocks.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gitlocks.yaml
+      projectPath: Library/gfu/cache/gitlocks.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gitlog.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gitlog.yaml
+      projectPath: Library/gfu/cache/gitlog.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gitstatusentries.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gitstatusentries.yaml
+      projectPath: Library/gfu/cache/gitstatusentries.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/gittrackingstatus.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/gittrackingstatus.yaml
+      projectPath: Library/gfu/cache/gittrackingstatus.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/gfu/cache/repoinfo.yaml
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/gfu/cache/repoinfo.yaml
+      projectPath: Library/gfu/cache/repoinfo.yaml
+      originalPath: 
+      indexStatus: 3
+      workTreeStatus: 0
+    - path: Resurgence/Library/metadata/b0/b0d34260ad64e4f489d0039324ba497d
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/metadata/b0/b0d34260ad64e4f489d0039324ba497d
+      projectPath: Library/metadata/b0/b0d34260ad64e4f489d0039324ba497d
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Library/metadata/b0/b0d34260ad64e4f489d0039324ba497d.info
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/metadata/b0/b0d34260ad64e4f489d0039324ba497d.info
+      projectPath: Library/metadata/b0/b0d34260ad64e4f489d0039324ba497d.info
+      originalPath: 
+      indexStatus: 4
+      workTreeStatus: 0
+    - path: Resurgence/Library/metadata/f8/f8160e9a58a904a22a1589901ed2fe22
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/metadata/f8/f8160e9a58a904a22a1589901ed2fe22
+      projectPath: Library/metadata/f8/f8160e9a58a904a22a1589901ed2fe22
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
+    - path: Resurgence/Library/metadata/f8/f8160e9a58a904a22a1589901ed2fe22.info
+      fullPath: /Users/ryandonnelly/Desktop/resurgence/IAT-410-TEAM-PENNE/Resurgence/Library/metadata/f8/f8160e9a58a904a22a1589901ed2fe22.info
+      projectPath: Library/metadata/f8/f8160e9a58a904a22a1589901ed2fe22.info
+      originalPath: 
+      indexStatus: 5
+      workTreeStatus: 0
   - commitID: 9acca90876c074b890856ec1b865b2dcdd88b6af
     mergeA: 
     mergeB: 
