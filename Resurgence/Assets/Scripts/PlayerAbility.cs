@@ -19,6 +19,7 @@ public class PlayerAbility : MonoBehaviour
 
     /*fissure variables */
     private IEnumerator fissureCoroutine;               //coroutine reference to get the two objects
+    private GameObject fissureWall;                     //to test if the wall is fissureable
 
     private void Update() {
         //for consistency and error handling
@@ -40,9 +41,15 @@ public class PlayerAbility : MonoBehaviour
 
         //fissure
         if (Input.GetKeyDown("g")) {
-            if (canFissure && fissureCoroutine != null) {
-                StartCoroutine(fissureCoroutine);
-                Debug.Log("fissure coroutine started");
+            if (canFissure) {
+                if (fissureWall != null) {
+                    Destroy(fissureWall);
+                    fissureWall = null;
+                    canFissure = false;
+                } else if (fissureCoroutine != null) {
+                    StartCoroutine(fissureCoroutine);
+                    Debug.Log("fissure coroutine started");
+                }
             }
         }
     }
@@ -66,6 +73,9 @@ public class PlayerAbility : MonoBehaviour
             fissureCoroutine = fissure(col.transform.parent.GetChild(0).GetComponent<Collider2D>(), 
                                        col.transform.parent.GetChild(1).GetComponent<Collider2D>()
                                        );
+        } else if (col.gameObject.tag == "Cracked") {
+            canFissure = true;
+            fissureWall = col.gameObject;
         }
     }
 
