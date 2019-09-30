@@ -68,7 +68,7 @@ public class WaterAbilities : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col) 
     {
-        if (Input.GetKey(KeyCode.G)) { // initiate geyser
+        if (Input.GetKey(KeyCode.H)) { // initiate geyser
             if (col.gameObject == buoyancyParent) {
                 // get geyser object
                 buoyancyObject = buoyancyParent.transform.GetChild(0).gameObject; 

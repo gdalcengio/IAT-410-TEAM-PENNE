@@ -59,8 +59,8 @@ public class PlayerController : MonoBehaviour
 
         if (((!facingRight && moveInput > 0) || (facingRight && moveInput < 0)) && canMove) flip();
 
-        if (transform.position.x <= 0-screenBounds.x+playerWidth) {
-            transform.position = new Vector2(0-screenBounds.x+playerWidth, transform.position.y);
+        if (transform.position.x <= -screenBounds.x+playerWidth) {
+            transform.position = new Vector2(-screenBounds.x+playerWidth, transform.position.y);
         } else if (transform.position.x >= screenBounds.x-playerWidth) {
             transform.position = new Vector2(screenBounds.x-playerWidth, transform.position.y);
         }
