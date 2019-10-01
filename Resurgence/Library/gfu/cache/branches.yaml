@@ -13,19 +13,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2019-09-30T14:11:54.945-07:00
-  initializedAtString: 2019-09-20T14:28:08.941-07:00
+  lastUpdatedAtString: 2019-09-30T22:19:18.734-07:00
+  initializedAtString: 2019-09-30T20:51:02.809-07:00
   localBranches:
   - name: dev
     tracking: origin/dev
+  - name: fissure
+    tracking: origin/fissure
   - name: master
     tracking: origin/master
   remoteBranches:
-  - name: origin/HEAD
-    tracking: '[None]'
   - name: origin/dev
     tracking: '[None]'
   - name: origin/fissure
+    tracking: '[None]'
+  - name: origin/HEAD
     tracking: '[None]'
   - name: origin/mainManagers
     tracking: '[None]'
@@ -42,6 +44,7 @@ MonoBehaviour:
   localConfigBranches:
     keys:
     - dev
+    - fissure
     - master
     values:
     - name: dev
@@ -49,6 +52,11 @@ MonoBehaviour:
         name: origin
         url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
       trackingBranch: dev
+    - name: fissure
+      remote:
+        name: origin
+        url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
+      trackingBranch: fissure
     - name: master
       remote:
         name: origin
@@ -59,24 +67,24 @@ MonoBehaviour:
     - origin
     subKeys:
     - Values:
-      - HEAD
       - dev
       - fissure
+      - HEAD
       - mainManagers
       - rockman
     subKeyValues:
     - Values:
-      - name: HEAD
-        remote:
-          name: origin
-          url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
-        trackingBranch: 
       - name: dev
         remote:
           name: origin
           url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
         trackingBranch: 
       - name: fissure
+        remote:
+          name: origin
+          url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
+        trackingBranch: 
+      - name: HEAD
         remote:
           name: origin
           url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
