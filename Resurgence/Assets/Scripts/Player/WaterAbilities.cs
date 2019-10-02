@@ -118,7 +118,7 @@ public class WaterAbilities : MonoBehaviour
         if (divePoints > 1) {
             // get current and target locations
             Vector2 currentLocation = new Vector2(col.transform.position.x, col.transform.position.y);
-            Transform playerTransform = GameObject.Find("Base").transform;
+            Transform playerTransform = GameObject.Find("Tlaloc").transform;
             GameObject exitPoint;
             exitPoint = getNode(diveIndex, divePoints).transform.GetChild(0).gameObject; // define new location
             playerTransform.position = exitPoint.transform.position; // teleport

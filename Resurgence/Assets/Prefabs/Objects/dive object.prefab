@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 4080748444611943460}
   m_Layer: 0
   m_Name: dive object
-  m_TagString: Untagged
+  m_TagString: EntryPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
