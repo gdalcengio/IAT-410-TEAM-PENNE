@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class Toast : MonoBehaviour
 {
+    public int seconds = 3;
     private void OnTriggerEnter2D (Collider2D col){
-        if (col.gameObject.tag == "Player") {
+        if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc") {
             Debug.LogError("starting coroutine");
-            IEnumerator toast = UIManager.Instance.Toast(3, GetComponent<Text>());
+            IEnumerator toast = UIManager.Instance.Toast(seconds, GetComponent<Text>());
             StartCoroutine(toast);
             Debug.LogError("started coroutine");
         }

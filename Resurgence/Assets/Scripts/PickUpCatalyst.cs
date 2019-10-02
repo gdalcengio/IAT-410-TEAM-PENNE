@@ -11,7 +11,7 @@ public class PickUpCatalyst : MonoBehaviour
 
     private void Update() {
         //catalyst pick up and throw
-        if (catalyst != null && Input.GetKeyDown("c")){
+        if (catalyst != null && Input.GetButtonDown("Switch")){
             Rigidbody2D crb = catalyst.GetComponent<Collider2D>().attachedRigidbody;
             if (!hasCatalyst ) {
                 Debug.Log("cat c boi");

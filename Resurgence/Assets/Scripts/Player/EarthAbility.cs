@@ -23,11 +23,11 @@ public class EarthAbility : MonoBehaviour
 
     private void Update() {
         //for consistency and error handling
-        if (Input.GetKeyUp("v")) pc.abilityState = PlayerController.State.Ready;
+        if (Input.GetButtonUp("Transpose")) pc.abilityState = PlayerController.State.Ready;
         if (pc.abilityState == PlayerController.State.Busy) return;
 
         //better transpose
-        if (Input.GetKeyDown("v")) {
+        if (Input.GetButtonDown("Transpose")) {
             if (canTranspose && transposeCoroutine != null) {
                 canTranspose = false;
                 //stops player movement
@@ -40,7 +40,7 @@ public class EarthAbility : MonoBehaviour
         }
 
         //fissure
-        if (Input.GetKeyDown("g")) {
+        if (Input.GetButtonDown("Fissure")) {
             if (canFissure) {
                 if (fissureWall != null) {
                     Destroy(fissureWall);
@@ -92,13 +92,13 @@ public class EarthAbility : MonoBehaviour
         }
 
         //fissure
-        if (col.gameObject.tag == "Ground") {
+        if (col.gameObject.tag == "Ground" || col.gameObject.tag == "Cracked") {
             canFissure = false;
         }
     }
 
     void OnTriggerStay2D(Collider2D col) {
-        if (Input.GetKeyDown(KeyCode.T)) {
+        if (Input.GetButtonDown("Switch")) {
             if (col != null && col.gameObject.tag == "BinarySwitch") {
                 col.GetComponent<SwitchBehaviour>().toggleState();
             }
@@ -115,7 +115,7 @@ public class EarthAbility : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
 
-        pushForce = (Input.GetKey("up")) ? new Vector2(charge, charge) : new Vector2(charge * 1.2f, 0);
+        pushForce = (Input.GetAxis("I_Up") > 0) ? new Vector2(charge, charge) : new Vector2(charge * 1.2f, 0);
 
         if ((pc.facingRight && pushForce.x < 0) || (!pc.facingRight && pushForce.x > 0)) {
             pushForce.x *= -1;

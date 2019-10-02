@@ -68,7 +68,7 @@ public class WaterAbilities : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col) 
     {
-        if (Input.GetKey(KeyCode.H)) { // initiate geyser
+        if (Input.GetButtonDown("Geyser")) { // initiate geyser
             if (col.gameObject == buoyancyParent) {
                 // get geyser object
                 buoyancyObject = buoyancyParent.transform.GetChild(0).gameObject; 
@@ -84,7 +84,7 @@ public class WaterAbilities : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.R)) {
+        if (Input.GetButtonDown("Dive")) {
             if (col.gameObject == diveObject) {
                 diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
                 diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
@@ -98,7 +98,7 @@ public class WaterAbilities : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetButtonDown("DiveSwitch")) {
             if (col.gameObject == diveSwitch) {
                 diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
                 diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
@@ -108,7 +108,7 @@ public class WaterAbilities : MonoBehaviour
                 } 
                 Debug.LogError("Target = " + diveContainer.GetComponent<DiveBehaviour>().getDestination());
             }
-        } else if (Input.GetKeyUp(KeyCode.E)) {
+        } else if (Input.GetButtonUp("DiveSwitch")) {
             if (!diveContainer.GetComponent<DiveBehaviour>().getCanChange()) diveContainer.GetComponent<DiveBehaviour>().setCanChange(true);
         }
     }

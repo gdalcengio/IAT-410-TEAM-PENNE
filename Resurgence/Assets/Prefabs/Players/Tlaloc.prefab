@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 4051240240641905223}
   m_Layer: 0
   m_Name: Tlaloc
-  m_TagString: Player
+  m_TagString: Tlaloc
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
   facingRight: 1
   canMove: 1
   groundCheck: {fileID: 3766660240632678606}
-  checkRadius: 0.1
+  checkRadius: 0.01
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256

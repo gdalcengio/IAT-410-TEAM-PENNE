@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class WaterPlayerController : MonoBehaviour
 {
-    TlalocControls controls;
     public enum State {                                   //easy way to deal with cutscenes, ability charging, etc...
         Ready,
         Busy,
@@ -15,7 +13,7 @@ public class WaterPlayerController : MonoBehaviour
     /*movement controls */
     public float speed;
     public float jumpForce;
-    private Vector2 moveInput;
+    private float moveInput;
 
     /*auxillary stuff */
     private Rigidbody2D rb;
@@ -40,21 +38,7 @@ public class WaterPlayerController : MonoBehaviour
     Vector3 viewPos;
 
     void Awake() {
-        controls = new TlalocControls();
 
-        //controls.Gameplay.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        //controls.Gameplay.Move.canceled += ctx => moveInput = Vector2.zero;
-
-        controls.Gameplay.JumpTlaloc.performed += ctx => jump();
-
-    }
-
-    void OnEnable() {
-        controls.Gameplay.Enable();
-    }
-    
-    void OnDisable() {
-        controls.Gameplay.Disable();
     }
 
     //on start, gets the rigidbody of the player
@@ -73,11 +57,11 @@ public class WaterPlayerController : MonoBehaviour
         isGrounded = (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround))
                   || (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsObject));
 
-        //moveInput = Input.GetAxis("Horizontal");
+        moveInput = Input.GetAxis("T_Horizontal");
         //Debug.Log(moveInput);
-        if (canMove) rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
+        if (canMove) rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
-        if (((!facingRight && moveInput.x > 0) || (facingRight && moveInput.x < 0)) && canMove) flip();
+        if (((!facingRight && moveInput > 0) || (facingRight && moveInput < 0)) && canMove) flip();
 
         if (transform.position.x <= -screenBounds.x+playerWidth) {
             transform.position = new Vector2(-screenBounds.x+playerWidth, transform.position.y);
@@ -91,6 +75,9 @@ public class WaterPlayerController : MonoBehaviour
         if (isGrounded) jumped = false;
         if (abilityState == State.Busy) return;       //disabling everything else
 
+        if (Input.GetButtonDown("T_Jump")) {
+            jump();
+        }
     }
 
     void jump() {
