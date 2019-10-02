@@ -14,6 +14,7 @@ public class DiveBehaviour : MonoBehaviour
     {
         foreach (Transform child in transform) {
             if (child.name != "index") nodes.Add(child.gameObject);
+            Debug.LogError("node size = " + nodes.Count);
         }
     }
 

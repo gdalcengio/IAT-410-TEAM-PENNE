@@ -83,15 +83,19 @@ public class WaterAbilities : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetButtonDown("Dive")) {
+        // if (Input.GetButtonDown("Dive")) {
+        if (Input.anyKey) {
+            Debug.LogError("line 88");
             if (col.gameObject == diveObject) {
+                Debug.LogError("line 90");
                 diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
                 diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
-
+                Debug.LogError("line 93");
                 diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
                 diveContainer.GetComponent<DiveBehaviour>().setEntrance(diveIndex);
+                Debug.LogError("line 96");
                 diveMove(col, diveContainer.GetComponent<DiveBehaviour>().nodes.Count, diveContainer.GetComponent<DiveBehaviour>().getEntrance());
+                Debug.LogError("line 98");
                 // deactivate colliders
                 diveContainer = diveParent = diveObject = null;
                 col = null;
