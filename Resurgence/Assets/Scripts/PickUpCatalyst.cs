@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PickUpCatalyst : MonoBehaviour
 {
-    public PlayerAbility pScript;
+    public EarthAbility pScript;
     private GameObject catalyst = null;
     private bool hasCatalyst = false;
 
 
     private void Update() {
         //catalyst pick up and throw
-        if (catalyst != null && Input.GetKeyDown("c")){
+        if (catalyst != null && Input.GetButtonDown("Switch")){
             Rigidbody2D crb = catalyst.GetComponent<Collider2D>().attachedRigidbody;
             if (!hasCatalyst ) {
                 Debug.Log("cat c boi");
@@ -19,8 +19,10 @@ public class PickUpCatalyst : MonoBehaviour
                 hasCatalyst = true;
                 crb.isKinematic = true;
                 //disallow abilities
-                pScript.canFissure = false;
-                pScript.canTranspose = false;
+                if (pScript!=null) {
+                    pScript.canFissure = false;
+                    pScript.canTranspose = false;
+                }
             } else {
                 Debug.LogError("chuck");
                 crb.AddForce(new Vector2(5, 5));
@@ -29,8 +31,10 @@ public class PickUpCatalyst : MonoBehaviour
                 hasCatalyst = false;
                 crb.isKinematic = false;
                 //re-allow abilities
-                pScript.canFissure = true;
-                pScript.canTranspose = true;
+                if (pScript!=null) {
+                    pScript.canFissure = true;
+                    pScript.canTranspose = true;
+                }
             }
         }
     }
