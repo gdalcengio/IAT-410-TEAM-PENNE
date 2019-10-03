@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsObject;  //ditta but for the objects
 
     /*single jump flag */
-    private bool jumped = false;
+    // private bool jumped = false;
 
     Camera cam;
     private Vector2 screenBounds;
@@ -51,13 +51,23 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (abilityState == State.Busy) return;       //disabling everything else
+        if (abilityState == State.Busy)
+        {
+            if (Input.GetButtonUp("Transpose")) {
+                abilityState = State.Ready;
+            } else {
+                return;       //disabling everything else
+            }
+        }
 
         //considered objects ground to jump off of
         isGrounded = (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround))
                   || (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsObject));
 
         moveInput = Input.GetAxis("I_Horizontal");
+#if UNITY_EDITOR
+        moveInput = Input.GetAxis("Horizontal");
+#endif
         //Debug.Log(moveInput);
         if (canMove) rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
@@ -72,20 +82,19 @@ public class PlayerController : MonoBehaviour
 
     //just for jumping for now
     void Update() {
-        if (isGrounded) jumped = false;
+        // if (isGrounded) jumped = false;
         if (abilityState == State.Busy) return;       //disabling everything else
 
-        if (Input.GetButtonDown("I_Jump")) {
+        if ((Input.GetButtonDown("I_Jump") || Input.GetKeyDown("up")) && isGrounded) {
             jump();
         };
 
     }
 
     void jump() {
-        if (!jumped && canMove) {
+        if (canMove) {
             rb.velocity = Vector2.up * jumpForce;
         }
-        jumped = true;
     }
 
     //flipping the character direction

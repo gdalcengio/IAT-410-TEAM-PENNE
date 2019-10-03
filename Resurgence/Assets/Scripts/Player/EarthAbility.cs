@@ -22,12 +22,16 @@ public class EarthAbility : MonoBehaviour
     private GameObject fissureWall;                     //to test if the wall is fissureable
 
     private void Update() {
-        //for consistency and error handling
-        if (Input.GetButtonUp("Transpose")) pc.abilityState = PlayerController.State.Ready;
-        if (pc.abilityState == PlayerController.State.Busy) return;
+        // //for consistency and error handling
+        if (!Input.GetButton("Transpose") && !Input.GetKey("u"))
+        {
+            pc.unfreeze();
+            pc.abilityState = PlayerController.State.Ready;
+        }
+        // if (pc.abilityState == PlayerController.State.Busy) return;
 
         //better transpose
-        if (Input.GetButtonDown("Transpose")) {
+        if (Input.GetButtonDown("Transpose") || Input.GetKeyDown("u")) {
             if (canTranspose && transposeCoroutine != null) {
                 canTranspose = false;
                 //stops player movement
@@ -40,7 +44,7 @@ public class EarthAbility : MonoBehaviour
         }
 
         //fissure
-        if (Input.GetButtonDown("Fissure")) {
+        if (Input.GetButtonDown("Fissure") || Input.GetKeyDown("i")) {
             if (canFissure) {
                 if (fissureWall != null) {
                     Destroy(fissureWall);
@@ -112,7 +116,8 @@ public class EarthAbility : MonoBehaviour
     private IEnumerator chargeTranspose(Collider2D col) {
         while (pc.abilityState == PlayerController.State.Busy) {
             if (charge < maxCharge) charge += 20;           //increases charge meter
-            yield return new WaitForSeconds(0.2f);
+            //if (Input.GetButtonUp("Transpose") || Input.GetKeyUp("u")) pc.abilityState = PlayerController.State.Ready;
+            yield return null;
         }
 
         pushForce = (Input.GetAxis("I_Up") > 0) ? new Vector2(charge, charge) : new Vector2(charge * 1.2f, 0);

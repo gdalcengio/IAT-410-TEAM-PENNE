@@ -13,13 +13,62 @@ public class WaterAbilities : MonoBehaviour
     Vector2 startPosition;
     Vector2 targetPosition;
     float startTime;
+    //for the switch
+    GameObject switchObject = null;
+    public bool canDive = false, canGeyser = false;
 
     private IEnumerator geyserCoroutine;
 
+    void Update() {
+        if (Input.GetButtonDown("Switch")) {
+            Debug.Log("switched");
+            if (switchObject != null)
+            {
+                switchObject.GetComponent<SwitchBehaviour>().toggleState();
+            }
+        }
+
+        if (Input.GetButtonDown("Geyser"))
+        { // initiate geyser
+            if (canGeyser)
+            {
+                // get geyser object
+                buoyancyObject = buoyancyParent.transform.GetChild(0).gameObject;
+                buoy = buoyancyObject.GetComponent<BuoyancyEffector2D>();
+                targetGeyser = buoy;
+
+                startPosition = buoy.GetComponent<GeyserBehaviour>().getReset(); // reset geyser after time
+                targetPosition = new Vector2(0.0f, buoy.transform.position.y + buoy.GetComponent<GeyserBehaviour>().limit); // need limit
+                if (!buoy.GetComponent<GeyserBehaviour>().getActiveGeyser())
+                {
+                    activateGeyser(buoy);
+                    buoy.GetComponent<GeyserBehaviour>().setActiveGeyser(true);
+                }
+            }
+        }
+
+        if (Input.GetButtonDown("Dive"))
+        {
+            if (canDive)
+            {
+                diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
+                diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
+
+                diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
+                diveContainer.GetComponent<DiveBehaviour>().setEntrance(diveIndex);
+                diveMove(diveObject.GetComponent<Collider2D>(), diveContainer.GetComponent<DiveBehaviour>().nodes.Count, diveContainer.GetComponent<DiveBehaviour>().getEntrance());
+                // deactivate colliders
+                diveContainer = diveParent = diveObject = null;
+                diveObject = null;
+                canDive = false;
+            }
+        }
+    }
     void OnTriggerEnter2D(Collider2D col) {
         if (col != null) {
             if (col.gameObject.tag == "Spout") {
                 buoyancyParent = col.gameObject;
+                canGeyser = true;
             }
 
             if (col.gameObject.tag == "EntryPoint") {
@@ -34,6 +83,7 @@ public class WaterAbilities : MonoBehaviour
                         return;
                     }
                 }
+                canDive = true;
             }
 
             if (col.gameObject.tag == "switch") {
@@ -48,6 +98,10 @@ public class WaterAbilities : MonoBehaviour
                 }
                 diveObject = diveParent.transform.GetChild(0).gameObject;
             }
+
+            if (col.gameObject.tag == "BinarySwitch") {
+                switchObject = col.gameObject;
+            }
         }
     }
 
@@ -59,48 +113,58 @@ public class WaterAbilities : MonoBehaviour
             //deactivate colliders
             buoyancyParent = buoyancyObject = null;
             targetGeyser = null;
+            canGeyser = false;
         }
 
         if (col.gameObject == diveSwitch) {
             diveSwitch = null;
         }
+
+        if (col.gameObject.tag == "BinarySwitch")
+        {
+            switchObject = null;
+        }
     }
 
     void OnTriggerStay2D(Collider2D col) 
     {
-        if (Input.GetButtonDown("Geyser")) { // initiate geyser
-            if (col.gameObject == buoyancyParent) {
-                // get geyser object
-                buoyancyObject = buoyancyParent.transform.GetChild(0).gameObject; 
-                buoy = buoyancyObject.GetComponent<BuoyancyEffector2D>();
-                targetGeyser = buoy;
 
-                startPosition = buoy.GetComponent<GeyserBehaviour>().getReset(); // reset geyser after time
-                targetPosition = new Vector2(0.0f, buoy.transform.position.y + buoy.GetComponent<GeyserBehaviour>().limit); // need limit
-                if (!buoy.GetComponent<GeyserBehaviour>().getActiveGeyser()) {
-                    activateGeyser(buoy);
-                    buoy.GetComponent<GeyserBehaviour>().setActiveGeyser(true);
-                }
-            }
-        }
+
+        // if (col != null && col.gameObject.tag == "Current")
+        // {
+        //     col.GetComponent<LineBehaviour>().setPosition(1, new Vector2(pc.transform.position.x, 0f));
+        // }
+
+        // if (Input.GetButtonDown("Geyser")) { // initiate geyser
+        //     if (col.gameObject == buoyancyParent) {
+        //         // get geyser object
+        //         buoyancyObject = buoyancyParent.transform.GetChild(0).gameObject; 
+        //         buoy = buoyancyObject.GetComponent<BuoyancyEffector2D>();
+        //         targetGeyser = buoy;
+
+        //         startPosition = buoy.GetComponent<GeyserBehaviour>().getReset(); // reset geyser after time
+        //         targetPosition = new Vector2(0.0f, buoy.transform.position.y + buoy.GetComponent<GeyserBehaviour>().limit); // need limit
+        //         if (!buoy.GetComponent<GeyserBehaviour>().getActiveGeyser()) {
+        //             activateGeyser(buoy);
+        //             buoy.GetComponent<GeyserBehaviour>().setActiveGeyser(true);
+        //         }
+        //     }
+        // }
+
         // if (Input.GetButtonDown("Dive")) {
-        if (Input.anyKey) {
-            Debug.LogError("line 88");
-            if (col.gameObject == diveObject) {
-                Debug.LogError("line 90");
-                diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
-                diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
-                Debug.LogError("line 93");
-                diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
-                diveContainer.GetComponent<DiveBehaviour>().setEntrance(diveIndex);
-                Debug.LogError("line 96");
-                diveMove(col, diveContainer.GetComponent<DiveBehaviour>().nodes.Count, diveContainer.GetComponent<DiveBehaviour>().getEntrance());
-                Debug.LogError("line 98");
-                // deactivate colliders
-                diveContainer = diveParent = diveObject = null;
-                col = null;
-            }
-        }
+        //     if (col.gameObject == diveObject) {
+        //         diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
+        //         diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
+
+        //         diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
+        //         diveContainer.GetComponent<DiveBehaviour>().setEntrance(diveIndex);
+        //         diveMove(col, diveContainer.GetComponent<DiveBehaviour>().nodes.Count, diveContainer.GetComponent<DiveBehaviour>().getEntrance());
+        //         // deactivate colliders
+        //         diveContainer = diveParent = diveObject = null;
+        //         col = null;
+        //         canDive = false;
+        //     }
+        // }
 
         if (Input.GetButtonDown("DiveSwitch")) {
             if (col.gameObject == diveSwitch) {

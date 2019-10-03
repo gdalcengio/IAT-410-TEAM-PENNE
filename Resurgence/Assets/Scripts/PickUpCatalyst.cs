@@ -15,9 +15,13 @@ public class PickUpCatalyst : MonoBehaviour
             Rigidbody2D crb = catalyst.GetComponent<Collider2D>().attachedRigidbody;
             if (!hasCatalyst ) {
                 Debug.Log("cat c boi");
+                //crb.velocity = new Vector2(0f, 0f);
+                //crb.mass = 0;
+                // crb.useGravity = false;
+                crb.isKinematic = true;
                 catalyst.transform.SetParent(this.transform);
                 hasCatalyst = true;
-                crb.isKinematic = true;
+                //crb.simulated = false;
                 //disallow abilities
                 if (pScript!=null) {
                     pScript.canFissure = false;
@@ -25,11 +29,13 @@ public class PickUpCatalyst : MonoBehaviour
                 }
             } else {
                 Debug.LogError("chuck");
-                crb.AddForce(new Vector2(5, 5));
-                catalyst.transform.SetParent(null);
-                catalyst = null;
-                hasCatalyst = false;
+                //crb.AddForce(new Vector2(5, 5));
+                // crb.useGravity = true;
                 crb.isKinematic = false;
+                catalyst.transform.SetParent(null);
+                hasCatalyst = false;
+                catalyst = null;
+                //crb.simulated = true;
                 //re-allow abilities
                 if (pScript!=null) {
                     pScript.canFissure = true;
