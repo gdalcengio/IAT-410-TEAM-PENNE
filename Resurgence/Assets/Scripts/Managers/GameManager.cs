@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    private int nextScene;
+    private int nextScene = 1;
     // (Optional) Prevent non-singleton constructor use.
     protected GameManager() { 
 
     }
 
-    private void Start() {
-        nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-        Debug.Log("next scene is: " + nextScene);
-    }
+    // private void Start() {
+    //     nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+    //     Debug.Log("next scene is: " + nextScene);
+    // }
 
     private void Update() {
         if (Input.GetKeyDown("r")) ResetScene();
