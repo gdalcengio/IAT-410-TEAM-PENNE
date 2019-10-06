@@ -17,6 +17,7 @@ TagManager:
   - Catalyst
   - Itztli
   - Tlaloc
+  - Cracked
   layers:
   - Default
   - TransparentFX
@@ -28,8 +29,8 @@ TagManager:
   - 
   - Jumpable
   - Object
-  - 
-  - 
+  - Catalyst
+  - Player
   - 
   - 
   - 

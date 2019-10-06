@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3766660240510214574}
   - component: {fileID: 8906230881091044030}
   - component: {fileID: 7809349449826664083}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ElementTriggerRight
   m_TagString: RightTrigger
   m_Icon: {fileID: 0}
@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0609c34ab4bb4163a5cd30886537d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDive: 0
+  canGeyser: 0
 --- !u!58 &7809349449826664083
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -69,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3766660240632678606}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -103,7 +105,7 @@ GameObject:
   - component: {fileID: 3766660241191578054}
   - component: {fileID: 3766660241191578055}
   - component: {fileID: 4051240240641905223}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tlaloc
   m_TagString: Tlaloc
   m_Icon: {fileID: 0}

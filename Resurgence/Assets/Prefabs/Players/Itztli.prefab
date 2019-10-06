@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4180767479625795272}
   - component: {fileID: 4180767479625795273}
   - component: {fileID: 4711933784962731416}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ElementTriggerRight
   m_TagString: RightTrigger
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4180767479747096488}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4180767480293396128}
   - component: {fileID: 4180767480293396129}
   - component: {fileID: -7791708141885439010}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Itztli
   m_TagString: Itztli
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ MonoBehaviour:
   facingRight: 1
   canMove: 1
   groundCheck: {fileID: 4180767479747096488}
-  checkRadius: 0.01
+  checkRadius: 0.001
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -281,7 +281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8443598806586593077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.07, y: 0, z: 0}
+  m_LocalPosition: {x: 2.5, y: -0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4180767480293396135}
