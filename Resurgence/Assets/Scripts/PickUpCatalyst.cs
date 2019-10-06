@@ -15,10 +15,11 @@ public class PickUpCatalyst : MonoBehaviour
             Rigidbody2D crb = catalyst.GetComponent<Collider2D>().attachedRigidbody;
             if (!hasCatalyst ) {
                 Debug.Log("cat c boi");
-                //crb.velocity = new Vector2(0f, 0f);
+                crb.velocity = new Vector2(0f, 0f);
                 //crb.mass = 0;
                 // crb.useGravity = false;
                 crb.isKinematic = true;
+                // crb.detectCollisions = false;
                 catalyst.transform.SetParent(this.transform);
                 hasCatalyst = true;
                 //crb.simulated = false;
@@ -32,6 +33,7 @@ public class PickUpCatalyst : MonoBehaviour
                 //crb.AddForce(new Vector2(5, 5));
                 // crb.useGravity = true;
                 crb.isKinematic = false;
+                // crb.detectCollisions = true;
                 catalyst.transform.SetParent(null);
                 hasCatalyst = false;
                 catalyst = null;
@@ -49,7 +51,6 @@ public class PickUpCatalyst : MonoBehaviour
         //catalyst in range
         if (col.gameObject.tag == "Catalyst") {
             catalyst = col.gameObject;
-            Debug.Log("Catalyst");
         }
     }
 
@@ -58,7 +59,6 @@ public class PickUpCatalyst : MonoBehaviour
         //catalyst out of range
         if (catalyst != null && col.gameObject.tag =="Catalyst") {
             catalyst = null;
-            Debug.Log("fuck");
         }
     }
 }
