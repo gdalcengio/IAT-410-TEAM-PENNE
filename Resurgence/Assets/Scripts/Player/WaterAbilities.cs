@@ -21,14 +21,13 @@ public class WaterAbilities : MonoBehaviour
 
     void Update() {
         if (Input.GetButtonDown("Switch")) {
-            Debug.Log("switched");
             if (switchObject != null)
             {
                 switchObject.GetComponent<SwitchBehaviour>().toggleState();
             }
         }
 
-        if (Input.GetButtonDown("Geyser"))
+        if (Input.GetButtonDown("Geyser") || Input.GetKeyDown(KeyCode.G))
         { // initiate geyser
             if (canGeyser)
             {
@@ -47,7 +46,7 @@ public class WaterAbilities : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Dive"))
+        if (Input.GetButtonDown("Dive") || Input.GetKeyDown(KeyCode.F) && diveObject != null)
         {
             if (canDive)
             {
@@ -113,6 +112,7 @@ public class WaterAbilities : MonoBehaviour
             //deactivate colliders
             buoyancyParent = buoyancyObject = null;
             targetGeyser = null;
+            buoy = null;
             canGeyser = false;
         }
 
@@ -123,6 +123,13 @@ public class WaterAbilities : MonoBehaviour
         if (col.gameObject.tag == "BinarySwitch")
         {
             switchObject = null;
+        }
+
+        if (col.gameObject == diveObject) {
+            canGeyser = false;
+            diveObject = null;
+            diveParent = null;
+            diveContainer = null;
         }
     }
 
@@ -174,7 +181,6 @@ public class WaterAbilities : MonoBehaviour
                     diveContainer.GetComponent<DiveBehaviour>().setCanChange(false);
                     diveContainer.GetComponent<DiveBehaviour>().changePath();
                 } 
-                Debug.LogError("Target = " + diveContainer.GetComponent<DiveBehaviour>().getDestination());
             }
         } else if (Input.GetButtonUp("DiveSwitch")) {
             if (!diveContainer.GetComponent<DiveBehaviour>().getCanChange()) diveContainer.GetComponent<DiveBehaviour>().setCanChange(true);
