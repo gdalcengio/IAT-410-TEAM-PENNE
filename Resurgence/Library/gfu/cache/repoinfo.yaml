@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1109517887, guid: 68c7e4565cde54155bb78d8e935f1ddb, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   cacheType: 1
-  lastUpdatedAtString: 2019-10-01T23:02:32.379-07:00
-  initializedAtString: 2019-10-01T22:00:27.481-07:00
+  lastUpdatedAtString: 2019-10-07T12:16:52.517-07:00
+  initializedAtString: 2019-10-07T12:16:52.517-07:00
   currentGitRemote:
     name: origin
     url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
-    login:
-    user:
-    host:
+    login: 
+    user: 
+    host: 
     function: 0
-    token:
+    token: 
   currentGitBranch:
     name: dev
     tracking: origin/dev
@@ -35,4 +35,4 @@ MonoBehaviour:
   currentConfigRemote:
     name: origin
     url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
-  currentHead:
+  currentHead: 

@@ -30,7 +30,7 @@ public class WaterPlayerController : MonoBehaviour
     public LayerMask whatIsObject;  //ditta but for the objects
 
     /*single jump flag */
-    private bool jumped = false;
+    // private bool jumped = false;
 
     Camera cam;
     private Vector2 screenBounds;
@@ -72,19 +72,20 @@ public class WaterPlayerController : MonoBehaviour
 
     //just for jumping for now
     void Update() {
-        if (isGrounded) jumped = false;
+        // if (isGrounded) jumped = false;
         if (abilityState == State.Busy) return;       //disabling everything else
 
-        if (Input.GetButtonDown("T_Jump")) {
+        if ((Input.GetButtonDown("T_Jump")) && isGrounded)
+        {
             jump();
-        }
+        };
     }
 
     void jump() {
-        if (!jumped && canMove) {
+        if (canMove)
+        {
             rb.velocity = Vector2.up * jumpForce;
         }
-        jumped = true;
     }
 
     //flipping the character direction

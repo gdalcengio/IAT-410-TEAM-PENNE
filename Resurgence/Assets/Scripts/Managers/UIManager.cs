@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
+    protected UIManager() {
+
+    }
     //for tutorial messages or general information
     public IEnumerator Toast(int seconds, Text toast) {
         Color alpha = toast.color;

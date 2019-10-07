@@ -65,9 +65,9 @@ public class PlayerController : MonoBehaviour
                   || (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsObject));
 
         moveInput = Input.GetAxis("I_Horizontal");
-#if UNITY_EDITOR
-        moveInput = Input.GetAxis("Horizontal");
-#endif
+// #if UNITY_EDITOR
+//         moveInput = Input.GetAxis("Horizontal");
+// #endif
         //Debug.Log(moveInput);
         if (canMove) rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         // if (isGrounded) jumped = false;
         if (abilityState == State.Busy) return;       //disabling everything else
 
-        if ((Input.GetButtonDown("I_Jump") || Input.GetKeyDown("up")) && isGrounded) {
+        if ((Input.GetButtonDown("I_Jump")) && isGrounded) {
             jump();
         };
 
