@@ -362,7 +362,7 @@ InputManager:
     descriptiveName: First ability for Itztli
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 2
+    positiveButton: joystick 1 button 5
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -378,7 +378,7 @@ InputManager:
     descriptiveName: second ability for Itztly
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 3
+    positiveButton: joystick 1 button 4
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -394,7 +394,7 @@ InputManager:
     descriptiveName: first ability for tlaloc
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 2 button 2
+    positiveButton: joystick 2 button 5
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -410,7 +410,7 @@ InputManager:
     descriptiveName: second ability for tlaloc
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 2 button 3
+    positiveButton: joystick 2 button 4
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

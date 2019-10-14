@@ -27,11 +27,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-
-
-
-
-
     public void LoadNextScene() {
             SceneManager.LoadScene(nextScene);
             nextScene++;
