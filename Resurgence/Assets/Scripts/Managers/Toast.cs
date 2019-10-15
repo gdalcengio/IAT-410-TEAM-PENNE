@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class Toast : MonoBehaviour
 {
     public UIManager manager;
+
+    void Start() {
+        // manager = findObjectInScene
+    }
     private void OnTriggerEnter2D (Collider2D col){
         if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc") {
             IEnumerator toast = manager.Appear(GetComponent<Image>());

@@ -29,10 +29,13 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadNextScene() {
             SceneManager.LoadScene(nextScene);
+            DontDestroyOnLoad(this.gameObject);
             nextScene++;
     }
 
     public void ResetScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+   
 }

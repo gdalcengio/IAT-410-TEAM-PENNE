@@ -18,6 +18,8 @@ TagManager:
   - Itztli
   - Tlaloc
   - Cracked
+  - ItzPowerCol
+  - TlaPowerCol
   layers:
   - Default
   - TransparentFX
@@ -31,7 +33,7 @@ TagManager:
   - Object
   - Catalyst
   - Player
-  - 
+  - PostProcessing
   - 
   - 
   - 
