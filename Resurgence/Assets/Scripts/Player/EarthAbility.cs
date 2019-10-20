@@ -74,6 +74,7 @@ public class EarthAbility : MonoBehaviour
         //fissure
         if (col.gameObject.tag == "Fissurable") {
             canFissure = true;
+            Debug.Log("check");
             fissureCoroutine = fissure(col.transform.parent.GetChild(0).GetComponent<Collider2D>(), 
                                        col.transform.parent.GetChild(1).GetComponent<Collider2D>()
                                        );
@@ -96,7 +97,7 @@ public class EarthAbility : MonoBehaviour
         }
 
         //fissure
-        if (col.gameObject.tag == "Ground" || col.gameObject.tag == "Cracked") {
+        if (col.gameObject.tag == "Fissurable" || col.gameObject.tag == "Cracked") {
             canFissure = false;
         }
     }
@@ -113,6 +114,18 @@ public class EarthAbility : MonoBehaviour
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
     private IEnumerator chargeTranspose(Collider2D col) {
         while (pc.abilityState == PlayerController.State.Busy) {
             if (charge < maxCharge) charge += 20;           //increases charge meter
@@ -128,6 +141,10 @@ public class EarthAbility : MonoBehaviour
 
         //Debug.LogError(pushForce);
         if (col != null) col.attachedRigidbody.AddForce(pushForce, ForceMode2D.Impulse);
+
+        //camera shake
+        StartCoroutine(CameraManager.Instance.cameraShake(.15f, .1f));
+
         pc.unfreeze();
         pc.canMove = true;
         //Debug.LogError(pushForce);
@@ -138,13 +155,21 @@ public class EarthAbility : MonoBehaviour
 
     /*fissure ability */
     private IEnumerator fissure(Collider2D col1, Collider2D col2) {
-        while (col1.transform.position.x > -10) { 
-            float moveX = Mathf.Lerp(0, 0.5f, Time.deltaTime);
+        //camera shake
+        StartCoroutine(CameraManager.Instance.cameraShake(3f, .07f));
+
+        float elapsed = 0.0f;
+
+        while (elapsed < 3) { 
+            float moveX = Mathf.Lerp(0, 3f, Time.deltaTime);
 
             col1.transform.position += Vector3.left*moveX;
             col2.transform.position += Vector3.right*moveX;
 
+            elapsed += Time.deltaTime;
+
             yield return null;
+            
         }
         yield return new WaitForEndOfFrame();
     }

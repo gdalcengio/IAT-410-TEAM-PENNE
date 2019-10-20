@@ -19,6 +19,9 @@ public class GeyserBehaviour : MonoBehaviour
         Vector2 startPos = transform.position; //Starting position.
         Vector2 endPos = transform.position + direction; //Ending position.
  
+        //camera shake
+        StartCoroutine(CameraManager.Instance.cameraShake(3f, (Time.time - startime)*speed));
+
         while (startPos != endPos && ((Time.time - startime)*speed) < 1f && transform.position.y < limit) { 
             float move = Mathf.Lerp(0,1, (Time.time - startime)*speed);
  

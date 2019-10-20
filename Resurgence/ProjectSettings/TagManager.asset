@@ -20,6 +20,7 @@ TagManager:
   - Cracked
   - ItzPowerCol
   - TlaPowerCol
+  - Fissurable
   layers:
   - Default
   - TransparentFX
