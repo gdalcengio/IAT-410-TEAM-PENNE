@@ -9,7 +9,7 @@ public class UIManager : Singleton<UIManager>
 
     }
     //for tutorial messages or general information
-    public IEnumerator Toast(int seconds, Text toast) {
+    public IEnumerator Appear(Image toast) {
         Color alpha = toast.color;
 
         while (alpha.a < 1) {
@@ -18,8 +18,10 @@ public class UIManager : Singleton<UIManager>
             Debug.Log("adding alpha" + alpha);
             yield return null;
         }
+    }
 
-        yield return new WaitForSeconds(seconds);
+    public IEnumerator Disappear(Image toast) {
+        Color alpha = toast.color;
 
         while (alpha.a > 0) {
             alpha.a -= 0.05f;
