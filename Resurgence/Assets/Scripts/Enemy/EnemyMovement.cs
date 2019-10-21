@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position,transform.localScale.x*Vector3.left, distance); // check in front of him
-        Debug.DrawRay(transform.position, new Vector2(transform.position.x+distance, transform.position.y), Color.red);
+        //Debug.DrawRay(transform.position, new Vector2(transform.position.x+distance, transform.position.y), Color.red);
 
         // player and catalyst detection
         if (hit.collider != null && (hit.collider.tag == "Itzli" || hit.collider.tag == "Tlaloc" || hit.collider.tag == "Catalyst")) {
