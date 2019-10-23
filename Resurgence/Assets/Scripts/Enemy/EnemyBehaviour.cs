@@ -8,7 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private float speed, savedSpeed;
 
-    bool blocked = false;
+    bool blocked = false, squishLeft = false, squishRight = false;
 
     public int health = 1;
 
@@ -24,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
     void Update() 
     {
         // if (state == "enraged") Debug.LogError(state);
+        if (squishLeft && squishRight) health--;
         death();
     }
 
@@ -67,11 +68,31 @@ public class EnemyBehaviour : MonoBehaviour
         if(col != null && (col.gameObject.layer == 9)) {
             blocked = true;
         }
+
+        if (col.gameObject.tag == "Fissurable") {
+            if  (col.gameObject.name == "PlatformLeft") {
+                squishLeft = true;
+            } else if (col.gameObject.name == "PlatformRight") {
+                squishRight = true;
+            }
+        }
     }
 
     void OnCollisionExit2D(Collision2D col) {
         if(col != null && (col.gameObject.layer == 9)) {
             blocked = false;
+        }
+
+        if (col.gameObject.tag == "Fissurable")
+        {
+            if (col.gameObject.name == "PlatformLeft")
+            {
+                squishLeft = false;
+            }
+            else if (col.gameObject.name == "PlatformRight")
+            {
+                squishRight = false;
+            }
         }
     }
 
