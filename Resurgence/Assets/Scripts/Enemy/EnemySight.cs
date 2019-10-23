@@ -17,7 +17,7 @@ public class EnemySight : MonoBehaviour
     {
         objectInRange = false;
         // lineOfSightEnd = transform.parent.GetChild(1).GetComponent<Transform>();
-        lineOfSightEnd = GetComponentInChildren<Transform>();
+        lineOfSightEnd = this.transform.GetChild(0).transform;
         // objects that trigger the enemy
         itztli = GameObject.FindWithTag("Itztli").transform;
         tlaloc = GameObject.FindWithTag("Tlaloc").transform;
@@ -86,6 +86,7 @@ public class EnemySight : MonoBehaviour
 
     bool ObjectInFOV()
     {
+        Debug.LogError(lineOfSightEnd.gameObject.name);
         // direction from enemy to target
         Vector2 directionToTarget = target.position - transform.position;
         Debug.DrawLine(transform.position, target.position, Color.magenta);

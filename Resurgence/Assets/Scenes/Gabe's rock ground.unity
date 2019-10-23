@@ -484,7 +484,7 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 854815119}
   - {fileID: 1882454648}
-  speed: 0.1
+  speed: 2.5
   distance: 10
 --- !u!114 &649962450
 MonoBehaviour:
@@ -605,12 +605,12 @@ PrefabInstance:
     - target: {fileID: 4180767480293396135, guid: 1a311e7e9a4d09d4084ba145eee1acf5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.09
+      value: 3.85
       objectReference: {fileID: 0}
     - target: {fileID: 4180767480293396135, guid: 1a311e7e9a4d09d4084ba145eee1acf5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.67
+      value: -0.74
       objectReference: {fileID: 0}
     - target: {fileID: 4180767480293396135, guid: 1a311e7e9a4d09d4084ba145eee1acf5,
         type: 3}

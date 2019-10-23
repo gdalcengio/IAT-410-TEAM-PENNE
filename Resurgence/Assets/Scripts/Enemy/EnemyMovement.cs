@@ -59,7 +59,6 @@ public class EnemyMovement : MonoBehaviour
     IEnumerator Patrol()
     {
         while (true) { // consistently move
-        speed = 0.1f;
             if (currentPoint >= patrolPoints.Length) {
                 currentPoint = 0; // reset to zero
             }
@@ -77,7 +76,7 @@ public class EnemyMovement : MonoBehaviour
                 currentPoint = 0; // reset to zero
             }
 
-            if (GetComponent<EnemyBehaviour>().getState() == "patrol") this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(patrolPoints[currentPoint].position.x, transform.position.y), 0.1f);
+            if (GetComponent<EnemyBehaviour>().getState() == "patrol") this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(patrolPoints[currentPoint].position.x, transform.position.y), speed*Time.deltaTime);
 
             prevX = currX;
             currX = this.transform.position.x;

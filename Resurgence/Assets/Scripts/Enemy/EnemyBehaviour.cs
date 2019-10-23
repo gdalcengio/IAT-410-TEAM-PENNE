@@ -17,7 +17,8 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         state = "patrol";
-        speed = savedSpeed = GetComponent<EnemyMovement>().speed;
+        speed = GetComponent<EnemyMovement>().speed;
+        savedSpeed = 2.5f;
     }
 
     void Update() 
@@ -55,9 +56,9 @@ public class EnemyBehaviour : MonoBehaviour
     public void StopChase(Transform target)
     {
         state = "patrol";
+        GetComponent<EnemyMovement>().speed = 2.5f;
         StartCoroutine(Delay(1));
         StopCoroutine(Chase(target));
-        GetComponent<EnemyMovement>().speed = 0.1f;
         GetComponent<EnemyMovement>().StartCoroutine("Patrol");
     }
 
@@ -81,7 +82,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (!blocked) {
                 prevX = GetComponent<EnemyMovement>().getPrevX();
                 currX = GetComponent<EnemyMovement>().getCurrX();
-                this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(target.position.x, transform.position.y), 0.15f);
+                this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(target.position.x, transform.position.y), speed*1.0001f*Time.deltaTime);
                 if (target.position.x > this.transform.position.x && prevX > currX) {
                     Vector2 newScale = this.transform.localScale;
                     newScale.x *= -1;
