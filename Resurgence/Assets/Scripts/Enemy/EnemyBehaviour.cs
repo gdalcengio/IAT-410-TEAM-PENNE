@@ -10,10 +10,24 @@ public class EnemyBehaviour : MonoBehaviour
 
     bool blocked = false;
 
+    public int health = 1;
+
     void Start()
     {
         state = "patrol";
         speed = GetComponent<EnemyMovement>().speed;
+    }
+
+    void Update() 
+    {
+        death();
+    }
+
+    void death()
+    {
+        if (health == 0) {
+            Destroy(this.transform.parent.gameObject);
+        }
     }
 
     public string getState()

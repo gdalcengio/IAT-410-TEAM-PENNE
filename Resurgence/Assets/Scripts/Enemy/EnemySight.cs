@@ -45,7 +45,6 @@ public class EnemySight : MonoBehaviour
         if (objectInRange) {
             Debug.LogError("good1");
             if (ObjectInFOV()) {
-                return true;
                 Debug.LogError("good2");
                 if (!ObjectHiddenByObstacles()) return true;
             } 
