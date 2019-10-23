@@ -159,17 +159,30 @@ public class EarthAbility : MonoBehaviour
         StartCoroutine(CameraManager.Instance.cameraShake(3f, .07f));
 
         float elapsed = 0.0f;
+        bool open;
+
+        open = (col1.transform.localPosition.x == 0) ? true : false;
+        // Debug.LogError(col1.transform.localPosition.x);
 
         while (elapsed < 3) { 
             float moveX = Mathf.Lerp(0, 3f, Time.deltaTime);
 
-            col1.transform.position += Vector3.left*moveX;
-            col2.transform.position += Vector3.right*moveX;
+            if (open) {
+                col1.transform.position += Vector3.left*moveX;
+                col2.transform.position += Vector3.right*moveX;
+            } else {
+                col1.transform.position += Vector3.right * moveX;
+                col2.transform.position += Vector3.left * moveX;
+            }
 
             elapsed += Time.deltaTime;
 
             yield return null;
-            
+        }
+
+        if (!open) {
+            col1.transform.localPosition = Vector3.zero;
+            col2.transform.localPosition = Vector3.zero;
         }
         yield return new WaitForEndOfFrame();
     }

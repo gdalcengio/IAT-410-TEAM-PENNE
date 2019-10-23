@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7924049520052757636}
   m_Layer: 0
   m_Name: FissureHolder (depending on animation)
-  m_TagString: Fissurable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,20 +39,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7924049520052757636}
     m_Modifications:
-    - target: {fileID: 8324254271208515371, guid: 3559318a7f632e74b945e149a5ba7e2b,
-        type: 3}
-      propertyPath: m_Name
-      value: PlatformLeft
-      objectReference: {fileID: 0}
-    - target: {fileID: 8324254271208515371, guid: 3559318a7f632e74b945e149a5ba7e2b,
-        type: 3}
-      propertyPath: m_TagString
-      value: Fissurable
-      objectReference: {fileID: 0}
     - target: {fileID: 8324254271208515369, guid: 3559318a7f632e74b945e149a5ba7e2b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8324254271208515369, guid: 3559318a7f632e74b945e149a5ba7e2b,
         type: 3}
@@ -103,6 +93,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324254271208515371, guid: 3559318a7f632e74b945e149a5ba7e2b,
+        type: 3}
+      propertyPath: m_Name
+      value: PlatformLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324254271208515371, guid: 3559318a7f632e74b945e149a5ba7e2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Fissurable
       objectReference: {fileID: 0}
     - target: {fileID: 8324254271208515370, guid: 3559318a7f632e74b945e149a5ba7e2b,
         type: 3}
@@ -155,20 +155,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7924049520052757636}
     m_Modifications:
-    - target: {fileID: 8324254271208515371, guid: 3559318a7f632e74b945e149a5ba7e2b,
-        type: 3}
-      propertyPath: m_Name
-      value: PlatformRight
-      objectReference: {fileID: 0}
-    - target: {fileID: 8324254271208515371, guid: 3559318a7f632e74b945e149a5ba7e2b,
-        type: 3}
-      propertyPath: m_TagString
-      value: Fissurable
-      objectReference: {fileID: 0}
     - target: {fileID: 8324254271208515369, guid: 3559318a7f632e74b945e149a5ba7e2b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8324254271208515369, guid: 3559318a7f632e74b945e149a5ba7e2b,
         type: 3}
@@ -219,6 +209,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324254271208515371, guid: 3559318a7f632e74b945e149a5ba7e2b,
+        type: 3}
+      propertyPath: m_Name
+      value: PlatformRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324254271208515371, guid: 3559318a7f632e74b945e149a5ba7e2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Fissurable
       objectReference: {fileID: 0}
     - target: {fileID: 8324254271208515370, guid: 3559318a7f632e74b945e149a5ba7e2b,
         type: 3}
