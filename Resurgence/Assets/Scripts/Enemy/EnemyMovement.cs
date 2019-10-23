@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     SpriteRenderer sprite;
 
    private float prevX, currX;
+   bool shouldPatrol = false;
 
    Transform point1, point2;
    GameObject parent;
@@ -28,6 +30,26 @@ public class EnemyMovement : MonoBehaviour
         point1 = parent.transform.GetChild(1);
         point2 = parent.transform.GetChild(2);
     }
+
+       // called first
+    void OnEnable()
+    {
+        Debug.Log("OnEnable called");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    // called second
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+    }
+    // void Update() {
+    //     if (shouldPatrol && GetComponent<EnemyBehaviour>().getState() == "patrol") {
+    //         StartCoroutine("Patrol");
+    //         shouldPatrol = false;
+    //     }
+    // }
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -58,7 +80,8 @@ public class EnemyMovement : MonoBehaviour
 
     IEnumerator Patrol()
     {
-        while (true) { // consistently move
+        while (GetComponent<EnemyBehaviour>().getState() == "patrol") { // consistently move
+            shouldPatrol = true;
             if (currentPoint >= patrolPoints.Length) {
                 currentPoint = 0; // reset to zero
             }
@@ -76,7 +99,7 @@ public class EnemyMovement : MonoBehaviour
                 currentPoint = 0; // reset to zero
             }
 
-            if (GetComponent<EnemyBehaviour>().getState() == "patrol") this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(patrolPoints[currentPoint].position.x, transform.position.y), speed*Time.deltaTime);
+            this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(patrolPoints[currentPoint].position.x, transform.position.y), speed*Time.deltaTime);
 
             prevX = currX;
             currX = this.transform.position.x;

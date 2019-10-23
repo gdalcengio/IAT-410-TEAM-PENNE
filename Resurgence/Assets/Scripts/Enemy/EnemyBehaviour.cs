@@ -18,12 +18,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         state = "patrol";
         speed = GetComponent<EnemyMovement>().speed;
-        savedSpeed = 2.5f;
+        savedSpeed = speed;
     }
 
     void Update() 
     {
-        // if (state == "enraged") Debug.LogError(state);
         death();
     }
 
@@ -47,7 +46,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void ChaseTarget(Transform target)
     {
-        // GetComponent<EnemyMovement>().StopCoroutine("Patrol");
         state = "enraged";
         StartCoroutine(Delay(1));
         StartCoroutine(Chase(target));
@@ -56,7 +54,6 @@ public class EnemyBehaviour : MonoBehaviour
     public void StopChase(Transform target)
     {
         state = "patrol";
-        GetComponent<EnemyMovement>().speed = 2.5f;
         StartCoroutine(Delay(1));
         StopCoroutine(Chase(target));
         GetComponent<EnemyMovement>().StartCoroutine("Patrol");
@@ -67,10 +64,15 @@ public class EnemyBehaviour : MonoBehaviour
         if(col != null && (col.gameObject.layer == 9)) {
             blocked = true;
         }
+
+        if (col != null && (col.gameObject.layer == 11 || col.gameObject.layer == 10)) {
+            GameManager.Instance.ResetScene();
+            GetComponent<EnemyMovement>().StartCoroutine("Patrol");
+        }
     }
 
     void OnCollisionExit2D(Collision2D col) {
-        if(col != null && (col.gameObject.layer == 9)) {
+        if (col != null && (col.gameObject.layer == 9)) {
             blocked = false;
         }
     }
@@ -78,11 +80,10 @@ public class EnemyBehaviour : MonoBehaviour
     IEnumerator Chase(Transform target)
     {
         while (state == "enraged") {
-            // if (state == "patrol") Debug.LogError("no longer enraged");
             if (!blocked) {
                 prevX = GetComponent<EnemyMovement>().getPrevX();
                 currX = GetComponent<EnemyMovement>().getCurrX();
-                this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(target.position.x, transform.position.y), speed*1.0001f*Time.deltaTime);
+                this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(target.position.x, transform.position.y), (speed*Time.deltaTime)/20);
                 if (target.position.x > this.transform.position.x && prevX > currX) {
                     Vector2 newScale = this.transform.localScale;
                     newScale.x *= -1;
