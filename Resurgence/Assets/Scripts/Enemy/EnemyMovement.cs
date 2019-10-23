@@ -29,18 +29,6 @@ public class EnemyMovement : MonoBehaviour
         point2 = parent.transform.GetChild(2);
     }
 
-    void Update()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position,transform.localScale.x*Vector3.left, distance); // check in front of him
-        //Debug.DrawRay(transform.position, new Vector2(transform.position.x+distance, transform.position.y), Color.red);
-
-        // player and catalyst detection
-        if (hit.collider != null && (hit.collider.tag == "Itztli" || hit.collider.tag == "Tlaloc" || hit.collider.tag == "Catalyst")) {
-            Debug.LogError("object detected");
-            StopCoroutine("Patrol");
-        }
-    }
-
     void OnCollisionEnter2D(Collision2D col)
     {
         if (prevX < currX) {
@@ -71,6 +59,7 @@ public class EnemyMovement : MonoBehaviour
     IEnumerator Patrol()
     {
         while (true) { // consistently move
+        speed = 0.1f;
             if (currentPoint >= patrolPoints.Length) {
                 currentPoint = 0; // reset to zero
             }
@@ -88,7 +77,7 @@ public class EnemyMovement : MonoBehaviour
                 currentPoint = 0; // reset to zero
             }
 
-            this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(patrolPoints[currentPoint].position.x, transform.position.y), speed);
+            if (GetComponent<EnemyBehaviour>().getState() == "patrol") this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(patrolPoints[currentPoint].position.x, transform.position.y), 0.1f);
 
             prevX = currX;
             currX = this.transform.position.x;
