@@ -10,11 +10,23 @@ public class EnemyMovement : MonoBehaviour
     int currentPoint;
     SpriteRenderer sprite;
 
+   private float prevX, currX;
+
+   Transform point1, point2;
+   GameObject parent;
+
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
 
         StartCoroutine("Patrol");
+
+        currX = this.transform.position.x;
+
+        parent = this.transform.parent.gameObject;
+
+        point1 = parent.transform.GetChild(1);
+        point2 = parent.transform.GetChild(2);
     }
 
     void Update()
@@ -23,19 +35,53 @@ public class EnemyMovement : MonoBehaviour
         //Debug.DrawRay(transform.position, new Vector2(transform.position.x+distance, transform.position.y), Color.red);
 
         // player and catalyst detection
-        if (hit.collider != null && (hit.collider.tag == "Itzli" || hit.collider.tag == "Tlaloc" || hit.collider.tag == "Catalyst")) {
+        if (hit.collider != null && (hit.collider.tag == "Itztli" || hit.collider.tag == "Tlaloc" || hit.collider.tag == "Catalyst")) {
             Debug.LogError("object detected");
             StopCoroutine("Patrol");
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (prevX < currX) {
+            if (col != null && (col.gameObject.layer == 9) && col.gameObject.transform.position.x > currX) {
+                if (currentPoint >= patrolPoints.Length) {
+                    currentPoint = 0; // reset to zero
+                }
+                currentPoint++;
+                // yield return new WaitForSeconds(0.5f);
+                Vector2 newScale = this.transform.localScale;
+                newScale.x *= -1;
+                this.transform.localScale = newScale;
+            }
+        } else if (prevX > currX) {
+            if (col != null && (col.gameObject.layer == 9) && col.gameObject.transform.position.x < currX) {
+                if (currentPoint >= patrolPoints.Length) {
+                    currentPoint = 0; // reset to zero
+                }
+                currentPoint++;
+                // yield return new WaitForSeconds(0.5f);
+                Vector2 newScale = this.transform.localScale;
+                newScale.x *= -1;
+                this.transform.localScale = newScale;
+            }
         }
     }
 
     IEnumerator Patrol()
     {
         while (true) { // consistently move
+            if (currentPoint >= patrolPoints.Length) {
+                currentPoint = 0; // reset to zero
+            }
+
             if (this.transform.position.x == patrolPoints[currentPoint].position.x) {
                 currentPoint++;
 
                 yield return new WaitForSeconds(0.5f);
+                Vector2 newScale = this.transform.localScale;
+                newScale.x *= -1;
+                this.transform.localScale = newScale;
             }
 
             if (currentPoint >= patrolPoints.Length) {
@@ -44,13 +90,20 @@ public class EnemyMovement : MonoBehaviour
 
             this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(patrolPoints[currentPoint].position.x, transform.position.y), speed);
 
-            if (transform.position.x < patrolPoints[currentPoint].position.x) {
-                sprite.flipX = true;
-            } else if (transform.position.x > patrolPoints[currentPoint].position.x) {
-                sprite.flipX = false;
-            }
+            prevX = currX;
+            currX = this.transform.position.x;
 
             yield return null;
         }
+    }
+
+    public float getPrevX()
+    {
+        return prevX;
+    }
+
+    public float getCurrX()
+    {
+        return currX;
     }
 }
