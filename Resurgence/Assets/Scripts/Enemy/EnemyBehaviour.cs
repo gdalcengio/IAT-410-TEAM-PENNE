@@ -78,9 +78,15 @@ public class EnemyBehaviour : MonoBehaviour
                 squishRight = true;
             }
         }
+        
         if (col != null && (col.gameObject.layer == 11 || col.gameObject.layer == 10)) {
             GameManager.Instance.ResetScene();
             //GetComponent<EnemyMovement>().StartCoroutine("Patrol");
+        } 
+        
+        if (col != null && col.gameObject.tag == "Buoyancy" && GetComponent<BuoyancyEffector2D>().density > 0) {
+            if (state == "patrol") GetComponent<EnemyMovement>().StopCoroutine("Patrol");
+            if (state == "enraged") StopCoroutine("Chase");
         }
     }
 
@@ -99,6 +105,11 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 squishRight = false;
             }
+        }
+
+        if (col != null && col.gameObject.tag == "Buoyancy" && GetComponent<BuoyancyEffector2D>().density == 0) {
+            if (state == "patrol") GetComponent<EnemyMovement>().StartCoroutine("Patrol");
+            if (state == "enraged") StartCoroutine("Chase");
         }
     }
 
