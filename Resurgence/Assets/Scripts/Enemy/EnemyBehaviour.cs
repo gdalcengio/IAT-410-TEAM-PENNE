@@ -49,14 +49,14 @@ public class EnemyBehaviour : MonoBehaviour
     public void ChaseTarget(Transform target)
     {
         state = "enraged";
-        StartCoroutine(Delay(1));
+        // StartCoroutine(Delay(1));
         StartCoroutine(Chase(target));
     }
 
     public void StopChase(Transform target)
     {
         state = "patrol";
-        StartCoroutine(Delay(1));
+        // StartCoroutine(Delay(1));
         StopCoroutine(Chase(target));
         GetComponent<EnemyMovement>().StartCoroutine("Patrol");
     }
@@ -67,15 +67,20 @@ public class EnemyBehaviour : MonoBehaviour
             blocked = true;
         }
 
-        if (col.gameObject.tag == "Fissurable") {
-            if  (col.gameObject.name == "PlatformLeft") {
+        if (col.gameObject.tag == "Fissurable")
+        {
+            if (col.gameObject.name == "PlatformLeft")
+            {
                 squishLeft = true;
-            } else if (col.gameObject.name == "PlatformRight") {
+            }
+            else if (col.gameObject.name == "PlatformRight")
+            {
                 squishRight = true;
             }
+        }
         if (col != null && (col.gameObject.layer == 11 || col.gameObject.layer == 10)) {
             GameManager.Instance.ResetScene();
-            GetComponent<EnemyMovement>().StartCoroutine("Patrol");
+            //GetComponent<EnemyMovement>().StartCoroutine("Patrol");
         }
     }
 
@@ -99,6 +104,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     IEnumerator Chase(Transform target)
     {
+        yield return new WaitForSeconds(1);
         while (state == "enraged") {
             if (!blocked) {
                 prevX = GetComponent<EnemyMovement>().getPrevX();
@@ -118,8 +124,8 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    IEnumerator Delay(float sec)
-    {
-        yield return new WaitForSeconds(sec);
-    }
+    // IEnumerator Delay(float sec)
+    // {
+    //     yield return new WaitForSeconds(sec);
+    // }
 }

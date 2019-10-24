@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
-    private int nextScene = 1;
-    // (Optional) Prevent non-singleton constructor use.
-    protected GameManager() { 
+    private static GameManager _instance;
 
+    public static GameManager Instance { get { return _instance; } }
+
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
+
+    private int nextScene = 1;
 
     // private void Start() {
     //     nextScene = SceneManager.GetActiveScene().buildIndex + 1;
@@ -35,6 +48,7 @@ public class GameManager : Singleton<GameManager>
 
     public void ResetScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        DontDestroyOnLoad(this.gameObject);
     }
 
    
