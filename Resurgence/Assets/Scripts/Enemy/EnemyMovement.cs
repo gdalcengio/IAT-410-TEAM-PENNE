@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (prevX < currX) {
-            if (col != null && (col.gameObject.layer == 9) && col.gameObject.transform.position.x > currX) {
+            if (col != null && (col.gameObject.layer == 9 || col.gameObject.layer == 8) && col.gameObject.transform.position.x > currX) {
                 if (currentPoint >= patrolPoints.Length) {
                     currentPoint = 0; // reset to zero
                 }
@@ -45,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
                 this.transform.localScale = newScale;
             }
         } else if (prevX > currX) {
-            if (col != null && (col.gameObject.layer == 9) && col.gameObject.transform.position.x < currX) {
+            if (col != null && (col.gameObject.layer == 9 || col.gameObject.layer == 8) && col.gameObject.transform.position.x < currX) {
                 if (currentPoint >= patrolPoints.Length) {
                     currentPoint = 0; // reset to zero
                 }

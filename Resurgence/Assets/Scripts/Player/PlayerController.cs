@@ -112,5 +112,4 @@ public class PlayerController : MonoBehaviour
     public void unfreeze() {
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
-
 }

@@ -39,4 +39,16 @@ public class LineBehaviour : MonoBehaviour
     {
         return line.GetPosition(0);
     }
+
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col != null) {
+            if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc") {
+                GameManager.Instance.ResetScene();
+            }
+
+            if (col.gameObject.tag == "Godot") {
+                col.gameObject.GetComponent<EnemyBehaviour>().health = 0;
+            }
+        }
+    }
 }
