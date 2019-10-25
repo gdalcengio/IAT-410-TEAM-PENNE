@@ -11,6 +11,8 @@ public class ExitLevel : MonoBehaviour
             iIn = true;
         } else if (col.gameObject.tag == "Tlaloc") {
             tIn = true;
+        } else if (col.gameObject.tag == "Catalyst") {
+            cIn = true;
         }
     }
 
@@ -19,6 +21,8 @@ public class ExitLevel : MonoBehaviour
             iIn = false;
         } else if (col.gameObject.tag == "Tlaloc") {
             tIn = false;
+        } else if (col.gameObject.tag == "Catalyst") {
+            cIn = true;
         }
     }
     void Update() {

@@ -7,12 +7,13 @@ public class Toast : MonoBehaviour
 {
     // public UIManager manager;
 
-    // void Start() {
-    //     manager = findObjectInScene
-    // }
+    void Start() {
+        transform.parent = UIManager.Instance.transform;
+    }
     private void OnTriggerEnter2D (Collider2D col){
         if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc") {
             // IEnumerator toast = manager.Appear(GetComponent<Image>());
+            
             IEnumerator toast = UIManager.Instance.Appear(GetComponent<Image>());
             StartCoroutine(toast);
         }

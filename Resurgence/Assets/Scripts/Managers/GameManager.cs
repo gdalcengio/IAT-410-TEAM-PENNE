@@ -41,14 +41,23 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoadNextScene() {
-            SceneManager.LoadScene(nextScene);
-            DontDestroyOnLoad(this.gameObject);
-            nextScene++;
+        ClearUI();
+        SceneManager.LoadScene(nextScene);
+        DontDestroyOnLoad(this.gameObject);
+        nextScene++;
     }
 
     public void ResetScene() {
+        ClearUI();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void ClearUI() {
+        foreach (Transform child in UIManager.Instance.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
    
