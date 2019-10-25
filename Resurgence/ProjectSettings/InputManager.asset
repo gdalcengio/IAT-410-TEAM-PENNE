@@ -458,7 +458,7 @@ InputManager:
     descriptiveName: for the switch of the door
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 1
+    positiveButton: joystick button 2
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
