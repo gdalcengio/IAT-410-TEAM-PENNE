@@ -40,9 +40,11 @@ public class DoorBehaviour : MonoBehaviour
         if (binarySwitch.GetComponent<SwitchBehaviour>().getState()) {
             open = true;
             col.isTrigger = true;
+            col.gameObject.SetActive(false);
         } else {
             open = false;
             col.isTrigger = false;
+            col.gameObject.SetActive(true);
         }
     }
 }

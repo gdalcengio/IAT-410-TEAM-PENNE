@@ -3,10 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : MonoBehaviour
 {
-    protected UIManager() {
+    private static UIManager _instance;
 
+    public static UIManager Instance { get { return _instance; } }
+
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
     //for tutorial messages or general information
     public IEnumerator Appear(Image toast) {

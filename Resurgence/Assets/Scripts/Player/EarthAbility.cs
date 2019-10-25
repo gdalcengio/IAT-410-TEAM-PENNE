@@ -23,7 +23,7 @@ public class EarthAbility : MonoBehaviour
 
     private void Update() {
         // //for consistency and error handling
-        if (!Input.GetButton("Transpose") && !Input.GetKey("u"))
+        if (!Input.GetButton("Transpose"))
         {
             pc.unfreeze();
             pc.abilityState = PlayerController.State.Ready;
@@ -31,7 +31,7 @@ public class EarthAbility : MonoBehaviour
         // if (pc.abilityState == PlayerController.State.Busy) return;
 
         //better transpose
-        if (Input.GetButtonDown("Transpose") || Input.GetKeyDown("u")) {
+        if (Input.GetButtonDown("Transpose")) {
             if (canTranspose && transposeCoroutine != null) {
                 canTranspose = false;
                 //stops player movement
@@ -44,7 +44,7 @@ public class EarthAbility : MonoBehaviour
         }
 
         //fissure
-        if (Input.GetButtonDown("Fissure") || Input.GetKeyDown("i")) {
+        if (Input.GetButtonDown("Fissure")) {
             if (canFissure) {
                 if (fissureWall != null) {
                     Destroy(fissureWall);

@@ -27,7 +27,7 @@ public class WaterAbilities : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Geyser") || Input.GetKeyDown(KeyCode.G))
+        if (Input.GetButtonDown("Geyser"))
         { // initiate geyser
             if (canGeyser)
             {
@@ -46,7 +46,7 @@ public class WaterAbilities : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Dive") || Input.GetKeyDown(KeyCode.F) && diveObject != null)
+        if (Input.GetButtonDown("Dive") && diveObject != null)
         {
             if (canDive)
             {
