@@ -27,7 +27,7 @@ public class WaterAbilities : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Geyser"))
+        if (Input.GetButtonDown("Geyser") || Input.GetKeyDown(KeyCode.C))
         { // initiate geyser
             if (canGeyser)
             {
@@ -63,13 +63,10 @@ public class WaterAbilities : MonoBehaviour
             }
         }
     }
-    void OnTriggerEnter2D(Collider2D col) {
-        if (col != null) {
-            if (col.gameObject.tag == "Spout") {
-                buoyancyParent = col.gameObject;
-                canGeyser = true;
-            }
 
+    void OnCollisionEnter2D(Collider2D col) 
+    {
+        if (col != null) {
             if (col.gameObject.tag == "EntryPoint") {
                 // access needed GameObjects
                 diveObject = col.gameObject;
@@ -100,6 +97,15 @@ public class WaterAbilities : MonoBehaviour
 
             if (col.gameObject.tag == "BinarySwitch") {
                 switchObject = col.gameObject;
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col != null) {
+            if (col.gameObject.tag == "Spout") {
+                buoyancyParent = col.gameObject;
+                canGeyser = true;
             }
         }
     }
