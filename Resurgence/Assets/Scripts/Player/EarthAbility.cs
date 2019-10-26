@@ -103,7 +103,7 @@ public class EarthAbility : MonoBehaviour
     }
 
     void OnTriggerStay2D(Collider2D col) {
-        if (Input.GetButtonDown("Switch")) {
+        if (Input.GetButtonDown("Switch") || Input.GetKeyDown(KeyCode.V)) {
             if (col != null && col.gameObject.tag == "BinarySwitch") {
                 col.GetComponent<SwitchBehaviour>().toggleState();
             }

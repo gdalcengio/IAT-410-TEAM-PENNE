@@ -57,7 +57,7 @@ public class PickUpCatalyst : MonoBehaviour
     void OnTriggerExit2D(Collider2D col) 
     {
         //catalyst out of range
-        if (catalyst != null && col.gameObject.tag =="Catalyst") {
+        if (catalyst != null && col.gameObject.tag == "Catalyst") {
             catalyst = null;
         }
     }

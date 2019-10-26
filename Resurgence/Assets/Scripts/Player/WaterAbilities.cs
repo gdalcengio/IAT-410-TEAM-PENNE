@@ -20,7 +20,7 @@ public class WaterAbilities : MonoBehaviour
     private IEnumerator geyserCoroutine;
 
     void Update() {
-        if (Input.GetButtonDown("Switch")) {
+        if (Input.GetButtonDown("Switch") || Input.GetKeyDown(KeyCode.V)) {
             if (switchObject != null)
             {
                 switchObject.GetComponent<SwitchBehaviour>().toggleState();
@@ -46,7 +46,7 @@ public class WaterAbilities : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Dive") && diveObject != null)
+        if (Input.GetButtonDown("Dive") || Input.GetKeyDown(KeyCode.B) && diveObject != null)
         {
             if (canDive)
             {
@@ -60,43 +60,6 @@ public class WaterAbilities : MonoBehaviour
                 diveContainer = diveParent = diveObject = null;
                 diveObject = null;
                 canDive = false;
-            }
-        }
-    }
-
-    void OnCollisionEnter2D(Collider2D col) 
-    {
-        if (col != null) {
-            if (col.gameObject.tag == "EntryPoint") {
-                // access needed GameObjects
-                diveObject = col.gameObject;
-                diveParent = diveObject.transform.parent.gameObject;
-                diveContainer = diveParent.transform.parent.gameObject;
-
-                foreach (Transform child in diveContainer.transform) {
-                    if (child.name.Substring(0, child.name.Length - 1) == "index") {
-                        diveSwitch = child.gameObject;
-                        return;
-                    }
-                }
-                canDive = true;
-            }
-
-            if (col.gameObject.tag == "switch") {
-                diveSwitch = col.gameObject;
-
-                diveContainer = diveSwitch.transform.parent.gameObject;
-                foreach (Transform child in diveContainer.transform) {
-                    if (child.name.Substring(child.name.Length - 1, 4) == "node") {
-                        diveParent = child.gameObject;
-                        return;
-                    }
-                }
-                diveObject = diveParent.transform.GetChild(0).gameObject;
-            }
-
-            if (col.gameObject.tag == "BinarySwitch") {
-                switchObject = col.gameObject;
             }
         }
     }
@@ -179,6 +142,41 @@ public class WaterAbilities : MonoBehaviour
         //     }
         // }
 
+        if (col.gameObject.tag == "BinarySwitch") {
+            switchObject = col.gameObject;
+        }
+
+        if (col != null) {
+            if (col.gameObject.tag == "EntryPoint") {
+                
+                // access needed GameObjects
+                diveObject = col.gameObject;
+                diveParent = diveObject.transform.parent.gameObject;
+                diveContainer = diveParent.transform.parent.gameObject;
+
+                foreach (Transform child in diveContainer.transform) {
+                    if (child.name.Substring(0, child.name.Length - 1) == "index") {
+                        diveSwitch = child.gameObject;
+                        return;
+                    }
+                }
+                canDive = true;
+            }
+
+            if (col.gameObject.tag == "switch") {
+                diveSwitch = col.gameObject;
+
+                diveContainer = diveSwitch.transform.parent.gameObject;
+                foreach (Transform child in diveContainer.transform) {
+                    if (child.name.Substring(child.name.Length - 1, 4) == "node") {
+                        diveParent = child.gameObject;
+                        return;
+                    }
+                }
+                diveObject = diveParent.transform.GetChild(0).gameObject;
+            }
+        }
+
         if (Input.GetButtonDown("DiveSwitch")) {
             if (col.gameObject == diveSwitch) {
                 diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
@@ -201,7 +199,10 @@ public class WaterAbilities : MonoBehaviour
             Transform playerTransform = GameObject.Find("Tlaloc").transform;
             GameObject exitPoint;
             exitPoint = getNode(diveIndex, divePoints).transform.GetChild(0).gameObject; // define new location
+            playerTransform.gameObject.SetActive(false);
+            StartCoroutine(Delay(0.5f));
             playerTransform.position = exitPoint.transform.position; // teleport
+            playerTransform.gameObject.SetActive(true);
         }
     }
 
@@ -233,5 +234,10 @@ public class WaterAbilities : MonoBehaviour
 
         geyserCoroutine = buoy.GetComponent<GeyserBehaviour>().BuildGeyser(targetPosition, 0.005f);
         StartCoroutine(geyserCoroutine);
+    }
+
+    IEnumerator Delay(float num)
+    {
+        yield return new WaitForSeconds(num);
     }
 }
