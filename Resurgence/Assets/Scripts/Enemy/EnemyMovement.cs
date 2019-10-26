@@ -86,7 +86,6 @@ public class EnemyMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         while (GetComponent<EnemyBehaviour>().getState() == "patrol") { // consistently move
-        Debug.LogError("moving");
             if (currentPoint >= patrolPoints.Length) {
                 currentPoint = 0; // reset to zero
             }

@@ -383,7 +383,7 @@ PrefabInstance:
     - target: {fileID: 3176238973050432904, guid: 52dba14e3cee1ff41aa6b9f8fede5a3d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -20.9
+      value: -19.36
       objectReference: {fileID: 0}
     - target: {fileID: 3176238973050432904, guid: 52dba14e3cee1ff41aa6b9f8fede5a3d,
         type: 3}
@@ -393,12 +393,12 @@ PrefabInstance:
     - target: {fileID: 3176238973050432904, guid: 52dba14e3cee1ff41aa6b9f8fede5a3d,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 3.673
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3176238973050432904, guid: 52dba14e3cee1ff41aa6b9f8fede5a3d,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 2.456
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3176238973050432904, guid: 52dba14e3cee1ff41aa6b9f8fede5a3d,
         type: 3}
@@ -652,7 +652,7 @@ PrefabInstance:
     - target: {fileID: 3702013086482234813, guid: 299f45b6408f01d4e851557b58a5b47a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 4.779999
+      value: 5.91
       objectReference: {fileID: 0}
     - target: {fileID: 3702013086482234813, guid: 299f45b6408f01d4e851557b58a5b47a,
         type: 3}
@@ -662,12 +662,12 @@ PrefabInstance:
     - target: {fileID: 3702013086482234813, guid: 299f45b6408f01d4e851557b58a5b47a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 3.673
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3702013086482234813, guid: 299f45b6408f01d4e851557b58a5b47a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 2.456
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3702013086482234813, guid: 299f45b6408f01d4e851557b58a5b47a,
         type: 3}
@@ -703,6 +703,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.y
       value: -2.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616188011801565340, guid: 299f45b6408f01d4e851557b58a5b47a,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.97
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 299f45b6408f01d4e851557b58a5b47a, type: 3}

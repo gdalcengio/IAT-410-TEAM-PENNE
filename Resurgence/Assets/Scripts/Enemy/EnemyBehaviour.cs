@@ -83,12 +83,14 @@ public class EnemyBehaviour : MonoBehaviour
             GameManager.Instance.ResetScene();
             //GetComponent<EnemyMovement>().StartCoroutine("Patrol");
         } 
-        
-        if (col != null && col.gameObject.tag == "Buoyancy" && GetComponent<BuoyancyEffector2D>().density > 0) {
-            Debug.LogError("stopped");
+    }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col != null && col.gameObject.name == "solid" && col.gameObject.transform.parent.GetComponentInChildren<BuoyancyEffector2D>().density > 0) {
             if (state == "patrol") GetComponent<EnemyMovement>().StopCoroutine("Patrol");
             if (state == "enraged") StopCoroutine("Chase");
-        }
+        } 
     }
 
     void OnCollisionExit2D(Collision2D col) {
@@ -108,7 +110,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
 
-        if (col != null && col.gameObject.tag == "Buoyancy" && GetComponent<BuoyancyEffector2D>().density == 0) {
+        if (col != null && col.gameObject.tag == "solid" && col.gameObject.transform.parent.GetComponentInChildren<BuoyancyEffector2D>().density == 0) {
             if (state == "patrol") GetComponent<EnemyMovement>().StartCoroutine("Patrol");
             if (state == "enraged") StartCoroutine("Chase");
         }
@@ -118,7 +120,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         while (state == "enraged") {
-            Debug.LogError("moving");
             if (!blocked) {
                 prevX = GetComponent<EnemyMovement>().getPrevX();
                 currX = GetComponent<EnemyMovement>().getCurrX();
