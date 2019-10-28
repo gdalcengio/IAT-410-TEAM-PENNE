@@ -16,18 +16,21 @@ public class WaterAbilities : MonoBehaviour
     //for the switch
     GameObject switchObject = null;
     public bool canDive = false, canGeyser = false;
+    private bool abilityLock = false;
 
     private IEnumerator geyserCoroutine;
 
     void Update() {
-        if (Input.GetButtonDown("Switch") || Input.GetKeyDown(KeyCode.V)) {
+        if (abilityLock) return;
+
+        if (Input.GetButtonDown("tSwitch")) {
             if (switchObject != null)
             {
                 switchObject.GetComponent<SwitchBehaviour>().toggleState();
             }
         }
 
-        if (Input.GetButtonDown("Geyser") || Input.GetKeyDown(KeyCode.C))
+        if (Input.GetButtonDown("Geyser"))
         { // initiate geyser
             if (canGeyser)
             {
@@ -46,7 +49,7 @@ public class WaterAbilities : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Dive") || Input.GetKeyDown(KeyCode.B) && diveObject != null)
+        if (Input.GetButtonDown("Dive") && diveObject != null)
         {
             if (canDive)
             {
@@ -65,17 +68,24 @@ public class WaterAbilities : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col) {
+        if (abilityLock) return;
+
         if (col != null) {
             if (col.gameObject.tag == "Spout") {
                 buoyancyParent = col.gameObject;
                 canGeyser = true;
             }
         }
+
+        if (col.gameObject.tag == "BinarySwitch") {
+            switchObject = col.gameObject;
+        }
     }
 
     void OnTriggerExit2D (Collider2D col) {
         // reset colliders
         // col = null;
+        if (abilityLock) return;
 
         if (col.gameObject == buoyancyParent) {
             //deactivate colliders
@@ -104,7 +114,7 @@ public class WaterAbilities : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col) 
     {
-
+        if (abilityLock) return;
 
         // if (col != null && col.gameObject.tag == "Current")
         // {
@@ -142,9 +152,7 @@ public class WaterAbilities : MonoBehaviour
         //     }
         // }
 
-        if (col.gameObject.tag == "BinarySwitch") {
-            switchObject = col.gameObject;
-        }
+
 
         if (col != null) {
             if (col.gameObject.tag == "EntryPoint") {
@@ -239,5 +247,17 @@ public class WaterAbilities : MonoBehaviour
     IEnumerator Delay(float num)
     {
         yield return new WaitForSeconds(num);
+    }
+
+    public void lockAbilities() {
+        canDive = false;
+        canGeyser = false;
+        abilityLock = true;
+    }
+
+    public void unlockAbilities() {
+        canDive = false;
+        canGeyser = false;
+        abilityLock = false;
     }
 }

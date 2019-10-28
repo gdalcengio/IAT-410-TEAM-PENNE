@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class PickUpCatalyst : MonoBehaviour
 {
-    public EarthAbility pScript;
     private GameObject catalyst = null;
     private bool hasCatalyst = false;
+    private EarthAbility iScript = null;
+    private WaterAbilities tScript = null;
+    private string parentName;
 
+    private void Start() {
+        parentName = transform.parent.name;
 
+        if (parentName == "Itztli") {
+            iScript = transform.parent.GetComponentInChildren<EarthAbility>(); 
+        } else {
+            tScript = transform.parent.GetComponentInChildren<WaterAbilities>();
+        }
+    }
     private void Update() {
         //catalyst pick up and throw
-        if (catalyst != null && ((pScript != null && Input.GetButtonDown("iSwitch")) || (pScript == null && Input.GetButtonDown("tSwitch")))){
+        if (catalyst != null && ((parentName == "Itztli" != null && Input.GetButtonDown("iCat")) || (parentName == "Tlaloc" && Input.GetButtonDown("tCat")))){
             Rigidbody2D crb = catalyst.GetComponent<Collider2D>().attachedRigidbody;
-            if (!hasCatalyst ) {
+            if (!hasCatalyst && catalyst.transform.parent == null) {
                 Debug.Log("cat c boi");
                 crb.velocity = new Vector2(0f, 0f);
                 //crb.mass = 0;
@@ -21,12 +31,14 @@ public class PickUpCatalyst : MonoBehaviour
                 crb.isKinematic = true;
                 // crb.detectCollisions = false;
                 catalyst.transform.SetParent(this.transform);
+                catalyst.transform.localPosition = new Vector2(0, 0);
                 hasCatalyst = true;
                 //crb.simulated = false;
                 //disallow abilities
-                if (pScript!=null) {
-                    pScript.canFissure = false;
-                    pScript.canTranspose = false;
+                if (parentName == "Itztli") {
+                    iScript.lockAbilities();
+                } else {
+                    tScript.lockAbilities();
                 }
             } else {
                 Debug.LogError("chuck");
@@ -39,9 +51,10 @@ public class PickUpCatalyst : MonoBehaviour
                 catalyst = null;
                 //crb.simulated = true;
                 //re-allow abilities
-                if (pScript!=null) {
-                    pScript.canFissure = true;
-                    pScript.canTranspose = true;
+                if (parentName == "Itztli") {
+                    iScript.unlockAbilities();
+                } else {
+                    tScript.unlockAbilities();
                 }
             }
         }
