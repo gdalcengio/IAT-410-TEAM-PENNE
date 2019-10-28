@@ -61,4 +61,9 @@ public class WaterPickUpCatalyst : MonoBehaviour
             catalyst = null;
         }
     }
+
+    public bool GetHasCatatlyst()
+    {
+        return hasCatalyst;
+    }
 }

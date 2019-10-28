@@ -74,4 +74,9 @@ public class PickUpCatalyst : MonoBehaviour
             catalyst = null;
         }
     }
+
+    public bool GetHasCatatlyst()
+    {
+        return hasCatalyst;
+    }
 }
