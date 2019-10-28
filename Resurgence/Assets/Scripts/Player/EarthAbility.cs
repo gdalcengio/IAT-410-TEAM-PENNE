@@ -7,6 +7,8 @@ public class EarthAbility : MonoBehaviour
     /*Auxillary stuff */
     public PlayerController pc;                           //reference to the player
     public bool canTranspose = false, canFissure = false; //ability flags
+    private bool abilityLock = false;
+    GameObject switchObject = null;
 
 
     /*transpose skill variables */
@@ -56,6 +58,12 @@ public class EarthAbility : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetButtonDown("iSwitch")) {
+            if (switchObject != null) {
+                switchObject.GetComponent<SwitchBehaviour>().toggleState();
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col) {
@@ -63,6 +71,14 @@ public class EarthAbility : MonoBehaviour
         if (col.gameObject.tag == "Current") {
             col.GetComponent<LineBehaviour>().toggleConnected();
         }
+
+        if (abilityLock) return;
+
+
+        if (col != null && col.gameObject.tag == "BinarySwitch") {
+            switchObject = col.gameObject;
+        }
+
 
         //transpose
         if (col.gameObject.tag == "Object") {
@@ -91,30 +107,43 @@ public class EarthAbility : MonoBehaviour
             col.GetComponent<LineBehaviour>().toggleConnected();
         }
 
+        if (abilityLock) return;
+
         //transpose
         if (col.gameObject.tag == "Object") {
             canTranspose = false;
         }
 
+
         //fissure
         if (col.gameObject.tag == "Fissurable" || col.gameObject.tag == "Cracked") {
             canFissure = false;
         }
+
+        if (col != null && col.gameObject.tag == "BinarySwitch") {
+            switchObject = null;
+        }
     }
 
     void OnTriggerStay2D(Collider2D col) {
-        if (Input.GetButtonDown("Switch")) {
-            if (col != null && col.gameObject.tag == "BinarySwitch") {
-                col.GetComponent<SwitchBehaviour>().toggleState();
-            }
-        }
+
 
         if (col != null && col.gameObject.tag == "Current") {
             col.GetComponent<LineBehaviour>().setPosition(1, new Vector2(pc.transform.position.x, 0f));
         }
     }
 
+    public void lockAbilities() {
+        canFissure = false;
+        canTranspose = false;
+        abilityLock = true;
+    }
 
+    public void unlockAbilities() {
+        canTranspose = false;
+        canFissure = false;
+        abilityLock = false;
+    }
 
 
 

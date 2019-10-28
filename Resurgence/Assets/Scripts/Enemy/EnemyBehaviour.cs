@@ -83,11 +83,14 @@ public class EnemyBehaviour : MonoBehaviour
             GameManager.Instance.ResetScene();
             //GetComponent<EnemyMovement>().StartCoroutine("Patrol");
         } 
-        
-        if (col != null && col.gameObject.tag == "Buoyancy" && GetComponent<BuoyancyEffector2D>().density > 0) {
+    }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col != null && col.gameObject.name == "solid" && col.gameObject.transform.parent.GetComponentInChildren<BuoyancyEffector2D>().density > 0) {
             if (state == "patrol") GetComponent<EnemyMovement>().StopCoroutine("Patrol");
             if (state == "enraged") StopCoroutine("Chase");
-        }
+        } 
     }
 
     void OnCollisionExit2D(Collision2D col) {
@@ -107,7 +110,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
 
-        if (col != null && col.gameObject.tag == "Buoyancy" && GetComponent<BuoyancyEffector2D>().density == 0) {
+        if (col != null && col.gameObject.tag == "solid" && col.gameObject.transform.parent.GetComponentInChildren<BuoyancyEffector2D>().density == 0) {
             if (state == "patrol") GetComponent<EnemyMovement>().StartCoroutine("Patrol");
             if (state == "enraged") StartCoroutine("Chase");
         }
@@ -115,12 +118,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     IEnumerator Chase(Transform target)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         while (state == "enraged") {
             if (!blocked) {
                 prevX = GetComponent<EnemyMovement>().getPrevX();
                 currX = GetComponent<EnemyMovement>().getCurrX();
-                this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(target.position.x, transform.position.y), (speed*Time.deltaTime)/20);
+                this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(target.position.x, transform.position.y), (speed*Time.deltaTime)/5);
                 if (target.position.x > this.transform.position.x && prevX > currX) {
                     Vector2 newScale = this.transform.localScale;
                     newScale.x *= -1;

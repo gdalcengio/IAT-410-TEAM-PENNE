@@ -33,27 +33,51 @@ public class EnemyMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (prevX < currX) {
-            if (col != null && (col.gameObject.layer == 9 || col.gameObject.layer == 8) && col.gameObject.transform.position.x > currX) {
-                if (currentPoint >= patrolPoints.Length) {
-                    currentPoint = 0; // reset to zero
-                }
-                currentPoint++;
-                // yield return new WaitForSeconds(0.5f);
-                Vector2 newScale = this.transform.localScale;
-                newScale.x *= -1;
-                this.transform.localScale = newScale;
+        if (col != null) {
+            // determine which side of wall is collided with...
+            Vector3 hit = col.contacts[0].normal; // normal tangent of collision
+            float angle = Vector3.Angle(hit, Vector3.up);
+
+            // down
+            if (Mathf.Approximately(angle, 0)) {
+                Debug.Log("down");
             }
-        } else if (prevX > currX) {
-            if (col != null && (col.gameObject.layer == 9 || col.gameObject.layer == 8) && col.gameObject.transform.position.x < currX) {
-                if (currentPoint >= patrolPoints.Length) {
-                    currentPoint = 0; // reset to zero
+
+            // up
+            if (Mathf.Approximately(angle, 180)) {
+                Debug.Log("up");
+            }
+
+            // side collision
+            if (Mathf.Approximately(angle, 90)) {
+                Vector3 cross = Vector3.Cross(Vector3.forward, hit);
+                if (cross.y > 0) { // left side of player
+                    if (prevX > currX) { // moving left
+                        if ((col.gameObject.layer == 9 || col.gameObject.layer == 8) && col.gameObject.transform.position.x < currX) {
+                            if (currentPoint >= patrolPoints.Length) {
+                                currentPoint = 0; // reset to zero
+                            }
+                            currentPoint++;
+                            // yield return new WaitForSeconds(0.5f);
+                            Vector2 newScale = this.transform.localScale;
+                            newScale.x *= -1;
+                            this.transform.localScale = newScale;
+                        }
+                    }
+                } else { // right side of player
+                    if (prevX < currX) { // moving right
+                        if ((col.gameObject.layer == 9 || col.gameObject.layer == 8) && col.gameObject.transform.position.x > currX) {
+                            if (currentPoint >= patrolPoints.Length) {
+                                currentPoint = 0; // reset to zero
+                            }
+                            currentPoint++;
+                            // yield return new WaitForSeconds(0.5f);
+                            Vector2 newScale = this.transform.localScale;
+                            newScale.x *= -1;
+                            this.transform.localScale = newScale;
+                        }
+                    }
                 }
-                currentPoint++;
-                // yield return new WaitForSeconds(0.5f);
-                Vector2 newScale = this.transform.localScale;
-                newScale.x *= -1;
-                this.transform.localScale = newScale;
             }
         }
     }
@@ -66,7 +90,7 @@ public class EnemyMovement : MonoBehaviour
                 currentPoint = 0; // reset to zero
             }
 
-            if (this.transform.position.x == patrolPoints[currentPoint].position.x) {
+            if (GetComponent<EnemyBehaviour>().getState() == "patrol" && this.transform.position.x == patrolPoints[currentPoint].position.x) {
                 currentPoint++;
 
                 yield return new WaitForSeconds(0.5f);

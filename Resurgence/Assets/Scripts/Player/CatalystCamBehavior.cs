@@ -18,11 +18,12 @@ public class CatalystCamBehavior : MonoBehaviour
         playerWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
-    void FixedUpdate() {
-        if (transform.position.x <= -screenBounds.x+playerWidth) {
-            transform.position = new Vector2(-screenBounds.x+playerWidth, transform.position.y);
-        } else if (transform.position.x >= screenBounds.x-playerWidth) {
-            transform.position = new Vector2(screenBounds.x-playerWidth, transform.position.y);
+    void FixedUpdate() 
+    {
+        if (transform.position.x <= -screenBounds.x+playerWidth/3.3f) {
+            transform.position = new Vector2(-screenBounds.x+playerWidth/3.3f, transform.position.y);
+        } else if (transform.position.x >= screenBounds.x-playerWidth/3.3f) {
+            transform.position = new Vector2(screenBounds.x-playerWidth/3.3f, transform.position.y);
         }
     }
 
