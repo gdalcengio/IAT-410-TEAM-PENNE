@@ -21,7 +21,7 @@ public class PickUpCatalyst : MonoBehaviour
     }
     private void Update() {
         //catalyst pick up and throw
-        if (catalyst != null && ((parentName == "Itztli" != null && Input.GetButtonDown("iCat")) || (parentName == "Tlaloc" && Input.GetButtonDown("tCat")))){
+        if (catalyst != null && ((parentName == "Itztli" && Input.GetButtonDown("iCat")) || (parentName == "Tlaloc" && Input.GetButtonDown("tCat")))){
             Rigidbody2D crb = catalyst.GetComponent<Collider2D>().attachedRigidbody;
             if (!hasCatalyst && catalyst.transform.parent == null) {
                 Debug.Log("cat c boi");
@@ -40,7 +40,7 @@ public class PickUpCatalyst : MonoBehaviour
                 } else {
                     tScript.lockAbilities();
                 }
-            } else {
+            } else if (hasCatalyst && (parentName == "Itztli" && Input.GetButtonDown("iCat") || parentName == "Tlaloc" && Input.GetButtonDown("tCat"))) {     //checking for oither player as parent
                 Debug.LogError("chuck");
                 //crb.AddForce(new Vector2(5, 5));
                 // crb.useGravity = true;
