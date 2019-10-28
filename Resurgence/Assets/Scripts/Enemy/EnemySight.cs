@@ -76,7 +76,7 @@ public class EnemySight : MonoBehaviour
         // angle between target position and enemy's centre fov
         float angle = Vector2.Angle(directionToTarget, lineOfSight);
 
-        if (angle < 40f) {
+        if (angle < 60f) {
             return true;
         }
 
