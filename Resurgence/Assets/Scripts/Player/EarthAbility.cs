@@ -127,7 +127,6 @@ public class EarthAbility : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col) {
 
-
         if (col != null && col.gameObject.tag == "Current") {
             col.GetComponent<LineBehaviour>().setPosition(1, new Vector2(pc.transform.position.x, 0f));
         }

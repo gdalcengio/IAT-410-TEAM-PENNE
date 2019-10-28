@@ -13,27 +13,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2019-10-02T14:24:05.350-07:00
-  initializedAtString: 2019-09-20T14:28:08.941-07:00
+  lastUpdatedAtString: 2019-10-25T14:30:40.392-07:00
+  initializedAtString: 2019-10-25T11:26:15.749-07:00
   localBranches:
   - name: dev
     tracking: origin/dev
-  - name: fissure
-    tracking: origin/fissure
+  - name: interaction_points
+    tracking: origin/interaction_points
   - name: mainManagers
     tracking: origin/mainManagers
   - name: master
     tracking: origin/master
   - name: rockman
-    tracking: origin/rockman
+    tracking: 
   remoteBranches:
-  - name: origin/HEAD
+  - name: origin/catalystFix
     tracking: '[None]'
   - name: origin/dev
     tracking: '[None]'
   - name: origin/fissure
     tracking: '[None]'
+  - name: origin/HEAD
+    tracking: '[None]'
+  - name: origin/interaction_points
+    tracking: '[None]'
   - name: origin/mainManagers
+    tracking: '[None]'
+  - name: origin/master
     tracking: '[None]'
   - name: origin/rockman
     tracking: '[None]'
@@ -48,7 +54,7 @@ MonoBehaviour:
   localConfigBranches:
     keys:
     - dev
-    - fissure
+    - interaction_points
     - mainManagers
     - master
     - rockman
@@ -58,11 +64,11 @@ MonoBehaviour:
         name: origin
         url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
       trackingBranch: dev
-    - name: fissure
+    - name: interaction_points
       remote:
         name: origin
         url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
-      trackingBranch: fissure
+      trackingBranch: interaction_points
     - name: mainManagers
       remote:
         name: origin
@@ -75,22 +81,25 @@ MonoBehaviour:
       trackingBranch: master
     - name: rockman
       remote:
-        name: origin
-        url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
-      trackingBranch: rockman
+        name: 
+        url: 
+      trackingBranch: 
   remoteConfigBranches:
     keys:
     - origin
     subKeys:
     - Values:
-      - HEAD
+      - catalystFix
       - dev
       - fissure
+      - HEAD
+      - interaction_points
       - mainManagers
+      - master
       - rockman
     subKeyValues:
     - Values:
-      - name: HEAD
+      - name: catalystFix
         remote:
           name: origin
           url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
@@ -105,7 +114,22 @@ MonoBehaviour:
           name: origin
           url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
         trackingBranch: 
+      - name: HEAD
+        remote:
+          name: origin
+          url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
+        trackingBranch: 
+      - name: interaction_points
+        remote:
+          name: origin
+          url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
+        trackingBranch: 
       - name: mainManagers
+        remote:
+          name: origin
+          url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
+        trackingBranch: 
+      - name: master
         remote:
           name: origin
           url: https://github.com/lazygeb/IAT-410-TEAM-PENNE.git
