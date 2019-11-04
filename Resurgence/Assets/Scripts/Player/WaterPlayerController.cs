@@ -57,12 +57,19 @@ public class WaterPlayerController : MonoBehaviour
         isGrounded = (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround))
                   || (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsObject));
 
-        moveInput = Input.GetAxis("T_Horizontal");
-        //Debug.Log(moveInput);
-        if (canMove) rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        moveInput = Input.GetAxis("T_Horizontal"); //1 or -1
+        // Debug.Log(moveInput);
 
+        //movement
+        if (canMove) {
+            // rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+            rb.AddForce(new Vector2(moveInput * speed, rb.velocity.y));
+        }
+
+        //flip the script
         if (((!facingRight && moveInput > 0) || (facingRight && moveInput < 0)) && canMove) flip();
 
+        //screen bounds
         if (transform.position.x <= -screenBounds.x+playerWidth) {
             transform.position = new Vector2(-screenBounds.x+playerWidth, transform.position.y);
         } else if (transform.position.x >= screenBounds.x-playerWidth) {
@@ -84,7 +91,7 @@ public class WaterPlayerController : MonoBehaviour
     void jump() {
         if (canMove)
         {
-            rb.velocity = Vector2.up * jumpForce;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 

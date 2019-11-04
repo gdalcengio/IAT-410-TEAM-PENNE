@@ -207,10 +207,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
   m_Mass: 1.0042865
-  m_LinearDrag: 0
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 8
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 32732cc29a5f3ea47bb8613e12619b99, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -244,12 +244,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityState: 0
-  speed: 12
-  jumpForce: 26
+  speed: 34
+  jumpForce: 32
   facingRight: 1
   canMove: 1
   groundCheck: {fileID: 4180767479747096488}
-  checkRadius: 0.001
+  checkRadius: 0.01
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -371,7 +371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718ce84e10deefd44b69836e727650d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pScript: {fileID: 4711933784962731416}
 --- !u!61 &3449193514068632147
 BoxCollider2D:
   m_ObjectHideFlags: 0

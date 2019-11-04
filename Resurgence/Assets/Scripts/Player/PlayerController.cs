@@ -69,7 +69,10 @@ public class PlayerController : MonoBehaviour
 //         moveInput = Input.GetAxis("Horizontal");
 // #endif
         //Debug.Log(moveInput);
-        if (canMove) rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        if (canMove) {
+            //rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+            rb.AddForce(new Vector2(moveInput * speed, rb.velocity.y));
+        }
 
         if (((!facingRight && moveInput > 0) || (facingRight && moveInput < 0)) && canMove) flip();
 
@@ -92,8 +95,9 @@ public class PlayerController : MonoBehaviour
     }
 
     void jump() {
-        if (canMove) {
-            rb.velocity = Vector2.up * jumpForce;
+        if (canMove)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 
