@@ -21,6 +21,9 @@ TagManager:
   - ItzPowerCol
   - TlaPowerCol
   - Fissurable
+  - Godot
+  - Buoyancy
+  - Fade
   layers:
   - Default
   - TransparentFX

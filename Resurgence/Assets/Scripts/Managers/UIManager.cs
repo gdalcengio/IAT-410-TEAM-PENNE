@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     private static UIManager _instance;
-
+    public Animator animator;
     public static UIManager Instance { get { return _instance; } }
 
 
@@ -42,5 +42,13 @@ public class UIManager : MonoBehaviour
             Debug.Log("subtracting alpha" + alpha);
             yield return null;
         }
+    }
+
+    public void fadeNextScene() {
+        animator.SetTrigger("NextSceneFadeOut");
+    }
+
+    public void onFadeComplete() {
+        GameManager.Instance.LoadNextScene();
     }
 }

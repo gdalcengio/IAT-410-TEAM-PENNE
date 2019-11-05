@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown("r")) ResetScene();
+        if (Input.GetKeyDown("t")) UIManager.Instance.fadeNextScene();
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
@@ -56,7 +57,9 @@ public class GameManager : MonoBehaviour
     public void ClearUI() {
         foreach (Transform child in UIManager.Instance.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            if (child.tag != "Fade") {
+                GameObject.Destroy(child.gameObject);
+            }
         }
     }
 

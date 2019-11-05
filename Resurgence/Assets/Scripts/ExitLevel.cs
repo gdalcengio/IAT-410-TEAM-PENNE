@@ -28,9 +28,9 @@ public class ExitLevel : MonoBehaviour
     void Update() {
         if (iIn && tIn) {
             if (needCatalyst && cIn) {
-                GameManager.Instance.LoadNextScene();
+                UIManager.Instance.fadeNextScene();
             } else if (!needCatalyst) {
-                GameManager.Instance.LoadNextScene();
+                UIManager.Instance.fadeNextScene();
             }
         }
     }
