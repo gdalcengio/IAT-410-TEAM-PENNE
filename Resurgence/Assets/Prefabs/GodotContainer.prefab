@@ -452,3 +452,5 @@ MonoBehaviour:
   health: 1
   prevX: 0
   currX: 0
+  enragedSprite: {fileID: 21300000, guid: 98f96923f06111d4a8bd3797bd343548, type: 3}
+  patrolSprite: {fileID: 0}

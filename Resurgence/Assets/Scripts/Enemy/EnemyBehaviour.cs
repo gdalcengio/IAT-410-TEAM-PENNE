@@ -14,11 +14,14 @@ public class EnemyBehaviour : MonoBehaviour
 
     public float prevX, currX;
 
+    public Sprite enragedSprite, patrolSprite;
+
     void Start()
     {
         state = "patrol";
         speed = GetComponent<EnemyMovement>().speed;
         savedSpeed = speed;
+        patrolSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     void Update() 
@@ -49,6 +52,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void ChaseTarget(Transform target)
     {
         state = "enraged";
+        GetComponent<SpriteRenderer>().sprite = enragedSprite;
         // StartCoroutine(Delay(1));
         StartCoroutine(Chase(target));
     }
@@ -56,6 +60,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void StopChase(Transform target)
     {
         state = "patrol";
+        GetComponent<SpriteRenderer>().sprite = patrolSprite;
         // StartCoroutine(Delay(1));
         StopCoroutine(Chase(target));
         GetComponent<EnemyMovement>().StartCoroutine("Patrol");
