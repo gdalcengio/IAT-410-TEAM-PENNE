@@ -61,7 +61,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 24
 --- !u!1 &3766660240632678601
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,19 +260,19 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 7b3b185c428684905a643a073ab88ba6, type: 3}
     - {fileID: 21300000, guid: 1a13183501ef642a897fcb02cf716984, type: 3}
     - {fileID: 21300000, guid: 1394fee40af074ccfaf6e1ea82c832ef, type: 3}
-    framesPerSec: 0.5
+    framesPerSec: 8
     loop: 0
   - name: Jump
     frames:
     - {fileID: 21300000, guid: 9226b71982520482fb861b0da24bacdf, type: 3}
-    framesPerSec: 1
+    framesPerSec: 8
     loop: 0
   - name: Run
     frames:
     - {fileID: 21300000, guid: e76ffb2ca9ce54c2ca42c28b6464f67f, type: 3}
     - {fileID: 21300000, guid: a4073cf64db37454893b2810fbd1008e, type: 3}
     - {fileID: 21300000, guid: f6c65a65e45ee46cc8a373e2cfc91326, type: 3}
-    framesPerSec: 0.5
+    framesPerSec: 8
     loop: 0
   - name: Skill
     frames:
