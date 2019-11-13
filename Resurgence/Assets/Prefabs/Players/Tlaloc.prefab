@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 3766660241191578054}
   - component: {fileID: 3766660241191578055}
   - component: {fileID: 4051240240641905223}
+  - component: {fileID: 5997030515776039456}
   m_Layer: 11
   m_Name: Tlaloc
   m_TagString: Tlaloc
@@ -241,6 +242,44 @@ MonoBehaviour:
   whatIsObject:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &5997030515776039456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3766660241191578051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa626ff576ba44a58a927460e6cdd78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animations:
+  - name: Idle
+    frames:
+    - {fileID: 21300000, guid: 7b3b185c428684905a643a073ab88ba6, type: 3}
+    - {fileID: 21300000, guid: 1a13183501ef642a897fcb02cf716984, type: 3}
+    - {fileID: 21300000, guid: 1394fee40af074ccfaf6e1ea82c832ef, type: 3}
+    framesPerSec: 0.5
+    loop: 0
+  - name: Jump
+    frames:
+    - {fileID: 21300000, guid: 9226b71982520482fb861b0da24bacdf, type: 3}
+    framesPerSec: 1
+    loop: 0
+  - name: Run
+    frames:
+    - {fileID: 21300000, guid: e76ffb2ca9ce54c2ca42c28b6464f67f, type: 3}
+    - {fileID: 21300000, guid: a4073cf64db37454893b2810fbd1008e, type: 3}
+    - {fileID: 21300000, guid: f6c65a65e45ee46cc8a373e2cfc91326, type: 3}
+    framesPerSec: 0.5
+    loop: 0
+  - name: Skill
+    frames:
+    - {fileID: 21300000, guid: 9f4397e63b3ac4fdfa044e3ef4adf663, type: 3}
+    framesPerSec: 1
+    loop: 0
+  currentFrame: 0
 --- !u!1 &6068397810793911771
 GameObject:
   m_ObjectHideFlags: 0

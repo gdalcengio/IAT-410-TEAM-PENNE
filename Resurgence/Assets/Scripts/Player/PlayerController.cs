@@ -116,4 +116,9 @@ public class PlayerController : MonoBehaviour
     public void unfreeze() {
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
+
+    public bool getIsGrounded()
+    {
+        return isGrounded;
+    }
 }
