@@ -8,7 +8,7 @@ public class RocketSpawner : MonoBehaviour
     public GameObject rocket;
 
     void Start() {
-        StartCoroutine(spawner());
+        // StartCoroutine(spawner());
     }
 
     private IEnumerator launch() {
@@ -22,7 +22,7 @@ public class RocketSpawner : MonoBehaviour
         Instantiate(rocket, transform);
     }
 
-    private IEnumerator spawner() {
+    public IEnumerator spawner() {
         int rockets = 0;
 
         while (rockets < 3) {

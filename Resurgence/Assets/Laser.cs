@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    public enum State {off, ready, charging, blast};
     public GameObject laserBeam, laserCharge;
+    // private BossBattle bossScript;
 
     void Start()
     {
-        State state;
-        state = State.off;
-
-        StartCoroutine(ready(1f));
+        // bossScript = GetComponentInParent<BossBattle>       //this is where you're at gabe. setting the state for the bossbattle script
+        // StartCoroutine(ready(1f));
     }
 
     private IEnumerator charge (float duration) {
@@ -53,7 +51,7 @@ public class Laser : MonoBehaviour
     }
 
 
-    private IEnumerator ready(float duration)
+    public IEnumerator ready(float duration)
     {
         laserBeam.SetActive(false);
 

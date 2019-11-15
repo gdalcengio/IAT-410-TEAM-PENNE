@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    public Transform target;
+    private Transform target;
     public float speed = 5f;
     public float rotateSpeed = 100f;
     private Rigidbody2D rb;
@@ -12,6 +12,12 @@ public class Rocket : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        if (Random.value < 0.5) {
+            target = GameObject.Find("Itztli").transform;
+        } else {
+            target = GameObject.Find("Tlaloc").transform;
+        }
     }
 
     void FixedUpdate()
