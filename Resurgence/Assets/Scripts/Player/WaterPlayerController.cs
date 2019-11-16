@@ -89,7 +89,7 @@ public class WaterPlayerController : MonoBehaviour
         // if (isGrounded) jumped = false;
         if (abilityState == State.Busy) return;       //disabling everything else
 
-        if ((Input.GetButtonDown("T_Jump") || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
+        if ((Input.GetButtonDown("T_Jump")) && isGrounded)
         {
             jump();
         };
