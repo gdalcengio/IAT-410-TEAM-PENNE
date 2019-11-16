@@ -16,6 +16,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     public Sprite enragedSprite, patrolSprite;
 
+    public Animator animator;
+    public float deathDelay = 0f;
+
     void Start()
     {
         state = "patrol";
@@ -34,7 +37,9 @@ public class EnemyBehaviour : MonoBehaviour
     void death()
     {
         if (health == 0) {
-            Destroy(this.transform.parent.gameObject);
+            this.GetComponent<SpriteRenderer>().sortingOrder = 100;
+            this.GetComponent<Rigidbody2D>().simulated = false;
+            animator.SetInteger("Health", 0);
         }
     }
 
@@ -51,6 +56,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void ChaseTarget(Transform target)
     {
+        animator.SetBool("Enraged", true);
         state = "enraged";
         GetComponent<SpriteRenderer>().sprite = enragedSprite;
         // StartCoroutine(Delay(1));
@@ -59,6 +65,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void StopChase(Transform target)
     {
+        animator.SetBool("Enraged", false);
         state = "patrol";
         GetComponent<SpriteRenderer>().sprite = patrolSprite;
         // StartCoroutine(Delay(1));
@@ -128,7 +135,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (!blocked) {
                 prevX = GetComponent<EnemyMovement>().getPrevX();
                 currX = GetComponent<EnemyMovement>().getCurrX();
-                this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(target.position.x, transform.position.y), (speed*Time.deltaTime)/5);
+                if (health > 0) this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(target.position.x, transform.position.y), (speed*Time.deltaTime)/5);
                 if (target.position.x > this.transform.position.x && prevX > currX) {
                     Vector2 newScale = this.transform.localScale;
                     newScale.x *= -1;

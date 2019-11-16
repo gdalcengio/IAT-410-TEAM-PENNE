@@ -25,13 +25,15 @@ public class EnemySight : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (CanObjectBeSeen()) {
-            // Debug.LogError(GetComponentInParent<EnemyBehaviour>().getState());
-            if (GetComponentInParent<EnemyBehaviour>().getState() == "patrol") StopCoroutine("Patrol");
-            GetComponentInParent<EnemyBehaviour>().ChaseTarget(seenTarget);
-        } else {
-            if (GetComponentInParent<EnemyBehaviour>().getState() == "enraged") {
-                GetComponentInParent<EnemyBehaviour>().StopChase(seenTarget);
+        if (GetComponentInParent<EnemyBehaviour>().health > 0) {
+            if (CanObjectBeSeen()) {
+                // Debug.LogError(GetComponentInParent<EnemyBehaviour>().getState());
+                if (GetComponentInParent<EnemyBehaviour>().getState() == "patrol") StopCoroutine("Patrol");
+                GetComponentInParent<EnemyBehaviour>().ChaseTarget(seenTarget);
+            } else {
+                if (GetComponentInParent<EnemyBehaviour>().getState() == "enraged") {
+                    GetComponentInParent<EnemyBehaviour>().StopChase(seenTarget);
+                }
             }
         }
     }
