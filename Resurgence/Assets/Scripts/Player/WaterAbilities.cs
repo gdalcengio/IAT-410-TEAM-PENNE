@@ -30,7 +30,7 @@ public class WaterAbilities : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Geyser"))
+        if (Input.GetButtonDown("Geyser") || Input.GetKeyDown(KeyCode.M))
         { // initiate geyser
             if (canGeyser)
             {

@@ -285,7 +285,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 8d5a7f3f694aa4814b6af94ad1cbcae8, type: 3}
     - {fileID: 21300000, guid: 2b18b08b0b87a4706ac40b953b99df92, type: 3}
     framesPerSec: 8
-    loop: 0
+    loop: 1
   - name: Skill
     frames:
     - {fileID: 21300000, guid: 4d8a17478c0d2418ca93b54ba7e8918d, type: 3}

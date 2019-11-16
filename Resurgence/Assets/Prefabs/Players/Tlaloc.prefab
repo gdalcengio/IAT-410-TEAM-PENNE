@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 3766660241191578055}
   - component: {fileID: 4051240240641905223}
   - component: {fileID: 5997030515776039456}
+  - component: {fileID: 1285535187314813396}
   m_Layer: 11
   m_Name: Tlaloc
   m_TagString: Tlaloc
@@ -249,7 +250,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3766660241191578051}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fa626ff576ba44a58a927460e6cdd78, type: 3}
   m_Name: 
@@ -260,8 +261,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 7b3b185c428684905a643a073ab88ba6, type: 3}
     - {fileID: 21300000, guid: 1a13183501ef642a897fcb02cf716984, type: 3}
     - {fileID: 21300000, guid: 1394fee40af074ccfaf6e1ea82c832ef, type: 3}
-    framesPerSec: 8
-    loop: 0
+    framesPerSec: 7
+    loop: 1
   - name: Jump
     frames:
     - {fileID: 21300000, guid: 9226b71982520482fb861b0da24bacdf, type: 3}
@@ -273,13 +274,32 @@ MonoBehaviour:
     - {fileID: 21300000, guid: a4073cf64db37454893b2810fbd1008e, type: 3}
     - {fileID: 21300000, guid: f6c65a65e45ee46cc8a373e2cfc91326, type: 3}
     framesPerSec: 8
-    loop: 0
+    loop: 1
   - name: Skill
     frames:
     - {fileID: 21300000, guid: 9f4397e63b3ac4fdfa044e3ef4adf663, type: 3}
     framesPerSec: 1
     loop: 0
   currentFrame: 0
+--- !u!95 &1285535187314813396
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3766660241191578051}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f75ed9daf18494a51a86f53cf4227dee, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6068397810793911771
 GameObject:
   m_ObjectHideFlags: 0

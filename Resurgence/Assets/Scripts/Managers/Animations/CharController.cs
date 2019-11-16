@@ -27,21 +27,21 @@ public class CharController : MonoBehaviour
     const string kIdleAnim = "Idle";
     const string kRunAnim = "Run";
     const string kJumpStartAnim = "JumpStart";
-    const string kSkillAnim = "Skill";
+    // const string kSkillAnim = "Skill";
 
     enum State {
         Idle,
         RunningRight,
         RunningLeft,
         JumpingUp,
-        Skill
+        // Skill
     }
     State state;
     Vector2 velocity;
     float horzInput;
     bool jumpJustPressed;
     bool jumpHeld;
-    bool skillPressed;
+    // bool skillPressed;
 
     #endregion
     //--------------------------------------------------------------------------------
@@ -59,10 +59,11 @@ public class CharController : MonoBehaviour
         jumpHeld = Input.GetButton("Jump");
         grounded = GetComponent<PlayerController>().getIsGrounded();
 
-        skillPressed = Input.GetButtonDown("Transpose");
-        skillPressed = Input.GetButtonDown("Fissure");
-        skillPressed = Input.GetButtonDown("Geyser");
-        skillPressed = Input.GetButtonDown("Dive");
+        // skillPressed = Input.GetButtonDown("Transpose");
+        // skillPressed = Input.GetButtonDown("Fissure");
+        // skillPressed = Input.GetButtonDown("Geyser");
+        // skillPressed = Input.GetKeyDown(KeyCode.M);
+        // skillPressed = Input.GetButtonDown("Dive");
 
         // Update state
         ContinueState();
@@ -77,28 +78,33 @@ public class CharController : MonoBehaviour
     }
 
     void ExitState() {
+        animator.Stop();
     }
 
     void EnterState(State state) {
         ExitState();
         switch (state) {
-        case State.Idle:
-            animator.Play(kIdleAnim);
-            break;
-        case State.RunningLeft:
+        // case State.Idle:
+        //     animator.Play(kIdleAnim);
+        //     break;
+        // case State.RunningLeft:
+        //     animator.Play(kRunAnim);
+        //     // Face(-1);
+        //     break;
+        // case State.RunningRight:
+        //     animator.Play(kRunAnim);
+        //     // Face(1);
+        //     break;
+        // case State.JumpingUp:
+        //     animator.Play(kJumpStartAnim);
+        //     // velocity.y = jumpSpeed;
+        //     break;
+        // case State.Skill:
+        //     animator.Play(kSkillAnim);
+        //     break;
+
+        default:
             animator.Play(kRunAnim);
-            Face(-1);
-            break;
-        case State.RunningRight:
-            animator.Play(kRunAnim);
-            Face(1);
-            break;
-        case State.JumpingUp:
-            animator.Play(kJumpStartAnim);
-            // velocity.y = jumpSpeed;
-            break;
-        case State.Skill:
-            animator.Play(kSkillAnim);
             break;
         }
 
@@ -111,21 +117,25 @@ public class CharController : MonoBehaviour
         
         case State.Idle:
             RunOrJump();
+            // Skill();
             break;
         
         case State.RunningLeft:
         case State.RunningRight:
+            // if (!RunOrJump() && !Skill())
             if (!RunOrJump()) EnterState(State.Idle);
             break;
 
         case State.JumpingUp:
-            if (velocity.y < 0) EnterState(State.Idle);
+            // if (velocity.y < 0) EnterState(State.Idle);
+            // if (jumpJustPressed && grounded && !Skill())
             if (jumpJustPressed && grounded) EnterState(State.JumpingUp);
             break;
 
-            case State.Skill:
-                if (!RunOrJump()) EnterState(State.Idle);
-                break;
+        // case State.Skill:
+        //     // if (!RunOrJump() && Skill()) 
+        //     if (!RunOrJump())EnterState(State.Skill);
+        //     break;
         }
     }
 
@@ -136,6 +146,15 @@ public class CharController : MonoBehaviour
         else return false;
         return true;
     }
+
+    // bool Skill()
+    // {
+    //     if (skillPressed) {
+    //         SetOrKeepState(State.Skill);
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
 
     void Face(int direction) {

@@ -8,6 +8,10 @@ public class WaterPlayerController : MonoBehaviour
         Ready,
         Busy,
     }
+
+    // Animations
+    public Animator animator;
+
     public State abilityState;
 
     /*movement controls */
@@ -79,10 +83,13 @@ public class WaterPlayerController : MonoBehaviour
 
     //just for jumping for now
     void Update() {
+        // animations
+        animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("T_Horizontal")*34f));
+
         // if (isGrounded) jumped = false;
         if (abilityState == State.Busy) return;       //disabling everything else
 
-        if ((Input.GetButtonDown("T_Jump")) && isGrounded)
+        if ((Input.GetButtonDown("T_Jump") || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
         {
             jump();
         };

@@ -45,6 +45,8 @@ public class AnimationManager : MonoBehaviour
     bool _playing;
     float secsPerFrame;
     float nextFrameTime;
+
+    string state;
     
     #endregion
     //--------------------------------------------------------------------------------
@@ -62,13 +64,20 @@ public class AnimationManager : MonoBehaviour
     void Start() {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer == null) {
-            Debug.Log(gameObject.name + ": Couldn't find SpriteRenderer");
+            Debug.LogError(gameObject.name + ": Couldn't find SpriteRenderer");
         }
 
         if (animations.Count > 0) PlayByIndex(0);
+
+        // foreach (Anim anim in animations) {
+        //     Debug.LogError(anim.name);
+        // }
+        Debug.LogError(animations.Count);
     }
     
     void Update() {
+        // Debug.LogError(state);
+
         if (!_playing || Time.time < nextFrameTime || spriteRenderer == null) return;
         currentFrame++;
         if (currentFrame >= current.frames.Length) {
@@ -86,6 +95,7 @@ public class AnimationManager : MonoBehaviour
     //--------------------------------------------------------------------------------
     #region Public Methods
     public void Play(string name) {
+        Debug.LogError(name);
         int index = animations.FindIndex(a => a.name == name);
         if (index < 0) {
             Debug.LogError(gameObject + ": No such animation: " + name);
@@ -99,6 +109,7 @@ public class AnimationManager : MonoBehaviour
         Anim anim = animations[index];
         
         current = anim;
+        state = current.name;
         
         secsPerFrame = 1f / anim.framesPerSec;
         currentFrame = -1;
