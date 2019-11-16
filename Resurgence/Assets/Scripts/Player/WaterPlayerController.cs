@@ -11,6 +11,7 @@ public class WaterPlayerController : MonoBehaviour
 
     // Animations
     public Animator animator;
+    float prevY, currY;
 
     public State abilityState;
 
@@ -52,6 +53,7 @@ public class WaterPlayerController : MonoBehaviour
         cam = Camera.main;
         screenBounds = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z));
         playerWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x;
+        currY = this.transform.position.y;
     }
 
     void FixedUpdate() {
@@ -86,13 +88,22 @@ public class WaterPlayerController : MonoBehaviour
         // animations
         animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("T_Horizontal")*34f));
 
+        prevY = currY;
+        currY = this.transform.position.y;
+
         // if (isGrounded) jumped = false;
         if (abilityState == State.Busy) return;       //disabling everything else
 
-        if ((Input.GetButtonDown("T_Jump")) && isGrounded)
+        if ((Input.GetButtonDown("T_Jump") || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
         {
             jump();
-        };
+        } 
+
+        if (!isGrounded && currY > prevY) {
+            animator.SetBool("IsJumping", true);
+        } else {
+            animator.SetBool("IsJumping", false);
+        }
     }
 
     void jump() {

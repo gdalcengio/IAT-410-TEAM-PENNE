@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
         Ready,
         Busy,
     }
+
+    public Animator animator;
+    float prevY, currY;
     public State abilityState;
 
     /*movement controls */
@@ -48,6 +51,7 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main;
         screenBounds = cam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z));
         playerWidth = transform.GetComponent<SpriteRenderer>().bounds.size.x;
+        currY = this.transform.position.y;
     }
 
     void FixedUpdate() {
@@ -85,13 +89,23 @@ public class PlayerController : MonoBehaviour
 
     //just for jumping for now
     void Update() {
+        animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("I_Horizontal")*34f));
+
+        prevY = currY;
+        currY = this.transform.position.y;
+
         // if (isGrounded) jumped = false;
         if (abilityState == State.Busy) return;       //disabling everything else
 
-        if ((Input.GetButtonDown("I_Jump")) && isGrounded) {
+        if ((Input.GetButtonDown("I_Jump") || Input.GetKeyDown(KeyCode.W)) && isGrounded) {
             jump();
-        };
+        }
 
+        if (!isGrounded && currY > prevY) {
+            animator.SetBool("IsJumping", true);
+        } else {
+            animator.SetBool("IsJumping", false);
+        }
     }
 
     void jump() {
