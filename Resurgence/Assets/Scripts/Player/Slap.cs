@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Slap : MonoBehaviour
 {
+    public Animator animator;
     GameObject slapTarget;
     private float thrust = 20.0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponentInParent<Animator>();
         if (this.transform.parent.gameObject.name == "Itztli") slapTarget = GameObject.Find("Tlaloc");
         else if (this.transform.parent.gameObject.name == "Tlaloc") slapTarget = GameObject.Find("Itztli");
     }
@@ -18,8 +20,9 @@ public class Slap : MonoBehaviour
     void Update()
     {
         // Debug.LogError(slapTarget.name);
-        if (Input.GetKeyDown(KeyCode.U)) {
+        if (Input.GetButtonDown("iSlap") || Input.GetButtonDown("tSlap")|| Input.GetKeyDown(KeyCode.U)) {
             // slap animation
+            animator.SetTrigger("Slap");
         }
     }
 

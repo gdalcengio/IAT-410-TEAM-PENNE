@@ -103,7 +103,7 @@ public class EnemyMovement : MonoBehaviour
                 currentPoint = 0; // reset to zero
             }
 
-            this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(patrolPoints[currentPoint].position.x, transform.position.y), speed*Time.deltaTime);
+            if (GetComponent<EnemyBehaviour>().health > 0) this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(patrolPoints[currentPoint].position.x, transform.position.y), speed*Time.deltaTime);
 
             prevX = currX;
             currX = this.transform.position.x;
