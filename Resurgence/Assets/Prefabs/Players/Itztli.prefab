@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adfac78cdaaa30a499e8cc0619c04bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   pc: {fileID: -7791708141885439010}
   canTranspose: 1
   canFissure: 1
@@ -121,6 +122,7 @@ GameObject:
   - component: {fileID: 4180767480293396129}
   - component: {fileID: -7791708141885439010}
   - component: {fileID: 4813296693035936398}
+  - component: {fileID: 2206338295468078885}
   m_Layer: 11
   m_Name: Itztli
   m_TagString: Itztli
@@ -244,6 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ecdab7113809c4ebff9f427fd69082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 2206338295468078885}
   abilityState: 0
   speed: 34
   jumpForce: 32
@@ -297,6 +300,25 @@ MonoBehaviour:
     framesPerSec: 1
     loop: 0
   currentFrame: 0
+--- !u!95 &2206338295468078885
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4180767480293396133}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cbdf17f64f0ae405b9e21ef1e1235c44, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5633606621766171467
 GameObject:
   m_ObjectHideFlags: 0

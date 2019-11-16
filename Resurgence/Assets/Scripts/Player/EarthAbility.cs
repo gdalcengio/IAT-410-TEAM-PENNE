@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EarthAbility : MonoBehaviour
 {
+    public Animator animator;
     /*Auxillary stuff */
     public PlayerController pc;                           //reference to the player
     public bool canTranspose = false, canFissure = false; //ability flags
@@ -23,6 +24,11 @@ public class EarthAbility : MonoBehaviour
     private IEnumerator fissureCoroutine;               //coroutine reference to get the two objects
     private GameObject fissureWall;                     //to test if the wall is fissureable
 
+    void Start()
+    {
+        animator = GetComponentInParent<Animator>();
+    }
+
     private void Update() {
         // //for consistency and error handling
         if (!Input.GetButton("Transpose"))
@@ -34,6 +40,7 @@ public class EarthAbility : MonoBehaviour
 
         //better transpose
         if (Input.GetButtonDown("Transpose")) {
+            animator.SetTrigger("RockAbility");
             if (canTranspose && transposeCoroutine != null) {
                 canTranspose = false;
                 //stops player movement
@@ -46,7 +53,8 @@ public class EarthAbility : MonoBehaviour
         }
 
         //fissure
-        if (Input.GetButtonDown("Fissure")) {
+        if (Input.GetButtonDown("Fissure") || Input.GetKeyDown(KeyCode.K)) {
+            animator.SetTrigger("RockAbility");
             if (canFissure) {
                 if (fissureWall != null) {
                     Destroy(fissureWall);

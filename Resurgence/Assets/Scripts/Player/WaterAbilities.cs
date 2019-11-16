@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaterAbilities : MonoBehaviour
 {
+    public Animator animator;
     GameObject buoyancyObject, buoyancyParent;
     GameObject diveObject, diveParent, diveContainer;
     GameObject diveSwitch;
@@ -20,6 +21,11 @@ public class WaterAbilities : MonoBehaviour
 
     private IEnumerator geyserCoroutine;
 
+    void Start()
+    {
+        animator = GetComponentInParent<Animator>();
+    }
+
     void Update() {
         if (abilityLock) return;
 
@@ -32,6 +38,7 @@ public class WaterAbilities : MonoBehaviour
 
         if (Input.GetButtonDown("Geyser") || Input.GetKeyDown(KeyCode.M))
         { // initiate geyser
+            animator.SetTrigger("Ability");
             if (canGeyser)
             {
                 // get geyser object
@@ -51,6 +58,7 @@ public class WaterAbilities : MonoBehaviour
 
         if (Input.GetButtonDown("Dive") && diveObject != null)
         {
+            animator.SetTrigger("Ability");
             if (canDive)
             {
                 diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
