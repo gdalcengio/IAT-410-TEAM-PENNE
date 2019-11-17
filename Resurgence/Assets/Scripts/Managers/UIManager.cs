@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
 
 	void Update () {
 		//uses the p button to pause and unpause the game
-		if(Input.GetKeyDown(KeyCode.P))
+		if(Input.GetButtonDown("pause"))
 		{
 			if(Time.timeScale == 1)
 			{
