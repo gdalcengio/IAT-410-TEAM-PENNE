@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public Animator animator;
     public static UIManager Instance { get { return _instance; } }
 
+    public GameObject pauseMenu;
+
 
     private void Awake()
     {
@@ -21,6 +23,37 @@ public class UIManager : MonoBehaviour
             _instance = this;
         }
     }
+
+	void Start () {
+		Time.timeScale = 1;
+		hidePaused();
+	}
+
+	void Update () {
+		//uses the p button to pause and unpause the game
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			if(Time.timeScale == 1)
+			{
+				Time.timeScale = 0;
+				showPaused();
+			} else if (Time.timeScale == 0){
+				Time.timeScale = 1;
+				hidePaused();
+			}
+		}
+	}
+
+	public void showPaused(){
+		pauseMenu.SetActive(true);
+		
+	}
+
+	public void hidePaused(){
+		pauseMenu.SetActive(false);
+		
+	}
+
     //for tutorial messages or general information
     public IEnumerator Appear(Image toast) {
         Color alpha = toast.color;
