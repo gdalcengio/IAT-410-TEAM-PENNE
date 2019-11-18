@@ -75,7 +75,7 @@ MonoBehaviour:
   canTranspose: 1
   canFissure: 1
   pushForce: {x: 0, y: 0}
-  charge: 200
+  charge: 400
   minCharge: 200
   maxCharge: 400
 --- !u!1 &4180767479747096495
@@ -473,3 +473,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9a08b99f4894f77a109e90908a4695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}

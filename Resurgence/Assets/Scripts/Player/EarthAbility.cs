@@ -10,6 +10,7 @@ public class EarthAbility : MonoBehaviour
     public bool canTranspose = false, canFissure = false; //ability flags
     private bool abilityLock = false;
     GameObject switchObject = null;
+    Collider2D transposeObj = null;
 
 
     /*transpose skill variables */
@@ -31,29 +32,30 @@ public class EarthAbility : MonoBehaviour
 
     private void Update() {
         // //for consistency and error handling
-        if (!Input.GetButton("Transpose"))
-        {
-            pc.unfreeze();
-            pc.abilityState = PlayerController.State.Ready;
-        }
+        // if (!Input.GetButton("Transpose"))
+        // {
+        //     // pc.unfreeze();
+        //     pc.abilityState = PlayerController.State.Ready;
+        // }
         // if (pc.abilityState == PlayerController.State.Busy) return;
 
         //better transpose
         if (Input.GetButtonDown("Transpose")) {
             animator.SetTrigger("RockAbility");
-            if (canTranspose && transposeCoroutine != null) {
+            // if (canTranspose && transposeCoroutine != null)
+            if (canTranspose)
+            {
                 canTranspose = false;
-                //stops player movement
-                pc.canMove = false; 
-                pc.freeze();
-                pc.abilityState = PlayerController.State.Busy;
-                
-                StartCoroutine(transposeCoroutine); //begins to charge if not on cooldown
+                transpose();
+                // pc.abilityState = PlayerController.State.Busy;
+
+                // StartCoroutine(transposeCoroutine); //begins to charge if not on cooldown
+
             }
         }
 
         //fissure
-        if (Input.GetButtonDown("Fissure") || Input.GetKeyDown(KeyCode.K)) {
+        if (Input.GetButtonDown("Fissure")) {
             animator.SetTrigger("RockAbility");
             if (canFissure) {
                 if (fissureWall != null) {
@@ -90,9 +92,10 @@ public class EarthAbility : MonoBehaviour
 
         //transpose
         if (col.gameObject.tag == "Object") {
+            transposeObj = col;
             canTranspose = true;
-            charge = minCharge;        //reset the charge meter
-            transposeCoroutine = chargeTranspose(col);
+            // charge = minCharge;        //reset the charge meter
+            // transposeCoroutine = chargeTranspose(col);
         }
         
         //fissure
@@ -134,7 +137,6 @@ public class EarthAbility : MonoBehaviour
     }
 
     void OnTriggerStay2D(Collider2D col) {
-
         if (col != null && col.gameObject.tag == "Current") {
             col.GetComponent<LineBehaviour>().setPosition(1, new Vector2(pc.transform.position.x, 0f));
         }
@@ -162,32 +164,39 @@ public class EarthAbility : MonoBehaviour
 
 
 
-    private IEnumerator chargeTranspose(Collider2D col) {
-        while (pc.abilityState == PlayerController.State.Busy) {
-            if (charge < maxCharge) charge += 20;           //increases charge meter
-            //if (Input.GetButtonUp("Transpose") || Input.GetKeyUp("u")) pc.abilityState = PlayerController.State.Ready;
-            yield return null;
-        }
+    // private IEnumerator chargeTranspose(Collider2D col) {
+    //     while (pc.abilityState == PlayerController.State.Busy) {
+    //         // if (charge < maxCharge) charge += 20;           //increases charge meter
+    //         //if (Input.GetButtonUp("Transpose") || Input.GetKeyUp("u")) pc.abilityState = PlayerController.State.Ready;
+    //         yield return null;
+    //     }
 
-        pushForce = (Input.GetAxis("I_Up") > 0) ? new Vector2(charge, charge) : new Vector2(charge * 1.2f, 0);
+        // pushForce = (Input.GetAxis("I_Up") > 0) ? new Vector2(charge, charge) : new Vector2(charge * 1.2f, 0);
+    public void transpose() {
+        if (transposeObj== null) return;
+
+        pushForce = new Vector2(charge, charge);
 
         if ((pc.facingRight && pushForce.x < 0) || (!pc.facingRight && pushForce.x > 0)) {
             pushForce.x *= -1;
         }
 
         //Debug.LogError(pushForce);
-        if (col != null) col.attachedRigidbody.AddForce(pushForce, ForceMode2D.Impulse);
+        // if (col != null) 
+        transposeObj.attachedRigidbody.AddForce(pushForce, ForceMode2D.Impulse);
 
         //camera shake
         StartCoroutine(CameraManager.Instance.cameraShake(.15f, .1f));
+        transposeObj = null;
+    }
 
-        pc.unfreeze();
-        pc.canMove = true;
+        // pc.unfreeze();
+        // pc.canMove = true;
         //Debug.LogError(pushForce);
 
-        IEnumerator transposeCooldown = timer(0, 3);
-        StartCoroutine(transposeCooldown);        //done transpose ability, now it's on cooldown if need be
-    }
+    //     IEnumerator transposeCooldown = timer(0, 3);
+    //     StartCoroutine(transposeCooldown);        //done transpose ability, now it's on cooldown if need be
+    // }
 
     /*fissure ability */
     private IEnumerator fissure(Collider2D col1, Collider2D col2) {
