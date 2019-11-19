@@ -8,9 +8,31 @@ public class GeyserBehaviour : MonoBehaviour
     public float limit, currentHeight;
     private bool activeGeyser = false; // don't active geyser when it's already active
     private Vector2 reset;
+    public string state = "NotActive";
+    float height;
+    Vector3 centerPos;
+    Vector3 finalPos;
+    Vector3 startPos;
+    Vector3 scale;
+
+    void Start()
+    {
+        startPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+    }
 
     void Update() {
         currentHeight = transform.position.y;
+    }
+
+    public void Stretch(GameObject _sprite, Vector3 startPos, Vector3 finalPos)
+    {
+        height = _sprite.GetComponent<Collider2D>().bounds.size.y;
+        finalPos = new Vector3(_sprite.transform.position.x, currentHeight, _sprite.transform.position.z);
+        centerPos = (this.transform.position + finalPos) / 2f;
+        this.transform.position = centerPos;
+        scale = new Vector3(1,1,1);
+        scale.y = Vector3.Distance(startPos, finalPos) / height;
+        _sprite.transform.localScale = scale;
     }
 
     public IEnumerator BuildGeyser(Vector3 direction,float speed)
@@ -23,14 +45,19 @@ public class GeyserBehaviour : MonoBehaviour
         StartCoroutine(CameraManager.Instance.cameraShake(3f, (Time.time - startime)*speed));
 
         while (startPos != endPos && ((Time.time - startime)*speed) < 1f && transform.position.y < limit) { 
+            state = "BuildUp";
+            // public Transform child = this.transform.GetChild(0);
+            // Stretch(child.gameObject, startPos, new Vector3(this.transform.position.x, limit, this.transform.position.z));
             float move = Mathf.Lerp(0,1, (Time.time - startime)*speed);
  
             transform.position += direction*move;
  
             yield return null;
         }
+        state = "Peaked";
         yield return new WaitForSeconds(5);
 
+        state = "Decline";
         reset = new Vector2(startPos.x, startPos.y); // reset geyser after time
 
         // reset geyser
