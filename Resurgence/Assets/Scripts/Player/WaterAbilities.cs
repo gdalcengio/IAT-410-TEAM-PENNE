@@ -113,7 +113,7 @@ public class WaterAbilities : MonoBehaviour
         }
 
         if (col.gameObject == diveObject) {
-            canGeyser = false;
+            // canGeyser = false;
             diveObject = null;
             diveParent = null;
             diveContainer = null;

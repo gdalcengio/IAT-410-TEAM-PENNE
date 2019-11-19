@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -309,22 +309,22 @@ PrefabInstance:
     - target: {fileID: 4962053033475998162, guid: 74629056213e98e4481b186b260e33ec,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.55
+      value: 0.15581465
       objectReference: {fileID: 0}
     - target: {fileID: 4962053033475998162, guid: 74629056213e98e4481b186b260e33ec,
         type: 3}
       propertyPath: m_Size.x
-      value: 6.856737
+      value: 6.068366
       objectReference: {fileID: 0}
     - target: {fileID: 4962053033475998162, guid: 74629056213e98e4481b186b260e33ec,
         type: 3}
       propertyPath: m_Offset.y
-      value: -3
+      value: -3.394187
       objectReference: {fileID: 0}
     - target: {fileID: 4962053033475998162, guid: 74629056213e98e4481b186b260e33ec,
         type: 3}
       propertyPath: m_Size.y
-      value: 5.056923
+      value: 3.9531994
       objectReference: {fileID: 0}
     - target: {fileID: 960305141752653670, guid: 74629056213e98e4481b186b260e33ec,
         type: 3}
@@ -1517,22 +1517,22 @@ PrefabInstance:
     - target: {fileID: 4962053033475998162, guid: 88f0f95e976c9554ba158a4d0de974e7,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.42
+      value: 1.1689558
       objectReference: {fileID: 0}
     - target: {fileID: 4962053033475998162, guid: 88f0f95e976c9554ba158a4d0de974e7,
         type: 3}
       propertyPath: m_Size.x
-      value: 8.913556
+      value: 7.4156437
       objectReference: {fileID: 0}
     - target: {fileID: 4962053033475998162, guid: 88f0f95e976c9554ba158a4d0de974e7,
         type: 3}
       propertyPath: m_Offset.y
-      value: -2.34
+      value: -2.7341871
       objectReference: {fileID: 0}
     - target: {fileID: 4962053033475998162, guid: 88f0f95e976c9554ba158a4d0de974e7,
         type: 3}
       propertyPath: m_Size.y
-      value: 3.3856812
+      value: 2.5973072
       objectReference: {fileID: 0}
     - target: {fileID: 960305141752653670, guid: 88f0f95e976c9554ba158a4d0de974e7,
         type: 3}
