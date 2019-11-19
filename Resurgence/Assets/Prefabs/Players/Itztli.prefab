@@ -210,7 +210,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
   m_Mass: 1.0042865
-  m_LinearDrag: 3
+  m_LinearDrag: 4
   m_AngularDrag: 0.05
   m_GravityScale: 8
   m_Material: {fileID: 6200000, guid: 32732cc29a5f3ea47bb8613e12619b99, type: 2}
@@ -227,7 +227,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 4180767480293396133}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: b2adbaa9b104feb4586a107153cbd5e4, type: 2}
+  m_Material: {fileID: 6200000, guid: 32732cc29a5f3ea47bb8613e12619b99, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -248,8 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2206338295468078885}
   abilityState: 0
-  speed: 34
-  jumpForce: 32
+  speed: 49
+  jumpForce: 36
   facingRight: 1
   canMove: 1
   groundCheck: {fileID: 4180767479747096488}
