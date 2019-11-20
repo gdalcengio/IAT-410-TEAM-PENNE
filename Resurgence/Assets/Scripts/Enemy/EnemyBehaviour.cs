@@ -18,6 +18,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public Animator animator;
     public float deathDelay = 0f;
+    bool dontLoop = true;
 
     void Start()
     {
@@ -40,7 +41,10 @@ public class EnemyBehaviour : MonoBehaviour
             this.GetComponent<SpriteRenderer>().sortingOrder = 100;
             this.GetComponent<Rigidbody2D>().simulated = false;
             animator.SetInteger("Health", 0);
-            FindObjectOfType<AudioManager>().Play("GodotDeath");
+            if (dontLoop){
+                FindObjectOfType<AudioManager>().Play("GodotDeath");
+                dontLoop = false;
+            }
         }
     }
 
