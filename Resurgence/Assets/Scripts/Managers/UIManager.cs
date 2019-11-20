@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class UIManager : MonoBehaviour
 
 	void Update () {
 		//uses the p button to pause and unpause the game
-		if(Input.GetButtonDown("pause"))
+		if(Input.GetButtonDown("pause") && SceneManager.GetActiveScene().buildIndex != 0)
 		{
 			if(Time.timeScale == 1)
 			{

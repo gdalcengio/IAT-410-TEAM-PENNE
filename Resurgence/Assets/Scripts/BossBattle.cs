@@ -16,11 +16,9 @@ public class BossBattle : MonoBehaviour
         state = State.rockets;
 
         transform.position += Vector3.right * 15;
-        
-        StartCoroutine("bossEnter");
     }
 
-    private IEnumerator bossEnter() {
+    public IEnumerator bossEnter() {
         float elapsed = 0f;
 
         while (elapsed > -10) {
@@ -117,5 +115,9 @@ public class BossBattle : MonoBehaviour
             }
         }
 
+    }
+
+    public void startEntering() {
+        StartCoroutine(bossEnter());
     }
 }
