@@ -10,7 +10,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: Point
-    m_EventTreshold: 25
+    m_EventTreshold: 15
   - m_ConditionMode: 3
     m_ConditionEvent: Point
     m_EventTreshold: -0.1

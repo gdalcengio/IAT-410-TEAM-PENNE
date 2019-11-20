@@ -16,11 +16,15 @@ public class GeyserBehaviour : MonoBehaviour
     Vector3 scale;
     public Animator animator;
     public Transform child;
+    public Vector3 saveParentPos;
+    public float colliderBounds;
 
     void Start()
     {
         startPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
         child = this.transform.GetChild(0);
+        saveParentPos = this.transform.parent.position;
+        colliderBounds = this.GetComponent<BoxCollider2D>().size.y;
     }
 
     void Update() {
@@ -32,11 +36,11 @@ public class GeyserBehaviour : MonoBehaviour
     public void Stretch(GameObject _sprite, Vector3 startPos, Vector3 finalPos)
     {
         finalPos = new Vector3(_sprite.transform.position.x, currentHeight, _sprite.transform.position.z);
-        centerPos = (_sprite.transform.position + finalPos) / 2f;
+        centerPos = (startPos + finalPos) / 2f;
         _sprite.transform.position = centerPos;
         scale = new Vector3(1,1,1);
-        Debug.LogError(height);
-        scale.y = Vector3.Distance(startPos, finalPos) / height;
+        Debug.LogError(currentHeight);
+        scale.y = Vector3.Distance(startPos, finalPos) / limit * 3f;
         // scale.y = Vector3.Distance(startPos, finalPos);
         _sprite.transform.localScale = scale;
     }
@@ -57,13 +61,13 @@ public class GeyserBehaviour : MonoBehaviour
             float move = Mathf.Lerp(0,1, (Time.time - startime)*speed);
  
             transform.position += direction*move;
-            Stretch(child.gameObject, startPos, new Vector3(startPos.x, transform.position.y, 1f));
+            Stretch(child.gameObject, saveParentPos, new Vector3(startPos.x, transform.position.y, 1f));
             animator.SetFloat("Point", transform.position.y);
  
             yield return null;
         }
         state = "Peaked";
-        Vector2 newPos = this.transform.parent.position;
+        // Vector2 newPos = this.transform.parent.position;
         // Debug.LogError(this.transform.GetChild(0).name);
         // this.transform.GetChild(0).position = newPos;
         animator.SetFloat("Duration", -0.1f);
