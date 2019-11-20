@@ -14,10 +14,13 @@ public class GeyserBehaviour : MonoBehaviour
     Vector3 finalPos;
     Vector3 startPos;
     Vector3 scale;
+    public Animator animator;
+    public Transform child;
 
     void Start()
     {
         startPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+        // child = this.transform.GetChild(0);
     }
 
     void Update() {
@@ -26,12 +29,14 @@ public class GeyserBehaviour : MonoBehaviour
 
     public void Stretch(GameObject _sprite, Vector3 startPos, Vector3 finalPos)
     {
-        height = _sprite.GetComponent<Collider2D>().bounds.size.y;
+        height = _sprite.GetComponent<SpriteRenderer>().bounds.size.y;
         finalPos = new Vector3(_sprite.transform.position.x, currentHeight, _sprite.transform.position.z);
         centerPos = (this.transform.position + finalPos) / 2f;
-        this.transform.position = centerPos;
+        _sprite.transform.position = centerPos;
         scale = new Vector3(1,1,1);
-        scale.y = Vector3.Distance(startPos, finalPos) / height;
+        Debug.LogError(height);
+        scale.y = Vector3.Distance(startPos, finalPos) / limit;
+        // scale.y = Vector3.Distance(startPos, finalPos);
         _sprite.transform.localScale = scale;
     }
 
@@ -46,24 +51,30 @@ public class GeyserBehaviour : MonoBehaviour
 
         while (startPos != endPos && ((Time.time - startime)*speed) < 1f && transform.position.y < limit) { 
             state = "BuildUp";
-            // public Transform child = this.transform.GetChild(0);
-            // Stretch(child.gameObject, startPos, new Vector3(this.transform.position.x, limit, this.transform.position.z));
+
             float move = Mathf.Lerp(0,1, (Time.time - startime)*speed);
  
             transform.position += direction*move;
+            Stretch(child.gameObject, startPos, new Vector3(startPos.x, transform.position.y, 1f));
+            animator.SetFloat("Point", transform.position.y);
  
             yield return null;
         }
         state = "Peaked";
+        animator.SetFloat("Duration", -0.1f);
         yield return new WaitForSeconds(5);
+        animator.SetFloat("Duration", Time.time - startime);
 
         state = "Decline";
+        Vector3 savePos = new Vector3(child.position.x, child.position.y, child.position.z);
         reset = new Vector2(startPos.x, startPos.y); // reset geyser after time
 
         // reset geyser
         transform.position = reset;
+        child.position = savePos;
         this.GetComponent<BuoyancyEffector2D>().density = 0f;
         activeGeyser = false;
+        animator.SetFloat("Point", -0.1f);
     }
 
     // getters and setters
