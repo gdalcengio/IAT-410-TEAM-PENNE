@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5937743628088558590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5937743628088558588}
+  - component: {fileID: 5937743628088558589}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5937743628088558588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937743628088558590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.5049305, y: 8.16761, z: -27.793427}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5937743628088558589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937743628088558590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e852fb660cf1d444ba4d97239f0353ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: GodotDeath
+    clip: {fileID: 8300000, guid: 38a3685dd2c7540bdbd61e179a60dbcd, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Fissure
+    clip: {fileID: 8300000, guid: 57c7ac194fb214d8ba28f1e8b8a4cce6, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Geyser
+    clip: {fileID: 8300000, guid: ed1b19b5238cf4850aa506bb59af25a3, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: PipeEnter
+    clip: {fileID: 8300000, guid: 463cd02dd51484d66837025458199a98, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: PipeExit
+    clip: {fileID: 8300000, guid: ae3f7eb92cb5d47edb13c77d7b5bb3c0, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Slap
+    clip: {fileID: 8300000, guid: 88868f92a89944127934c5bff3ac2684, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Switch
+    clip: {fileID: 8300000, guid: efa6c0a97efda4e2281fae2f7b5d1d1e, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Transpose
+    clip: {fileID: 8300000, guid: 3c3d4f2a7a0684dd2a1a6322d7ae9a51, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Transpose-Short
+    clip: {fileID: 8300000, guid: 0a12b4c2005f54f73bbf8d74e991fef2, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: WaterJump
+    clip: {fileID: 8300000, guid: 009429188f2a141e5ae0b73f443df5cf, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Zapper
+    clip: {fileID: 8300000, guid: 0264d87c9ad4c4ba78e50d9f418d16ec, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: BossLaser
+    clip: {fileID: 8300000, guid: befcf41827f71415fa8efced8007dda0, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
