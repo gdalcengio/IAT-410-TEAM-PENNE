@@ -5,6 +5,8 @@ using UnityEngine;
 public class WaterAbilities : MonoBehaviour
 {
     public Animator animator;
+    bool diveActive = false;
+    float atDive;
     GameObject buoyancyObject, buoyancyParent;
     GameObject diveObject, diveParent, diveContainer;
     GameObject diveSwitch;
@@ -56,22 +58,45 @@ public class WaterAbilities : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Dive") && diveObject != null)
-        {
-            animator.SetTrigger("Ability");
-            if (canDive)
-            {
-                diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
-                diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
+        if (Input.GetButtonDown("Dive") || Input.GetKeyDown(KeyCode.P) && diveObject != null) {
+            animator.SetTrigger("Dive");
+            diveActive = true;
+            atDive = Time.time + 0.54f;
+        } 
 
-                diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
-                diveContainer.GetComponent<DiveBehaviour>().setEntrance(diveIndex);
-                diveMove(diveObject.GetComponent<Collider2D>(), diveContainer.GetComponent<DiveBehaviour>().nodes.Count, diveContainer.GetComponent<DiveBehaviour>().getEntrance());
-                // deactivate colliders
-                diveContainer = diveParent = diveObject = null;
-                diveObject = null;
-                canDive = false;
-            }
+        // if (!AnimatorIsPlaying("Tlaloc-Dive_") && diveActive)
+        // {
+        //     if (canDive)
+        //     {
+        //         diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
+        //         diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
+
+        //         diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
+        //         diveContainer.GetComponent<DiveBehaviour>().setEntrance(diveIndex);
+        //         diveMove(diveObject.GetComponent<Collider2D>(), diveContainer.GetComponent<DiveBehaviour>().nodes.Count, diveContainer.GetComponent<DiveBehaviour>().getEntrance());
+        //         // deactivate colliders
+        //         diveContainer = diveParent = diveObject = null;
+        //         diveObject = null;
+        //         canDive = false;
+        //     }
+        //     diveActive = false;
+        // }
+    }
+
+    public void NowDive()
+    {
+        if (canDive)
+        {
+            diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
+            diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
+
+            diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
+            diveContainer.GetComponent<DiveBehaviour>().setEntrance(diveIndex);
+            diveMove(diveObject.GetComponent<Collider2D>(), diveContainer.GetComponent<DiveBehaviour>().nodes.Count, diveContainer.GetComponent<DiveBehaviour>().getEntrance());
+            // deactivate colliders
+            diveContainer = diveParent = diveObject = null;
+            diveObject = null;
+            canDive = false;
         }
     }
 
@@ -216,7 +241,7 @@ public class WaterAbilities : MonoBehaviour
             GameObject exitPoint;
             exitPoint = getNode(diveIndex, divePoints).transform.GetChild(0).gameObject; // define new location
             playerTransform.gameObject.SetActive(false);
-            StartCoroutine(Delay(0.5f));
+            // StartCoroutine(Delay(0.5f));
             playerTransform.position = exitPoint.transform.position; // teleport
             playerTransform.gameObject.SetActive(true);
         }
@@ -267,5 +292,16 @@ public class WaterAbilities : MonoBehaviour
         canDive = false;
         canGeyser = false;
         abilityLock = false;
+    }
+
+    bool AnimatorIsPlaying()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).length > 
+        animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    }
+
+    bool AnimatorIsPlaying(string stateName)
+    {
+        return AnimatorIsPlaying() && animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1284563028}
   - component: {fileID: 1284563029}
+  - component: {fileID: 5371120606274618067}
   m_Layer: 8
   m_Name: water
   m_TagString: Untagged
@@ -25,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284563027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.89, y: -0.97, z: 0}
-  m_LocalScale: {x: 0.32, y: 1, z: 1}
+  m_LocalPosition: {x: -0.89, y: 5.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2326210648811013239}
   m_RootOrder: 0
@@ -68,18 +69,37 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 64f05cb7f45e8e4449bd5e9a62c7b9ac, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 28.351793, y: 8.5}
+  m_Size: {x: 14.17, y: 17.01}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5371120606274618067
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284563027}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 282b0c60f2f5744669a473fc6c19b796, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2326210648811013238
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +173,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -203,9 +223,9 @@ BuoyancyEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_SurfaceLevel: 0.25
+  m_SurfaceLevel: 2.75
   m_Density: 0
-  m_LinearDrag: 1.25
+  m_LinearDrag: 8
   m_AngularDrag: 5
   m_FlowAngle: 0
   m_FlowMagnitude: 0
@@ -224,6 +244,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   limit: 7.5
   currentHeight: 0
+  state: NotActive
+  animator: {fileID: 5371120606274618067}
+  child: {fileID: 1284563028}
 --- !u!50 &2326210648811013244
 Rigidbody2D:
   serializedVersion: 4
@@ -981,16 +1004,6 @@ PrefabInstance:
       propertyPath: m_ShapePath.Array.data[32].y
       value: -0.5025822
       objectReference: {fileID: 0}
-    - target: {fileID: 4168441380055795381, guid: bbbd1746cef4cee42b28abcb26b06b0b,
-        type: 3}
-      propertyPath: itzCan
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168441380055795381, guid: bbbd1746cef4cee42b28abcb26b06b0b,
-        type: 3}
-      propertyPath: tlaCan
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4168441380055795380, guid: bbbd1746cef4cee42b28abcb26b06b0b,
         type: 3}
       propertyPath: m_Offset.x
@@ -1010,6 +1023,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 4.5214486
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168441380055795381, guid: bbbd1746cef4cee42b28abcb26b06b0b,
+        type: 3}
+      propertyPath: itzCan
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168441380055795381, guid: bbbd1746cef4cee42b28abcb26b06b0b,
+        type: 3}
+      propertyPath: tlaCan
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbbd1746cef4cee42b28abcb26b06b0b, type: 3}
