@@ -40,6 +40,7 @@ public class Slap : MonoBehaviour
             float itSlap = Input.GetAxis("iSlap");
             float tlSlap = Input.GetAxis("tSlap");
             if ((itSlap == 1 && slapTarget.name == "Tlaloc")|| (tlSlap == 1 && slapTarget.name == "Itztli")) {
+                FindObjectOfType<AudioManager>().Play("Slap");
                 StartCoroutine(CameraManager.Instance.cameraShake(.15f, .1f));
                 // slap to right
                 if (this.transform.position.x < slapTarget.transform.position.x) slapTarget.GetComponent<Rigidbody2D>().AddForce(transform.right * thrust, ForceMode2D.Impulse);

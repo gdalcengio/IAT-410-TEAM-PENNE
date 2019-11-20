@@ -62,6 +62,7 @@ public class WaterAbilities : MonoBehaviour
             animator.SetTrigger("Dive");
             diveActive = true;
             atDive = Time.time + 0.54f;
+            FindObjectOfType<AudioManager>().Play("PipeEnter");
         } 
 
         // if (!AnimatorIsPlaying("Tlaloc-Dive_") && diveActive)

@@ -42,6 +42,7 @@ public class LineBehaviour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col != null) {
+            FindObjectOfType<AudioManager>().Play("Zapper");
             if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc") {
                 GameManager.Instance.ResetScene();
             }

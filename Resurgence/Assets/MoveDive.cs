@@ -28,6 +28,7 @@ public class MoveDive : StateMachineBehaviour
     {
         // move after animation
        player.GetComponentInChildren<WaterAbilities>().NowDive();
+       FindObjectOfType<AudioManager>().Play("PipeExit");
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

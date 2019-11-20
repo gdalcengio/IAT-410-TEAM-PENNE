@@ -63,6 +63,7 @@ public class EarthAbility : MonoBehaviour
                     fissureWall = null;
                     canFissure = false;
                 } else if (fissureCoroutine != null) {
+                    FindObjectOfType<AudioManager>().Play("Fissure");
                     StartCoroutine(fissureCoroutine);
                     Debug.Log("fissure coroutine started");
                 }
@@ -174,7 +175,7 @@ public class EarthAbility : MonoBehaviour
         // pushForce = (Input.GetAxis("I_Up") > 0) ? new Vector2(charge, charge) : new Vector2(charge * 1.2f, 0);
     public void transpose() {
         if (transposeObj== null) return;
-
+        FindObjectOfType<AudioManager>().Play("Transpose-Short");
         pushForce = new Vector2(charge, charge);
 
         if ((pc.facingRight && pushForce.x < 0) || (!pc.facingRight && pushForce.x > 0)) {

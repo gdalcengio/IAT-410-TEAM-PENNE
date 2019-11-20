@@ -13,6 +13,7 @@ public class SwitchBehaviour : MonoBehaviour
 
     public void toggleState()
     {
+        FindObjectOfType<AudioManager>().Play("Switch");
         // flip switch
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
