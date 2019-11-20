@@ -52,6 +52,7 @@ public class WaterAbilities : MonoBehaviour
                 targetPosition = new Vector2(0.0f, buoy.transform.position.y + buoy.GetComponent<GeyserBehaviour>().limit); // need limit
                 if (!buoy.GetComponent<GeyserBehaviour>().getActiveGeyser())
                 {
+                    FindObjectOfType<AudioManager>().Play("Geyser");
                     activateGeyser(buoy);
                     buoy.GetComponent<GeyserBehaviour>().setActiveGeyser(true);
                 }
@@ -64,24 +65,6 @@ public class WaterAbilities : MonoBehaviour
             atDive = Time.time + 0.54f;
             FindObjectOfType<AudioManager>().Play("PipeEnter");
         } 
-
-        // if (!AnimatorIsPlaying("Tlaloc-Dive_") && diveActive)
-        // {
-        //     if (canDive)
-        //     {
-        //         diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
-        //         diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
-
-        //         diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
-        //         diveContainer.GetComponent<DiveBehaviour>().setEntrance(diveIndex);
-        //         diveMove(diveObject.GetComponent<Collider2D>(), diveContainer.GetComponent<DiveBehaviour>().nodes.Count, diveContainer.GetComponent<DiveBehaviour>().getEntrance());
-        //         // deactivate colliders
-        //         diveContainer = diveParent = diveObject = null;
-        //         diveObject = null;
-        //         canDive = false;
-        //     }
-        //     diveActive = false;
-        // }
     }
 
     public void NowDive()
@@ -149,44 +132,6 @@ public class WaterAbilities : MonoBehaviour
     void OnTriggerStay2D(Collider2D col) 
     {
         if (abilityLock) return;
-
-        // if (col != null && col.gameObject.tag == "Current")
-        // {
-        //     col.GetComponent<LineBehaviour>().setPosition(1, new Vector2(pc.transform.position.x, 0f));
-        // }
-
-        // if (Input.GetButtonDown("Geyser")) { // initiate geyser
-        //     if (col.gameObject == buoyancyParent) {
-        //         // get geyser object
-        //         buoyancyObject = buoyancyParent.transform.GetChild(0).gameObject; 
-        //         buoy = buoyancyObject.GetComponent<BuoyancyEffector2D>();
-        //         targetGeyser = buoy;
-
-        //         startPosition = buoy.GetComponent<GeyserBehaviour>().getReset(); // reset geyser after time
-        //         targetPosition = new Vector2(0.0f, buoy.transform.position.y + buoy.GetComponent<GeyserBehaviour>().limit); // need limit
-        //         if (!buoy.GetComponent<GeyserBehaviour>().getActiveGeyser()) {
-        //             activateGeyser(buoy);
-        //             buoy.GetComponent<GeyserBehaviour>().setActiveGeyser(true);
-        //         }
-        //     }
-        // }
-
-        // if (Input.GetButtonDown("Dive")) {
-        //     if (col.gameObject == diveObject) {
-        //         diveContainer.GetComponent<DiveBehaviour>().nodes.Clear(); // always start with a fresh set of nodes
-        //         diveIndex = diveContainer.GetComponent<DiveBehaviour>().parseNode(diveParent.name);
-
-        //         diveContainer.GetComponent<DiveBehaviour>().defineNodes(); // get all valid locations
-        //         diveContainer.GetComponent<DiveBehaviour>().setEntrance(diveIndex);
-        //         diveMove(col, diveContainer.GetComponent<DiveBehaviour>().nodes.Count, diveContainer.GetComponent<DiveBehaviour>().getEntrance());
-        //         // deactivate colliders
-        //         diveContainer = diveParent = diveObject = null;
-        //         col = null;
-        //         canDive = false;
-        //     }
-        // }
-
-
 
         if (col != null) {
             if (col.gameObject.tag == "EntryPoint") {

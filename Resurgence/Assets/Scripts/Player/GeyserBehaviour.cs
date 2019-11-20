@@ -39,7 +39,6 @@ public class GeyserBehaviour : MonoBehaviour
         centerPos = (startPos + finalPos) / 2f;
         _sprite.transform.position = centerPos;
         scale = new Vector3(1,1,1);
-        Debug.LogError(currentHeight);
         scale.y = Vector3.Distance(startPos, finalPos) / limit * 3f;
         // scale.y = Vector3.Distance(startPos, finalPos);
         _sprite.transform.localScale = scale;
@@ -52,7 +51,7 @@ public class GeyserBehaviour : MonoBehaviour
         Vector2 endPos = transform.position + direction; //Ending position.
  
         //camera shake
-        StartCoroutine(CameraManager.Instance.cameraShake(3f, (Time.time - startime)*speed));
+        // StartCoroutine(CameraManager.Instance.cameraShake(3f, (Time.time - startime)*speed));
 
         while (startPos != endPos && ((Time.time - startime)*speed) < 1f && transform.position.y < limit) { 
             state = "BuildUp";
@@ -67,9 +66,6 @@ public class GeyserBehaviour : MonoBehaviour
             yield return null;
         }
         state = "Peaked";
-        // Vector2 newPos = this.transform.parent.position;
-        // Debug.LogError(this.transform.GetChild(0).name);
-        // this.transform.GetChild(0).position = newPos;
         animator.SetFloat("Duration", -0.1f);
         yield return new WaitForSeconds(5);
         animator.SetFloat("Duration", Time.time - startime);

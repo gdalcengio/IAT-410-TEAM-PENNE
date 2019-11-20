@@ -64,7 +64,6 @@ public class WaterPlayerController : MonoBehaviour
                   || (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsObject));
 
         moveInput = Input.GetAxis("T_Horizontal"); //1 or -1
-        // Debug.Log(moveInput);
 
         //movement
         if (canMove) {
