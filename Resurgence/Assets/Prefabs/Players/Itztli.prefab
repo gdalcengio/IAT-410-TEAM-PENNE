@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adfac78cdaaa30a499e8cc0619c04bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 2206338295468078885}
   pc: {fileID: -7791708141885439010}
   canTranspose: 1
   canFissure: 1

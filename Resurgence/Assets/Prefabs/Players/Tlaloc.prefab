@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0609c34ab4bb4163a5cd30886537d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 1285535187314813396}
   canDive: 0
   canGeyser: 0
 --- !u!58 &7809349449826664083

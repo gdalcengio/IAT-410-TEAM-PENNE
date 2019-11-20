@@ -223,7 +223,7 @@ BuoyancyEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_SurfaceLevel: 2.75
+  m_SurfaceLevel: 0
   m_Density: 0
   m_LinearDrag: 8
   m_AngularDrag: 5
@@ -1006,6 +1006,16 @@ PrefabInstance:
       propertyPath: m_ShapePath.Array.data[32].y
       value: -0.5025822
       objectReference: {fileID: 0}
+    - target: {fileID: 4168441380055795381, guid: bbbd1746cef4cee42b28abcb26b06b0b,
+        type: 3}
+      propertyPath: itzCan
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168441380055795381, guid: bbbd1746cef4cee42b28abcb26b06b0b,
+        type: 3}
+      propertyPath: tlaCan
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4168441380055795380, guid: bbbd1746cef4cee42b28abcb26b06b0b,
         type: 3}
       propertyPath: m_Offset.x
@@ -1025,16 +1035,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 4.5214486
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168441380055795381, guid: bbbd1746cef4cee42b28abcb26b06b0b,
-        type: 3}
-      propertyPath: itzCan
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168441380055795381, guid: bbbd1746cef4cee42b28abcb26b06b0b,
-        type: 3}
-      propertyPath: tlaCan
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbbd1746cef4cee42b28abcb26b06b0b, type: 3}

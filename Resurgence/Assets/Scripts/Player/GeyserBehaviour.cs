@@ -39,7 +39,7 @@ public class GeyserBehaviour : MonoBehaviour
         centerPos = (startPos + finalPos) / 2f;
         _sprite.transform.position = centerPos;
         scale = new Vector3(1,1,1);
-        scale.y = Vector3.Distance(startPos, finalPos) / limit * 3f;
+        scale.y = Vector3.Distance(startPos, finalPos) / limit;
         // scale.y = Vector3.Distance(startPos, finalPos);
         _sprite.transform.localScale = scale;
     }
@@ -60,7 +60,7 @@ public class GeyserBehaviour : MonoBehaviour
             float move = Mathf.Lerp(0,1, (Time.time - startime)*speed);
  
             transform.position += direction*move;
-            Stretch(child.gameObject, saveParentPos, new Vector3(startPos.x, transform.position.y, 1f));
+            Stretch(child.gameObject, this.transform.parent.position, new Vector3(startPos.x, this.transform.position.y, 1f));
             animator.SetFloat("Point", transform.position.y);
  
             yield return null;
