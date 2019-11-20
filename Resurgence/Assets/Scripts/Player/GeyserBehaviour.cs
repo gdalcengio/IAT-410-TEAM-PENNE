@@ -20,22 +20,23 @@ public class GeyserBehaviour : MonoBehaviour
     void Start()
     {
         startPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-        // child = this.transform.GetChild(0);
+        child = this.transform.GetChild(0);
     }
 
     void Update() {
         currentHeight = transform.position.y;
+
+        height = child.gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
     public void Stretch(GameObject _sprite, Vector3 startPos, Vector3 finalPos)
     {
-        height = _sprite.GetComponent<SpriteRenderer>().bounds.size.y;
         finalPos = new Vector3(_sprite.transform.position.x, currentHeight, _sprite.transform.position.z);
-        centerPos = (this.transform.position + finalPos) / 2f;
+        centerPos = (_sprite.transform.position + finalPos) / 2f;
         _sprite.transform.position = centerPos;
         scale = new Vector3(1,1,1);
         Debug.LogError(height);
-        scale.y = Vector3.Distance(startPos, finalPos) / limit;
+        scale.y = Vector3.Distance(startPos, finalPos) / height;
         // scale.y = Vector3.Distance(startPos, finalPos);
         _sprite.transform.localScale = scale;
     }
@@ -51,6 +52,7 @@ public class GeyserBehaviour : MonoBehaviour
 
         while (startPos != endPos && ((Time.time - startime)*speed) < 1f && transform.position.y < limit) { 
             state = "BuildUp";
+            animator.SetFloat("Duration", -0.1f);
 
             float move = Mathf.Lerp(0,1, (Time.time - startime)*speed);
  
@@ -61,6 +63,9 @@ public class GeyserBehaviour : MonoBehaviour
             yield return null;
         }
         state = "Peaked";
+        Vector2 newPos = this.transform.parent.position;
+        // Debug.LogError(this.transform.GetChild(0).name);
+        // this.transform.GetChild(0).position = newPos;
         animator.SetFloat("Duration", -0.1f);
         yield return new WaitForSeconds(5);
         animator.SetFloat("Duration", Time.time - startime);
