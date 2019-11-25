@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get { return _instance; } }
 
     public GameObject pauseMenu;
+    public bool paused = false;
 
 
     private void Awake()
@@ -34,12 +35,14 @@ public class UIManager : MonoBehaviour
 		//uses the p button to pause and unpause the game
 		if(Input.GetButtonDown("pause") && SceneManager.GetActiveScene().buildIndex != 0)
 		{
-			if(Time.timeScale == 1)
+            if(!paused && Time.timeScale == 1)
 			{
+                paused = true;
 				Time.timeScale = 0;
 				showPaused();
 			} else if (Time.timeScale == 0){
-				Time.timeScale = 1;
+                paused = false;
+                Time.timeScale = 1;
 				hidePaused();
 			}
 		}
