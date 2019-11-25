@@ -68,7 +68,15 @@ public class PlayerController : MonoBehaviour
         isGrounded = (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround))
                   || (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsObject));
 
-        moveInput = Input.GetAxis("I_Horizontal");
+        // moveInput = Input.GetAxis("I_joystick");
+        // Debug.LogError(Input.GetAxis("I_joystick"));
+
+        if (Input.GetAxis("I_joystick") < -0.3 || Input.GetAxis("I_joystick") > 0.3) {
+            moveInput = Input.GetAxis("I_joystick");
+            Debug.LogError(Input.GetAxis("I_joystick"));
+        } else {
+            moveInput = Input.GetAxis("I_Horizontal");
+        }
 // #if UNITY_EDITOR
 //         moveInput = Input.GetAxis("Horizontal");
 // #endif
@@ -89,7 +97,8 @@ public class PlayerController : MonoBehaviour
 
     //just for jumping for now
     void Update() {
-        animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("I_Horizontal")*34f));
+        // animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("I_Horizontal")*34f));
+        animator.SetFloat("Speed", Mathf.Abs(moveInput * 34f));
 
         prevY = currY;
         currY = this.transform.position.y;

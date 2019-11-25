@@ -63,7 +63,22 @@ public class WaterPlayerController : MonoBehaviour
         isGrounded = (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround))
                   || (Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsObject));
 
-        moveInput = Input.GetAxis("T_Horizontal"); //1 or -1
+        // if (Input.GetAxis("T_joystick") < 0.5 && Input.GetAxis("T_joystick") > -0.5) {
+        //     moveInput = Input.GetAxis("T_joystick");
+        // } else {
+        //     moveInput = (float)Input.GetAxis("T_Horizontal");
+        // }
+
+        if (Input.GetAxis("T_joystick") < -0.3 || Input.GetAxis("T_joystick") > 0.3)
+        {
+            moveInput = Input.GetAxis("T_joystick");
+            Debug.LogError(Input.GetAxis("T_joystick"));
+        }
+        else
+        {
+            moveInput = Input.GetAxis("T_Horizontal");
+        }
+        // moveInput = Input.GetAxis("T_Horizontal"); //1 or -1
 
         //movement
         if (canMove) {
@@ -85,7 +100,8 @@ public class WaterPlayerController : MonoBehaviour
     //just for jumping for now
     void Update() {
         // animations
-        animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("T_Horizontal")*34f));
+        // animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("T_Horizontal")*34f));
+        animator.SetFloat("Speed", Mathf.Abs(moveInput * 34f));
 
         prevY = currY;
         currY = this.transform.position.y;
