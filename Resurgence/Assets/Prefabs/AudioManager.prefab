@@ -76,7 +76,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Slap
     clip: {fileID: 8300000, guid: 88868f92a89944127934c5bff3ac2684, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1.75
     loop: 0
     source: {fileID: 0}
@@ -112,6 +112,18 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BossLaser
     clip: {fileID: 8300000, guid: befcf41827f71415fa8efced8007dda0, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 0
+    source: {fileID: 0}
+  - name: BG
+    clip: {fileID: 8300000, guid: 3560ed330d81f4e469b7133ddc61bfee, type: 3}
+    volume: 0.25
+    pitch: 1.75
+    loop: 1
+    source: {fileID: 0}
+  - name: Oh!
+    clip: {fileID: 8300000, guid: 85c508fa4340247688f07f4cca659e17, type: 3}
     volume: 1
     pitch: 1.75
     loop: 0

@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2908,6 +2908,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[0].loop
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5937743628088558589, guid: d9c3ded83c7e34411a5cb269be3a8b73,
+        type: 3}
+      propertyPath: sounds.Array.data[13].name
+      value: Oh!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9c3ded83c7e34411a5cb269be3a8b73, type: 3}

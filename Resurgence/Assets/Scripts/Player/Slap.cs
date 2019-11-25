@@ -19,7 +19,6 @@ public class Slap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug.LogError(slapTarget.name);
         float itSlap = Input.GetAxis("iSlap");
         float tlSlap = Input.GetAxis("tSlap");
         // if (Input.GetButtonDown("iSlap") || Input.GetButtonDown("tSlap")|| Input.GetKeyDown(KeyCode.U)) {
@@ -36,11 +35,10 @@ public class Slap : MonoBehaviour
     {
         if (col != null && col.gameObject.name == slapTarget.name)
         {
-            Debug.LogError(col.gameObject.name);
             float itSlap = Input.GetAxis("iSlap");
             float tlSlap = Input.GetAxis("tSlap");
-            if ((itSlap == 1 && slapTarget.name == "Tlaloc")|| (tlSlap == 1 && slapTarget.name == "Itztli")) {
-                FindObjectOfType<AudioManager>().Play("Slap");
+            if ((itSlap == 1 && slapTarget.name == "Tlaloc")|| ((tlSlap == 1  || Input.GetKeyDown(KeyCode.I)) && slapTarget.name == "Itztli")) {
+                FindObjectOfType<AudioManager>().PlayCoroutine();
                 StartCoroutine(CameraManager.Instance.cameraShake(.15f, .1f));
                 // slap to right
                 if (this.transform.position.x < slapTarget.transform.position.x) slapTarget.GetComponent<Rigidbody2D>().AddForce(transform.right * thrust, ForceMode2D.Impulse);

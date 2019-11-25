@@ -219,7 +219,7 @@ public class WaterAbilities : MonoBehaviour
         // increase density/buoyancy
         buoy.density = 3f;
 
-        geyserCoroutine = buoy.GetComponent<GeyserBehaviour>().BuildGeyser(targetPosition, 0.005f);
+        geyserCoroutine = buoy.GetComponent<GeyserBehaviour>().BuildGeyser(targetPosition, 0.025f);
         StartCoroutine(geyserCoroutine);
     }
 

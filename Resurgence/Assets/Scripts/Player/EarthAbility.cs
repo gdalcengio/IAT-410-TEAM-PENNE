@@ -155,24 +155,6 @@ public class EarthAbility : MonoBehaviour
         abilityLock = false;
     }
 
-
-
-
-
-
-
-
-
-
-
-    // private IEnumerator chargeTranspose(Collider2D col) {
-    //     while (pc.abilityState == PlayerController.State.Busy) {
-    //         // if (charge < maxCharge) charge += 20;           //increases charge meter
-    //         //if (Input.GetButtonUp("Transpose") || Input.GetKeyUp("u")) pc.abilityState = PlayerController.State.Ready;
-    //         yield return null;
-    //     }
-
-        // pushForce = (Input.GetAxis("I_Up") > 0) ? new Vector2(charge, charge) : new Vector2(charge * 1.2f, 0);
     public void transpose() {
         if (transposeObj== null) return;
         FindObjectOfType<AudioManager>().Play("Transpose-Short");
@@ -191,14 +173,6 @@ public class EarthAbility : MonoBehaviour
         transposeObj = null;
     }
 
-        // pc.unfreeze();
-        // pc.canMove = true;
-        //Debug.LogError(pushForce);
-
-    //     IEnumerator transposeCooldown = timer(0, 3);
-    //     StartCoroutine(transposeCooldown);        //done transpose ability, now it's on cooldown if need be
-    // }
-
     /*fissure ability */
     private IEnumerator fissure(Collider2D col1, Collider2D col2) {
         //camera shake
@@ -208,7 +182,6 @@ public class EarthAbility : MonoBehaviour
         bool open;
 
         open = (col1.transform.localPosition.x == 0) ? true : false;
-        // Debug.LogError(col1.transform.localPosition.x);
 
         while (elapsed < 3) { 
             float moveX = Mathf.Lerp(0, 3f, Time.deltaTime);

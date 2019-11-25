@@ -16,14 +16,12 @@ public class GeyserBehaviour : MonoBehaviour
     Vector3 scale;
     public Animator animator;
     public Transform child;
-    public Vector3 saveParentPos;
     public float colliderBounds;
 
     void Start()
     {
         startPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
         child = this.transform.GetChild(0);
-        saveParentPos = this.transform.parent.position;
         colliderBounds = this.GetComponent<BoxCollider2D>().size.y;
     }
 

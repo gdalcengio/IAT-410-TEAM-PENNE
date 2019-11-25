@@ -1,6 +1,8 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
@@ -21,9 +23,14 @@ public class AudioManager : MonoBehaviour
             s.source.clip = s.clip;
 
             s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
+            s.source.pitch = s.pitch = 1f;
             s.source.loop = s.loop;
         }
+    }
+
+    void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("BG");
     }
 
     public void Play(string name)
@@ -31,5 +38,28 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null) return;
         s.source.Play();
+    }
+
+    public bool IsPlaying(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if(s.source.isPlaying) return true;
+
+        return false;
+    }
+
+    public IEnumerator PlaySlapSounds(string name, string name2)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Play();
+        yield return new WaitForSeconds(s.clip.length);
+        s = Array.Find(sounds, sound => sound.name == name2);
+        s.source.Play();
+    }
+
+    public void PlayCoroutine()
+    {
+        StartCoroutine(PlaySlapSounds("Slap","Oh!"));
     }
 }
