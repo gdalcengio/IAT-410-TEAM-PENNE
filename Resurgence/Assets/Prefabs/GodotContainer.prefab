@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 8724288265548394527}
   - component: {fileID: 8724288265548394526}
   - component: {fileID: 8724288265548394521}
+  - component: {fileID: 5538115709796409199}
   m_Layer: 0
   m_Name: Sight
   m_TagString: Godot
@@ -197,12 +198,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8724288265548394524}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91dc5fbd3d8274e9983b8b8fe5f36870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectInRange: 0
+--- !u!114 &5538115709796409199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8724288265548394524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0b7903d13c743219626b50f5819e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldOfViewAngle: 110
+  playerInSight: 0
+  personalLastSighting: {x: 0, y: 0, z: 0}
 --- !u!1 &8724288265935816079
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +439,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8724288266192940761}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecba709a84e814081ba7ba77f388e0cd, type: 3}
   m_Name: 
