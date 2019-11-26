@@ -7,17 +7,20 @@ public class EnemyVision : MonoBehaviour
     public float fieldOfViewAngle = 110f;
     public bool playerInSight;
     public Vector3 personalLastSighting;
+    public GameObject seenPlayer;
 
     // private NavMeshAgent nav;
     private CircleCollider2D col;
     private Animator anim;
-    private LastPlayerSighting lastPlayerSighting;
+    private Vector3 lastPlayerSighting;
     private GameObject Itztli, Tlaloc;
     private Animator itztliAnim, tlalocAnim;
     private Vector3 previousSighting;
 
     void Awake()
     {
+        Itztli = GameObject.Find("Itztli");
+        Tlaloc = GameObject.Find("Tlaloc");
         // nav = GetComponent<NavMeshAgent>();
         col = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
@@ -27,22 +30,25 @@ public class EnemyVision : MonoBehaviour
         // playerHealth
         // hash
 
-        personalLastSighting = lastPlayerSighting.resetPosition;
-        previousSighting = lastPlayerSighting.resetPosition;
+        personalLastSighting = lastPlayerSighting = new Vector3(0f,0f,0f);
+        previousSighting = lastPlayerSighting = new Vector3(0f,0f,0f);
     }
 
     void Update()
     {
-        if (lastPlayerSighting.position != previousSighting) personalLastSighting = lastPlayerSighting.position;
+        if (lastPlayerSighting != previousSighting) personalLastSighting = lastPlayerSighting;
 
-        previousSighting = lastPlayerSighting.position;
+        previousSighting = lastPlayerSighting;
 
         // if (playerHealth)
 
-
+        if (playerInSight) {
+            if (GetComponentInParent<EnemyBehaviour>().getState() == "patrol") StopCoroutine("Patrol");
+            if (GetComponentInParent<EnemyBehaviour>().getState() != "enraged") GetComponentInParent<EnemyBehaviour>().ChaseTarget(seenPlayer.transform);
+        }
     }
 
-    void OnTriggerStay(CircleCollider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject == Itztli || other.gameObject == Tlaloc) {
             playerInSight = false;
@@ -50,19 +56,24 @@ public class EnemyVision : MonoBehaviour
             Vector3 direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
 
-            if (angle < fieldOfViewAngle*0.5f) {
+            if (angle < fieldOfViewAngle) {
                 RaycastHit hit;
 
                 if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius)) {
                     playerInSight = true;
-                    lastPlayerSighting.position = other.transform.position;
+                    seenPlayer = other.gameObject;
+                    lastPlayerSighting = other.transform.position;
+                    Debug.LogError("angry");
                 }
             }
         }
     }
 
-    void OnTriggerExit(CircleCollider2D other) 
+    void OnTriggerExit2D(Collider2D other) 
     {
-        if (other.gameObject == Itztli || other.gameObject == Tlaloc) playerInSight = false;
+        if (other.gameObject == Itztli || other.gameObject == Tlaloc) {
+            playerInSight = false;
+            seenPlayer = null;
+        }
     }
 }
