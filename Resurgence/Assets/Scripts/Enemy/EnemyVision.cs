@@ -10,19 +10,21 @@ public class EnemyVision : MonoBehaviour
     public GameObject seenPlayer;
 
     // private NavMeshAgent nav;
-    private CircleCollider2D col;
+    public CircleCollider2D col;
     private Animator anim;
     private Vector3 lastPlayerSighting;
     private GameObject Itztli, Tlaloc;
     private Animator itztliAnim, tlalocAnim;
     private Vector3 previousSighting;
+    private float currX, prevX;
+    private Vector3 facing;
 
     void Awake()
     {
         Itztli = GameObject.Find("Itztli");
         Tlaloc = GameObject.Find("Tlaloc");
         // nav = GetComponent<NavMeshAgent>();
-        col = GetComponent<CircleCollider2D>();
+        col = this.GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
         // lastPlayerSighting= GameObject.Find
         itztliAnim = Itztli.GetComponent<Animator>();
@@ -32,6 +34,9 @@ public class EnemyVision : MonoBehaviour
 
         personalLastSighting = lastPlayerSighting = new Vector3(0f,0f,0f);
         previousSighting = lastPlayerSighting = new Vector3(0f,0f,0f);
+
+        currX = this.transform.position.x;
+        facing = this.transform.right;
     }
 
     void Update()
@@ -41,6 +46,17 @@ public class EnemyVision : MonoBehaviour
         previousSighting = lastPlayerSighting;
 
         // if (playerHealth)
+
+        prevX = currX;
+        currX = this.transform.position.x;
+
+        if (facing == this.transform.right) {
+            if (currX >= prevX) facing = this.transform.right;
+            else facing = this.transform.right*-1;
+        } else if (facing == this.transform.right*-1) {
+            if (currX <= prevX) facing = this.transform.right*-1;
+            else facing = this.transform.right;
+        }
 
         if (playerInSight) {
             if (GetComponentInParent<EnemyBehaviour>().getState() == "patrol") StopCoroutine("Patrol");
@@ -55,16 +71,24 @@ public class EnemyVision : MonoBehaviour
 
             Vector3 direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
-
-            if (angle < fieldOfViewAngle) {
-                RaycastHit hit;
-
-                if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius)) {
+            // float angle = Vector2.Angle(this.transform.position, other.transform.position);
+// Debug.LogError(Vector3.Angle(direction, other.transform.position - this.transform.position));
+            // if (angle < fieldOfViewAngle) {
+            if (Vector3.Angle(facing, other.transform.position - this.transform.position) < 22.5) {
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, other.transform.position - transform.position, Vector2.Distance(transform.position, other.transform.position));
+                Debug.DrawRay(transform.position, other.transform.position - transform.position, Color.blue);
+                if (hits[0].transform.gameObject == other.gameObject) {
+                    Debug.LogError("got here");
                     playerInSight = true;
                     seenPlayer = other.gameObject;
                     lastPlayerSighting = other.transform.position;
-                    Debug.LogError("angry");
                 }
+                // if (Physics.Raycast(facing, direction.normalized, out hit, col.radius)) {
+                //     playerInSight = true;
+                //     seenPlayer = other.gameObject;
+                //     lastPlayerSighting = other.transform.position;
+                    
+                // }
             }
         }
     }

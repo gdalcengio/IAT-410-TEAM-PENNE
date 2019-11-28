@@ -217,7 +217,7 @@ public class WaterAbilities : MonoBehaviour
         float limit = buoy.GetComponent<GeyserBehaviour>().limit;
 
         // increase density/buoyancy
-        buoy.density = 3f;
+        buoy.density = 5f;
 
         geyserCoroutine = buoy.GetComponent<GeyserBehaviour>().BuildGeyser(targetPosition, 0.025f);
         StartCoroutine(geyserCoroutine);
