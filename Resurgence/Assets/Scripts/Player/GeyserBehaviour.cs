@@ -18,11 +18,19 @@ public class GeyserBehaviour : MonoBehaviour
     public Transform child;
     public float colliderBounds;
 
+    // DO NOT TOUCH - HAD TO HARDCODE
+    public bool match = true;
+    float stretchLimit;
+
     void Start()
     {
         startPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
         child = this.transform.GetChild(0);
         colliderBounds = this.GetComponent<BoxCollider2D>().size.y;
+
+        // DO NOT TOUCH - HAD TO HARDCODE
+        if (match) stretchLimit = limit;
+        else stretchLimit = (finalPos.y + startPos.y)/2;
     }
 
     void Update() {
@@ -37,8 +45,7 @@ public class GeyserBehaviour : MonoBehaviour
         centerPos = (startPos + finalPos) / 2f;
         _sprite.transform.position = centerPos;
         scale = new Vector3(1,1,1);
-        scale.y = Vector3.Distance(startPos, finalPos) / limit;
-        // scale.y = Vector3.Distance(startPos, finalPos);
+        scale.y = Vector3.Distance(startPos, finalPos) / stretchLimit;
         _sprite.transform.localScale = scale;
     }
 
