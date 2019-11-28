@@ -19,6 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
     public Animator animator;
     public float deathDelay = 0f;
     bool dontLoop = true;
+    private Vector3 facing;
 
     void Start()
     {
@@ -26,11 +27,21 @@ public class EnemyBehaviour : MonoBehaviour
         speed = GetComponent<EnemyMovement>().speed;
         savedSpeed = speed;
         patrolSprite = GetComponent<SpriteRenderer>().sprite;
+
+        facing = this.transform.right;
     }
 
     void Update() 
     {
-        // if (state == "enraged") Debug.LogError(state);
+        // if (this.transform.localScale.x < 0) {
+        //     if (currX < prevX) facing = this.transform.right*-1;
+        // } else if (this.transform.localScale.x > 0) {
+        //     if (currX > prevX) facing = this.transform.right*-1;
+        // }
+
+        // if (currX > prevX && facing.x < 0) this.transform.right *= -1;
+        // else if (currX < prevX && facing.x > 0) this.transform.right *= -1;
+
         if (squishLeft && squishRight) health--;
         death();
     }
@@ -61,18 +72,18 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void ChaseTarget(Transform target)
     {
-        animator.SetBool("Enraged", true);
+        animator.SetBool("Engaged", true);
         state = "enraged";
-        GetComponent<SpriteRenderer>().sprite = enragedSprite;
+        // GetComponent<SpriteRenderer>().sprite = enragedSprite;
         // StartCoroutine(Delay(1));
         StartCoroutine(Chase(target));
     }
 
     public void StopChase(Transform target)
     {
-        animator.SetBool("Enraged", false);
+        animator.SetBool("Engaged", false);
         state = "patrol";
-        GetComponent<SpriteRenderer>().sprite = patrolSprite;
+        // GetComponent<SpriteRenderer>().sprite = patrolSprite;
         // StartCoroutine(Delay(1));
         StopCoroutine(Chase(target));
         GetComponent<EnemyMovement>().StartCoroutine("Patrol");
@@ -140,7 +151,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (!blocked) {
                 prevX = GetComponent<EnemyMovement>().getPrevX();
                 currX = GetComponent<EnemyMovement>().getCurrX();
-                if (health > 0) this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(target.position.x, transform.position.y), (speed*Time.deltaTime)/5);
+                if (health > 0) this.transform.position = Vector2.MoveTowards(this.transform.position, new Vector2(target.position.x, transform.position.y), (speed*Time.deltaTime)/0.5f);
                 if (target.position.x > this.transform.position.x && prevX > currX) {
                     Vector2 newScale = this.transform.localScale;
                     newScale.x *= -1;

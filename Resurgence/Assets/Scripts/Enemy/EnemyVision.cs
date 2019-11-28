@@ -18,6 +18,7 @@ public class EnemyVision : MonoBehaviour
     private Vector3 previousSighting;
     private float currX, prevX;
     private Vector3 facing;
+    GameObject target;
 
     void Awake()
     {
@@ -64,6 +65,17 @@ public class EnemyVision : MonoBehaviour
         }
     }
 
+    GameObject DefineTarget(RaycastHit2D[] hits)
+    {
+        foreach (RaycastHit2D hit in hits) {
+            if (hit.transform.name == "Godot") {
+                continue;
+            }
+            if (hit.transform.name != "Godot") return hit.transform.gameObject;
+        }
+        return hits[0].transform.gameObject;
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject == Itztli || other.gameObject == Tlaloc) {
@@ -71,24 +83,16 @@ public class EnemyVision : MonoBehaviour
 
             Vector3 direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
-            // float angle = Vector2.Angle(this.transform.position, other.transform.position);
-// Debug.LogError(Vector3.Angle(direction, other.transform.position - this.transform.position));
-            // if (angle < fieldOfViewAngle) {
+
             if (Vector3.Angle(facing, other.transform.position - this.transform.position) < 22.5) {
                 RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, other.transform.position - transform.position, Vector2.Distance(transform.position, other.transform.position));
                 Debug.DrawRay(transform.position, other.transform.position - transform.position, Color.blue);
-                if (hits[0].transform.gameObject == other.gameObject) {
-                    Debug.LogError("got here");
+                target = DefineTarget(hits);
+                if (target == other.gameObject) {
                     playerInSight = true;
                     seenPlayer = other.gameObject;
                     lastPlayerSighting = other.transform.position;
                 }
-                // if (Physics.Raycast(facing, direction.normalized, out hit, col.radius)) {
-                //     playerInSight = true;
-                //     seenPlayer = other.gameObject;
-                //     lastPlayerSighting = other.transform.position;
-                    
-                // }
             }
         }
     }
@@ -97,6 +101,11 @@ public class EnemyVision : MonoBehaviour
     {
         if (other.gameObject == Itztli || other.gameObject == Tlaloc) {
             playerInSight = false;
+        }
+
+        if (GetComponentInParent<EnemyBehaviour>().getState() == "enraged") {
+            GetComponentInParent<EnemyBehaviour>().StopCoroutine("Chase");
+            GetComponentInParent<EnemyBehaviour>().StopChase(seenPlayer.transform);
             seenPlayer = null;
         }
     }
