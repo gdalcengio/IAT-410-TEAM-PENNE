@@ -33,14 +33,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Update() 
     {
-        // if (this.transform.localScale.x < 0) {
-        //     if (currX < prevX) facing = this.transform.right*-1;
-        // } else if (this.transform.localScale.x > 0) {
-        //     if (currX > prevX) facing = this.transform.right*-1;
-        // }
-
-        // if (currX > prevX && facing.x < 0) this.transform.right *= -1;
-        // else if (currX < prevX && facing.x > 0) this.transform.right *= -1;
+        // if godot is ever moon walking, flip the sprite
+        if (currX > prevX && this.transform.localScale.x < 0) {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        } else if (currX < prevX && this.transform.localScale.x > 0) {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
 
         if (squishLeft && squishRight) health--;
         death();
