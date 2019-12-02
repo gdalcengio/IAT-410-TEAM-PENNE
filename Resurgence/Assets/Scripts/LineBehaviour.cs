@@ -9,11 +9,19 @@ public class LineBehaviour : MonoBehaviour
 
     private bool connected = true;
 
+    Color c1 = new Color(255, 255, 255, 0);
+    Color c2 = new Color(255, 255, 255, 0);
+
     // Start is called before the first frame update
     void Start()
     {
         line = GetComponent<LineRenderer>();
         firstEndPoint = line.GetPosition(1);
+    }
+
+    void Update()
+    {
+        line.SetColors(c1, c2);
     }
 
     public void setPosition(int index, Vector2 position) {
