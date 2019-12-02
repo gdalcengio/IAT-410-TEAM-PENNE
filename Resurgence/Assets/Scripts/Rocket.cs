@@ -44,7 +44,7 @@ public class Rocket : MonoBehaviour
             GameManager.Instance.ResetScene();
         }
 
-        animator.SetBool("Explode", true);
+        animator.SetBool("Explosion", true);
         bool dontLoop = true;
         if (dontLoop) {
             FindObjectOfType<AudioManager>().Play("GodotDeath");
