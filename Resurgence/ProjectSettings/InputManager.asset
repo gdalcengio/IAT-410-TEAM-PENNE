@@ -613,3 +613,19 @@ InputManager:
     type: 2
     axis: 0
     joyNum: 2
+  - serializedVersion: 3
+    m_Name: optionsH
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.13
+    sensitivity: 1
+    snap: 1
+    invert: 0
+    type: 2
+    axis: 7
+    joyNum: 0
