@@ -17,13 +17,13 @@ public class BossBattle : MonoBehaviour
         state = State.rockets;
 
         transform.position += Vector3.right * 15;
-        animator.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     public IEnumerator bossEnter() {
         float elapsed = 0f;
 
-        while (elapsed > -10) {
+        while (elapsed > -7) {
             float moveX = Mathf.Lerp(0, 2f, Time.deltaTime);
             transform.position -= Vector3.right * moveX;
 
@@ -98,7 +98,7 @@ public class BossBattle : MonoBehaviour
             if (col.gameObject.tag == "Object") col.GetComponent<Animator>().SetBool("Boom", true);
             //starts at three
             // Destroy(col.gameObject);
-            col.GetComponent<Animator>().SetBool("Explosion", true);
+            if (col.gameObject.tag == "Rocket") col.GetComponent<Animator>().SetBool("Explosion", true);
             health--;
             
             switch(health) {

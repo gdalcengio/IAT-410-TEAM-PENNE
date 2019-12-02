@@ -12,7 +12,7 @@ public class SwitchBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (GameObject.FindWithTag("Rock") != null) rockPresent = true;
+        if (GameObject.FindWithTag("Object") != null) rockPresent = true;
         else rockPresent = false;
     }
 
