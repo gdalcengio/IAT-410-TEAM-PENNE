@@ -41,8 +41,9 @@ public class Rocket : MonoBehaviour
     {
         active = false;
 
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         animator.SetBool("Explosion", true);
-        speed = 2.5f;
+        // speed = 2.5f;
 
         Debug.Log("test");
 
