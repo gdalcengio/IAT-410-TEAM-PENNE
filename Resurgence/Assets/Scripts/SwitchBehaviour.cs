@@ -6,6 +6,9 @@ public class SwitchBehaviour : MonoBehaviour
 {
     private bool state = false;
 
+    public bool rockSpawn = false;
+    public GameObject rockPrefab;
+
     public bool getState()
     {
         return state;
@@ -18,6 +21,10 @@ public class SwitchBehaviour : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+
+        if (rockSpawn) {
+            Instantiate(rockPrefab, new Vector2(-7.7f, 28.5f), Quaternion.identity);
+        }
 
         if (state) {
             state = false;
