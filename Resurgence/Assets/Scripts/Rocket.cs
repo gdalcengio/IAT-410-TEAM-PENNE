@@ -40,11 +40,12 @@ public class Rocket : MonoBehaviour
         active = false;
 
         Debug.Log("test");
-        if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc") {
+        if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc" && animator.GetBool("Explosion") == false) {
             GameManager.Instance.ResetScene();
         }
 
         animator.SetBool("Explosion", true);
+        speed = 2.5f;
         bool dontLoop = true;
         if (dontLoop) {
             FindObjectOfType<AudioManager>().Play("GodotDeath");
