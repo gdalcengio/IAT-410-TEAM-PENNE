@@ -440,11 +440,6 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 999
       objectReference: {fileID: 0}
-    - target: {fileID: 8301464186031210487, guid: fea7a581299039441b3e3ce19fa8a218,
-        type: 3}
-      propertyPath: m_CullTransparentMesh
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8301464186031210488, guid: fea7a581299039441b3e3ce19fa8a218,
         type: 3}
       propertyPath: m_Color.r
@@ -471,6 +466,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 58bf090ce29f6a04a9762d56381bc581,
         type: 3}
+    - target: {fileID: 8301464186031210487, guid: fea7a581299039441b3e3ce19fa8a218,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fea7a581299039441b3e3ce19fa8a218, type: 3}
 --- !u!1 &981949938 stripped
@@ -1013,6 +1013,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080546526145254769, guid: 2e8a8e9bc0fb8354da684a6111ab18e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1080546526145254770, guid: 2e8a8e9bc0fb8354da684a6111ab18e9,
         type: 3}

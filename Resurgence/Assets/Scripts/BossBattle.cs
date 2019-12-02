@@ -9,6 +9,7 @@ public class BossBattle : MonoBehaviour
     public Laser laserScript;
     public State state;
     private int health;
+    Animator animator;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class BossBattle : MonoBehaviour
         state = State.rockets;
 
         transform.position += Vector3.right * 15;
+        animator.GetComponent<Animator>();
     }
 
     public IEnumerator bossEnter() {
@@ -86,26 +88,32 @@ public class BossBattle : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
-        // if (col.gameObject.tag == "") {
-        //     GameManager.Instance.ResetScene();
-        //     return;
-        // }
-        if (col.gameObject.tag == "Object") {
+        if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc") {
+            GameManager.Instance.ResetScene();
+            return;
+        }
+
+        if (col.gameObject.tag == "Object" || col.gameObject.tag == "Rocket") {
+            animator.SetTrigger("Hurt");
             //starts at three
-            Destroy(col.gameObject);
+            // Destroy(col.gameObject);
+            col.GetComponent<Animator>().SetBool("Explosion", true);
             health--;
             
             switch(health) {
                 case 2:
+                    animator.SetTrigger("Hurt");
                     StartCoroutine(laserScript.ready(1f));
                     Debug.Log("two health");
                     break;
                 case 1:
                     //enraged
+                    animator.SetTrigger("Hurt");
                     Debug.Log("one health");
                     break;
                 case 0:
                     //dying
+                    animator.SetInteger("Health", 0);
                     Debug.Log("dead");
                     StartCoroutine(deathSequence());
 
@@ -114,7 +122,6 @@ public class BossBattle : MonoBehaviour
                     break;
             }
         }
-
     }
 
     public void startEntering() {
