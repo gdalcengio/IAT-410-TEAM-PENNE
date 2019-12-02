@@ -33,6 +33,8 @@ public class Rocket : MonoBehaviour
             rb.angularVelocity = -rotateMag * rotateSpeed;
             rb.velocity = transform.up * speed;
         }
+
+        Debug.LogError(animator.GetBool("Explosion"));
     }
 
     void OnTriggerEnter2D(Collider2D col)

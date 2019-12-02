@@ -25,9 +25,17 @@ public class HurtBoss : StateMachineBehaviour
     // OnStateMove is called right after Animator.OnAnimatorMove()
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        bool dontDouble = true;
        // Implement code that processes and affects root motion
-       if (animator.GetInteger("Health") == 3) animator.SetInteger("Health", 2);
-       if (animator.GetInteger("Health") == 2) animator.SetInteger("Health", 1);
+       if (animator.GetInteger("Health") == 3 && dontDouble) {
+           animator.SetInteger("Health", 2);
+           dontDouble = false;
+       }
+
+       if (animator.GetInteger("Health") == 2 && dontDouble) {
+           animator.SetInteger("Health", 1);
+           dontDouble = false;
+       }
     }
 
     // OnStateIK is called right after Animator.OnAnimatorIK()
