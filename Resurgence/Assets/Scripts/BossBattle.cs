@@ -95,6 +95,7 @@ public class BossBattle : MonoBehaviour
 
         if (col.gameObject.tag == "Object" || col.gameObject.tag == "Rocket") {
             animator.SetTrigger("Hurt");
+            if (col.gameObject.tag == "Object") col.GetComponent<Animator>().SetBool("Boom", true);
             //starts at three
             // Destroy(col.gameObject);
             col.GetComponent<Animator>().SetBool("Explosion", true);
