@@ -8,6 +8,13 @@ public class SwitchBehaviour : MonoBehaviour
 
     public bool rockSpawn = false;
     public GameObject rockPrefab;
+    private bool rockPresent;
+
+    void Update()
+    {
+        if (GameObject.FindWithTag("Rock") != null) rockPresent = true;
+        else rockPresent = false;
+    }
 
     public bool getState()
     {
@@ -22,7 +29,7 @@ public class SwitchBehaviour : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
 
-        if (rockSpawn) {
+        if (rockSpawn && !rockPresent) {
             Instantiate(rockPrefab, new Vector2(-7.7f, 28.5f), Quaternion.identity);
         }
 
