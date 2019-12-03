@@ -144,4 +144,13 @@ public class WaterPlayerController : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Laser")
+        {
+            GameManager.Instance.ResetScene();
+            return;
+        }
+    }
+
 }

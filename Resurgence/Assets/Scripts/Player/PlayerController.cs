@@ -95,6 +95,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D col) {
+         if (col.gameObject.tag == "Laser") {
+            GameManager.Instance.ResetScene();
+            return;
+         }
+    }
+
     //just for jumping for now
     void Update() {
         // animator.SetFloat("Speed", Mathf.Abs(Input.GetAxis("I_Horizontal")*34f));

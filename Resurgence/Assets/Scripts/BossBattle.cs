@@ -88,7 +88,7 @@ public class BossBattle : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc" || col.gameObject.tag == "Laser") {
+        if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc") {
             GameManager.Instance.ResetScene();
             return;
         }
