@@ -17,26 +17,26 @@ public class HurtBoss : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        bool dontDouble = true;
+       bool dontDouble = true;
        // Implement code that processes and affects root motion
        if (animator.GetInteger("Health") == 3 && dontDouble) {
            animator.SetInteger("Health", 2);
            dontDouble = false;
        }
 
-       if (animator.GetInteger("Health") == 2 && dontDouble) {
+       else if (animator.GetInteger("Health") == 2 && dontDouble) {
            animator.SetInteger("Health", 1);
            dontDouble = false;
        }
     }
+
+    // OnStateMove is called right after Animator.OnAnimatorMove()
+    // override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+        
+    // }
 
     // OnStateIK is called right after Animator.OnAnimatorIK()
     //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

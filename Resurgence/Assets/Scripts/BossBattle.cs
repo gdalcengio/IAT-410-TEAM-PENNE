@@ -119,7 +119,7 @@ public class BossBattle : MonoBehaviour
                     //dying
                     animator.SetInteger("Health", 0);
                     Debug.Log("dead");
-                    StartCoroutine(deathSequence());
+                    // StartCoroutine(deathSequence());
 
                     break;
                 default:
