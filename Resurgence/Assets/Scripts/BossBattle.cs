@@ -96,7 +96,6 @@ public class BossBattle : MonoBehaviour
          
 
         if (col.gameObject.tag == "Object" || col.gameObject.tag == "Rocket") {
-            animator.SetTrigger("Hurt");
             col.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             if (col.gameObject.tag == "Object") col.GetComponent<Animator>().SetBool("Boom", true);
             //starts at three
