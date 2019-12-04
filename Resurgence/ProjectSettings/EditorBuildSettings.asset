@@ -30,11 +30,14 @@ EditorBuildSettings:
     path: Assets/Scenes/A_Level3.unity
     guid: 6766c0b7d3976ef41abb93803a94cbc9
   - enabled: 0
-    path: Assets/Scenes/CutScene2.unity
-    guid: 869ba6f65763944459ae256ee4aee326
-  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
     path: Assets/Scenes/Boss.unity
     guid: 7f3f744c98f55dc47a0cef386af2dad9
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 806bce932ddd4884bbd51f91d1ac42d5
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 3c3fc21d4cdeb0b4f9acc711549c6a2d,
       type: 2}

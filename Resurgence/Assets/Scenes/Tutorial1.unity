@@ -897,6 +897,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1080546526145254769, guid: 2e8a8e9bc0fb8354da684a6111ab18e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1080546526145254770, guid: 2e8a8e9bc0fb8354da684a6111ab18e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1680,6 +1685,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024243243054239217, guid: b2ae87f04a60c4dd88dd3520e9692d62,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024243243054239217, guid: b2ae87f04a60c4dd88dd3520e9692d62,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961931054402555780, guid: b2ae87f04a60c4dd88dd3520e9692d62,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961931054402555780, guid: b2ae87f04a60c4dd88dd3520e9692d62,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2ae87f04a60c4dd88dd3520e9692d62, type: 3}

@@ -3,12 +3,14 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
 
     public Sound[] sounds;
     public static AudioManager instance;
+    private bool bossEnter = false;
     void Awake()
     {
         if (instance == null) instance = this;
@@ -30,7 +32,18 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+
         FindObjectOfType<AudioManager>().Play("BG");
+
+    }
+
+    void Update() {
+
+        if (!bossEnter && SceneManager.GetActiveScene().buildIndex == 7) {
+            bossEnter = true;
+            FindObjectOfType<AudioManager>().Play("Boss");
+            FindObjectOfType<AudioManager>().Stop("BG");
+        }
     }
 
     public void Play(string name)
@@ -38,6 +51,13 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null) return;
         s.source.Play();
+    }
+
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null) return;
+        s.source.Stop();
     }
 
     public bool IsPlaying(string name)

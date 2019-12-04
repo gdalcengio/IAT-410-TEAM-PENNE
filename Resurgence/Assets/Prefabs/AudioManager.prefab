@@ -118,7 +118,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BG
     clip: {fileID: 8300000, guid: 3560ed330d81f4e469b7133ddc61bfee, type: 3}
-    volume: 0.25
+    volume: 1
     pitch: 1.75
     loop: 1
     source: {fileID: 0}
@@ -127,4 +127,10 @@ MonoBehaviour:
     volume: 1
     pitch: 1.75
     loop: 0
+    source: {fileID: 0}
+  - name: Boss
+    clip: {fileID: 8300000, guid: d1f71cff7cc8b40f392dbd48038f9671, type: 3}
+    volume: 1
+    pitch: 1.75
+    loop: 1
     source: {fileID: 0}

@@ -24,6 +24,9 @@ TagManager:
   - Godot
   - Buoyancy
   - Fade
+  - Rocket
+  - Laser
+  - Boss
   layers:
   - Default
   - TransparentFX
