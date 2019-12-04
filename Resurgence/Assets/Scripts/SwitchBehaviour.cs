@@ -31,6 +31,7 @@ public class SwitchBehaviour : MonoBehaviour
 
         if (rockSpawn && !rockPresent) {
             Instantiate(rockPrefab, new Vector2(-7.7f, 28.5f), Quaternion.identity);
+            // Instantiate(rockPrefab, new Vector2(15f, 25f), Quaternion.identity);
         }
 
         if (state) {

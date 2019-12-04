@@ -27,14 +27,14 @@ public class InteractionHighlight : MonoBehaviour
     }
 
     IEnumerator glow() {
-        while(light2D.intensity < 7) {
+        while(light2D.intensity < 5) {
             light2D.intensity += 1;
             yield return null;
         }
     }
 
     IEnumerator unglow() {
-        while(light2D.intensity > 2) {
+        while(light2D.intensity > 1) {
             light2D.intensity -= 1;
             yield return null;
         }

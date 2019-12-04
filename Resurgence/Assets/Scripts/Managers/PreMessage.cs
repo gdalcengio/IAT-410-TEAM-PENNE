@@ -15,7 +15,7 @@ public class PreMessage : MonoBehaviour
     {
         if (Input.GetButtonDown("I_Jump") || Input.GetButtonDown("T_Jump")) {
             gameObject.SetActive(false);
-            script.startEntering();
+            if (script != null) script.startEntering();
         }
 
     }

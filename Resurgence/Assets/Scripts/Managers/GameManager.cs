@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
 
     private int nextScene = 1;
 
-    // private void Start() {
-    //     nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-    //     Debug.Log("next scene is: " + nextScene);
-    // }
+    private void Start() {
+        nextScene = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("next scene is: " + nextScene);
+    }
 
     private void Update() {
         if (Input.GetKeyDown("r")) ResetScene();
@@ -43,9 +43,15 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextScene() {
         ClearUI();
+        Debug.Log(nextScene);
+        nextScene++;
+        Debug.Log(nextScene);
+        if (nextScene == 9) {
+            nextScene = 0;
+        }
         SceneManager.LoadScene(nextScene);
         DontDestroyOnLoad(this.gameObject);
-        nextScene++;
+        
     }
 
     public void ResetScene() {

@@ -39,22 +39,26 @@ public class Rocket : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        active = false;
+        if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc" || col.gameObject.tag == "Boss" || col.gameObject.tag == "Ground" ) {       
 
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-        animator.SetBool("Explosion", true);
-        // speed = 2.5f;
+            active = false;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
 
-        Debug.Log("test");
-
-        bool dontLoop = true;
-        if (dontLoop) {
+            animator.SetBool("Explosion", true);
             FindObjectOfType<AudioManager>().Play("GodotDeath");
-            dontLoop = false;
-        }
+            // speed = 2.5f;
 
-        if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc" && animator.GetBool("Explosion") == false) {
-            GameManager.Instance.ResetScene();
+            Debug.Log("test");
+
+            bool dontLoop = true;
+            if (dontLoop) {
+                FindObjectOfType<AudioManager>().Play("GodotDeath");
+                dontLoop = false;
+            }
+
+            if (col.gameObject.tag == "Itztli" || col.gameObject.tag == "Tlaloc" && animator.GetBool("Explosion") == false) {
+                GameManager.Instance.ResetScene();
+            }
         }
     }
 }

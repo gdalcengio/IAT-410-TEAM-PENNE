@@ -6,8 +6,10 @@ public class BossBattle : MonoBehaviour
 {
     public enum State { rockets, laser, enraged, dead }
     public RocketSpawner rocketScript;
+    public ExitLevel catHolderScript;
     public Laser laserScript;
     public State state;
+    public bool raisePlatform = false;
     private int health;
     Animator animator;
 
@@ -18,6 +20,10 @@ public class BossBattle : MonoBehaviour
 
         transform.position += Vector3.right * 15;
         animator = GetComponent<Animator>();
+    }
+
+    public void Update() {
+        if (raisePlatform) StartCoroutine(catHolderScript.raise());
     }
 
     public IEnumerator bossEnter() {
